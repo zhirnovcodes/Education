@@ -5,6 +5,7 @@ using UnityEngine;
 public class LowPressureForceProvider1D : MonoBehaviour, IForceProvider2D
 {
     [SerializeField] private float _power = 1;
+    [SerializeField] private float _maxDistance = 5;
     [SerializeField] private bool _shouldLog = false;
     private Collider2D _collider;
     private Rigidbody2D _rigidbody;
@@ -30,9 +31,7 @@ public class LowPressureForceProvider1D : MonoBehaviour, IForceProvider2D
             sqrDistance = (_hits[0].rigidbody.position - _collider.attachedRigidbody.position).sqrMagnitude;
         }
 
-        const float maxDistance = 10f;
-
-        var rightCast = _collider.Raycast(Vector2.right, _hits, maxDistance);
+        var rightCast = _collider.Raycast(Vector2.right, _hits, _maxDistance);
 
         if (rightCast > 0)
         {
@@ -47,11 +46,17 @@ public class LowPressureForceProvider1D : MonoBehaviour, IForceProvider2D
             return;
         }
 
-        //var powerDistance = Mathf.Clamp01( Mathf.InverseLerp(0, maxDistance * maxDistance, sqrDistance));
-        var powerDistance = Mathf.Clamp01( Mathf.InverseLerp(maxDistance * maxDistance, 0, sqrDistance));
+        var powerDistance = Mathf.Clamp01( Mathf.InverseLerp(0, _maxDistance * _maxDistance, sqrDistance));
+        //var powerDistance = Mathf.Clamp01( Mathf.InverseLerp(maxDistance * maxDistance, 0, sqrDistance));
 
-        var direction2D = (Vector2)(direction * _power * powerDistance * Time.fixedDeltaTime);
+        var direction2D = (Vector2)(direction * _power * powerDistance);
         Force = direction2D;
+
+        if (_rigidbody.isKinematic)
+        {
+            return;
+        }
+        _rigidbody.AddForce(Force);
         //_rigidbody.MovePosition(_rigidbody.position + direction2D);
 
     }

@@ -19,6 +19,9 @@ public class ForceKinematicMover2D : MonoBehaviour
             force += _providers[i].Force;
         }
 
-        _rigidbody.MovePosition(_rigidbody.position + force);
+        if (_rigidbody.isKinematic)
+        {
+            _rigidbody.MovePosition(_rigidbody.position + force * Time.fixedDeltaTime);
+        }
     }
 }
