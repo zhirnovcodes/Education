@@ -1,18 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class KeyboardController : MonoBehaviour
 {
-    [SerializeField] private MetalString _string;
-    [SerializeField] private Slider _amplitudeSlider;
+    [SerializeField] private Workspace _workspace;
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            _string.Hit(_amplitudeSlider.value);
+            for (int i = 0; i < _workspace.StringsCount; i++)
+            {
+                _workspace.StringById(i).Hit();
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            for (int i = 0; i < _workspace.StringsCount; i++)
+            {
+                Debug.Log(2);
+                _workspace.StringById(i).Reset();
+            }
         }
     }
 }

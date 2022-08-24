@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,20 +53,22 @@
     <UnityVersion>2021.2.8f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Assets\Scripts\WaveAnalysis.cs" />
-    <Compile Include="Assets\Scripts\StringSpawnerViewController.cs" />
-    <Compile Include="Assets\Scripts\PressureField.cs" />
+    <Compile Include="Assets\Scripts\StringCountViewController.cs" />
     <Compile Include="Assets\Scripts\EarDrumOffsetDrawer.cs" />
     <Compile Include="Assets\Scripts\Ear.cs" />
-    <Compile Include="Assets\Scripts\MetalString.cs" />
-    <Compile Include="Assets\Scripts\CommonPressure.cs" />
-    <Compile Include="Assets\Scripts\ObjectsSpawner.cs" />
-    <Compile Include="Assets\Scripts\PressureAffective.cs" />
+    <Compile Include="Assets\Scripts\String1D.cs" />
     <Compile Include="Assets\Scripts\KeyboardController.cs" />
-    <Compile Include="Assets\Scripts\CirclesSpawnerViewController.cs" />
+    <Compile Include="Assets\Scripts\MoleculesCountViewController.cs" />
+    <Compile Include="Assets\Scripts\Workspace.cs" />
+    <Compile Include="Assets\Scripts\StringViewController.cs" />
+    <Compile Include="Assets\Scripts\CameraController.cs" />
+    <Compile Include="Assets\Scripts\PressureField.cs" />
+    <Compile Include="Assets\Scripts\PushForceField.cs" />
+    <Compile Include="Assets\Scripts\LowPressureForceProvider1D.cs" />
+    <Compile Include="Assets\Scripts\Membrane1D.cs" />
+    <Compile Include="Assets\Scripts\IForceProvider.cs" />
+    <Compile Include="Assets\Scripts\ForceKinematicMover2D.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
