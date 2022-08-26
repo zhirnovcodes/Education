@@ -6,10 +6,12 @@ public class Workspace : MonoBehaviour
 {
     [SerializeField] private GameObject _moleculePrefab;
     [SerializeField] private Rigidbody2D _ear;
+    [SerializeField] private Rigidbody2D _wall;
     [SerializeField] private float xMax;
 
     private List<List<GameObject>> _molecules = new List<List<GameObject>>();
     private List<String1D> _strings = new List<String1D>();
+    private List<LowPressureForceProvider1D> _earLpfs = new List<LowPressureForceProvider1D>();
 
     public int StringsCount 
     { 
@@ -32,7 +34,7 @@ public class Workspace : MonoBehaviour
             _moleculesDensity = value;
             for (var i = 0; i < StringsCount; i++)
             {
-                SpawnRaw(value, i);
+                SpawnRow(value, i);
             }
         }
     }
@@ -47,10 +49,16 @@ public class Workspace : MonoBehaviour
     private void Start()
     {
         _strings = FindObjectsOfType<String1D>().ToList();
+        _earLpfs = _ear.GetComponents<LowPressureForceProvider1D>().ToList();
     }
 
-    public void SpawnRaw(float dens, int stringId)
+    public void SpawnRow(float dens, int stringId)
     {
+        if (_earLpfs.Count > stringId)
+        {
+            _earLpfs[stringId].Left = null;
+        }
+
         if (_molecules.Count > stringId)
         {
             for (int i = 0; i < _molecules[stringId].Count; i++)
@@ -97,8 +105,24 @@ public class Workspace : MonoBehaviour
 
         var mL = mS[count - 1];
 
-        _ear.GetComponent<LowPressureForceProvider1D>().Left = mL.GetComponent<Rigidbody2D>();
-        mL.GetComponent<LowPressureForceProvider1D>().Rigth = _ear.GetComponent<Rigidbody2D>();
+        if (_earLpfs.Count <= stringId)
+        {
+            var countToAdd = stringId - _earLpfs.Count;
+            for (int i = 0; i <= countToAdd; i++)
+            {
+                var c = _ear.gameObject.AddComponent<LowPressureForceProvider1D>();
+                c.Rigth = _wall;
+                _earLpfs.Add(c);
+            }
+        }
+
+
+        _earLpfs[stringId].Left = mL.GetComponent<Rigidbody2D>();
+
+        _earLpfs[stringId].gameObject.SetActive(false);
+        _earLpfs[stringId].gameObject.SetActive(true);
+
+        mL.GetComponent<LowPressureForceProvider1D>().Rigth = _wall.GetComponent<Rigidbody2D>();
     }
 
 }

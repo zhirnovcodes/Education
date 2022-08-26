@@ -8,10 +8,14 @@ public class ForceMover2D : MonoBehaviour
 
     private List<Vector2> _forces = new List<Vector2>(3);
 
+    private void Start()
+    {
+        _rigidbody = _rigidbody ?? GetComponent<Rigidbody2D>();
+    }
+
     private void OnEnable() 
     {
-        _providers = _providers ?? GetComponents<IForceProvider2D>();
-        _rigidbody = _rigidbody ?? GetComponent<Rigidbody2D>();
+        _providers = GetComponents<IForceProvider2D>();
     }
 
     void FixedUpdate()
@@ -25,6 +29,8 @@ public class ForceMover2D : MonoBehaviour
             force += f;
         }
 
+        force /= _providers.Length;
+
         if (_rigidbody.isKinematic)
         {
             _rigidbody.MovePosition(_rigidbody.position + force);
@@ -34,11 +40,11 @@ public class ForceMover2D : MonoBehaviour
             _rigidbody.AddForce(force);
         }
     }
-
     private void OnDrawGizmosSelected()
     {
         for (int i = 0; i < _forces.Count; i++)
         {
+            Gizmos.color = new Color(((float)i / _forces.Count), 1, 1);
             Gizmos.DrawLine(transform.position, (Vector2)transform.position + _forces[i]);
         }
     }
