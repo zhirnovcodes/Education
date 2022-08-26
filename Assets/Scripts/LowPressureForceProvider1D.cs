@@ -1,63 +1,109 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LowPressureForceProvider1D : MonoBehaviour, IForceProvider2D
 {
-    [SerializeField] private float _power = 1;
+    [SerializeField] private float _speed = 1;
+    [SerializeField] private float _maxSpeed = 100;
     [SerializeField] private float _maxDistance = 5;
     [SerializeField] private bool _shouldLog = false;
+
+    [SerializeField] private Rigidbody2D _left;
+    [SerializeField] private Rigidbody2D _right;
+
     private Collider2D _collider;
     private Rigidbody2D _rigidbody;
     private RaycastHit2D[] _hits = new RaycastHit2D[1];
 
-    public Vector2 Force { get; private set; }
+    private float _leftScale;
+    private float _rightScale;
 
-    void Start()
+    public Rigidbody2D Left { get => _left; set { _left = value; } }
+    public Rigidbody2D Rigth { get => _right; set { _right = value; } }
+
+    public Vector2 GetForce()
     {
-        _collider = GetComponent<Collider2D>();
-        _rigidbody = GetComponent<Rigidbody2D>();
+        SetLeftRight();
+
+        if (_left == null || _right == null)
+        {
+            return Vector2.zero;
+        }
+
+        var lp = _left.position + Vector2.right * _leftScale;
+        var rp = _right.position + Vector2.left * _rightScale;
+
+        /*
+        var ld = (lp - _rigidbody.position) / 2f;
+        var rd = (rp - _rigidbody.position) / 2f;
+
+        var sqrDistanceLeft = ld.sqrMagnitude;
+        var sqrDistanceRight = rd.sqrMagnitude;
+
+        var direction = sqrDistanceLeft > sqrDistanceRight ? ld : rd;
+        var distanceSqr = Mathf.Max(sqrDistanceLeft, sqrDistanceRight);
+
+        if (distanceSqr >= _maxSpeed * _maxSpeed)
+        {
+            direction = direction.normalized * _maxSpeed;
+        }
+
+        var direction2D = (Vector2)(direction * _speed );
+        
+        return direction2D;
+        */
+
+        return ((lp + rp) / 2 - _rigidbody.position)*_speed;
     }
 
-    void FixedUpdate()
+    private void SetLeftRight()
     {
-        var leftCast = _collider.Raycast(Vector2.left, _hits, 10);
-
-        var sqrDistance = Mathf.Infinity;
-        var direction = Vector3.zero;
-
-        if (leftCast > 0)
+        if (_left == null )
         {
-            sqrDistance = (_hits[0].rigidbody.position - _collider.attachedRigidbody.position).sqrMagnitude;
+            var cast = _collider.Raycast(Vector2.left, _hits, _maxDistance);
+            _left = cast > 0 ? _hits[0].rigidbody : null;
+            _leftScale = ( _left?.transform?.localScale.x ?? 0 ) / 2;
+            if ( _left == null )
+            {
+                Log("Left " + _rigidbody.name + " " + cast);
+            }
         }
-
-        var rightCast = _collider.Raycast(Vector2.right, _hits, _maxDistance);
-
-        if (rightCast > 0)
+        if (_right == null)
         {
-            var rightSqrDistance = (_hits[0].rigidbody.position - _collider.attachedRigidbody.position).sqrMagnitude;
-            direction = rightSqrDistance > sqrDistance ? Vector3.right : Vector3.left;
-            sqrDistance = Mathf.Max(rightSqrDistance, sqrDistance);
+            var cast = _collider.Raycast(Vector2.right, _hits, _maxDistance);
+            _right = cast > 0 ? _hits[0].rigidbody : null;
+            _rightScale = ( _right?.transform?.localScale.x ?? 0 ) / 2;
+            if ( _right == null )
+            {
+                Log("Right " + _rigidbody.name + " " + cast);
+            }
         }
+    }
 
-        if (sqrDistance == Mathf.Infinity)
+    private void Start()
+    {
+        _collider = _collider ?? GetComponent<Collider2D>();
+        _rigidbody = _rigidbody ?? GetComponent<Rigidbody2D>();
+    }
+
+    private void OnDisable()
+    {
+        _left = null;
+        _right = null;
+
+        _leftScale = 0;
+        _rightScale = 0;
+    }
+
+    private void Log(object log)
+    {
+        if (_shouldLog)
         {
-            Force = Vector3.zero;
-            return;
+            Debug.Log(log);
         }
-
-        var powerDistance = Mathf.Clamp01( Mathf.InverseLerp(0, _maxDistance * _maxDistance, sqrDistance));
-        //var powerDistance = Mathf.Clamp01( Mathf.InverseLerp(maxDistance * maxDistance, 0, sqrDistance));
-
-        var direction2D = (Vector2)(direction * _power * powerDistance);
-        Force = direction2D;
-
-        if (_rigidbody.isKinematic)
-        {
-            return;
-        }
-        _rigidbody.AddForce(Force);
-        //_rigidbody.MovePosition(_rigidbody.position + direction2D);
-
+    }
+    private float InvLerp(float a, float b, float x)
+    {
+        b = a == b ? b + 0.000001f : b;
+        return (x - a) / (b - a);
     }
 }

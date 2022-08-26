@@ -17,7 +17,6 @@ public class KeyboardController : MonoBehaviour
         {
             for (int i = 0; i < _workspace.StringsCount; i++)
             {
-                Debug.Log(2);
                 _workspace.StringById(i).Reset();
             }
         }

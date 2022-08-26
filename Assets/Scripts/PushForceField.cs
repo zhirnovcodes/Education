@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class PushForceField : MonoBehaviour
 {
-    [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private float _power = 2;
+    private Rigidbody2D _rigidbody;
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.attachedRigidbody == null)
+        Debug.Log(0);
+        if (collision.rigidbody == null)
         {
             return;
         }
-        var direction = (collision.attachedRigidbody.position - _rigidbody.position);
-        collision.attachedRigidbody.AddForce(direction * _power);
+        var direction = (collision.rigidbody.position - _rigidbody.position);
+        collision.rigidbody.AddForce(direction * _power);
     }
 }

@@ -13,8 +13,6 @@ public class String1D : MonoBehaviour
 
     public Vector3 Position => _rigid.position;
 
-    public PressureField Field { get; private set; }
-
     public float Frequency
     {
         set
@@ -55,7 +53,6 @@ public class String1D : MonoBehaviour
     void Start()
     {
         _rigid = _rigid ?? GetComponent<Rigidbody2D>();
-        Field = transform.parent.GetComponentInChildren<PressureField>();
     }
 
     public void Hit()

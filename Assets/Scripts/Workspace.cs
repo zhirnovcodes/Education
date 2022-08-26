@@ -5,8 +5,8 @@ using UnityEngine;
 public class Workspace : MonoBehaviour
 {
     [SerializeField] private GameObject _moleculePrefab;
+    [SerializeField] private Rigidbody2D _ear;
     [SerializeField] private float xMax;
-    [SerializeField] private float size;
 
     private List<List<GameObject>> _molecules = new List<List<GameObject>>();
     private List<String1D> _strings = new List<String1D>();
@@ -68,20 +68,37 @@ public class Workspace : MonoBehaviour
             }
         }
 
-        var xMin = _strings[stringId].Position.x + _strings[stringId].transform.localScale.x;
-        var scale = size;//_moleculePrefab.transform.localScale.x;
+        var s = _strings[stringId];
+        var mS = _molecules[stringId];
+        var xMin = s.Position.x + s.transform.localScale.x / 2;
+        var scale = _moleculePrefab.transform.localScale.x;
         var count = (int)Mathf.Max((xMax - xMin) / scale * dens, 1);
+        var offset = (xMax - xMin) / (float)(count + 1);
 
         for (int i = 0; i < count; i++)
         {
-            var posX = Mathf.Lerp(xMin, xMax, (float)i / count);
-            var pos = new Vector3(posX, _strings[stringId].Position.y, 0);
+            var posX = Mathf.Lerp(xMin + offset, xMax, (float)i / count);
+            var pos = new Vector3(posX, s.Position.y, 0);
 
             var go = GameObject.Instantiate(_moleculePrefab);
-            go.GetComponent<Rigidbody2D>().position = pos;
+            go.transform.position = pos;
 
-            _molecules[stringId].Add(go);
+            var force = go.GetComponent<LowPressureForceProvider1D>();
+            
+            force.Left = (i == 0 ? s.gameObject : mS[i - 1]).GetComponent<Rigidbody2D>();
+
+            if (i > 0)
+            {
+                mS[i - 1].GetComponent<LowPressureForceProvider1D>().Rigth = go.GetComponent<Rigidbody2D>();
+            }
+
+            mS.Add(go);
         }
+
+        var mL = mS[count - 1];
+
+        _ear.GetComponent<LowPressureForceProvider1D>().Left = mL.GetComponent<Rigidbody2D>();
+        mL.GetComponent<LowPressureForceProvider1D>().Rigth = _ear.GetComponent<Rigidbody2D>();
     }
 
 }
