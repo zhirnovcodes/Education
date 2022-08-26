@@ -19,7 +19,7 @@ public class Membrane1D : MonoBehaviour, IForceProvider2D
 
         //var dirPower = Mathf.Clamp01( Mathf.InverseLerp(_stabelizeDistance * _stabelizeDistance, _maxDeviation * _maxDeviation, sqrDist) );
         var dirPower = Mathf.Max (0, InvLerp(_stabelizeDistance, _maxDeviation, Mathf.Sqrt( sqrDist )));
-        return dir.normalized * dirPower * _power * Time.fixedDeltaTime;
+        return dir.normalized * dirPower * _power;
     }
 
     private float InvLerp(float a, float b, float x)
