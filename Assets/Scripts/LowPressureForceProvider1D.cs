@@ -24,7 +24,7 @@ public class LowPressureForceProvider1D : MonoBehaviour, IForceProvider2D
         var rp = _right.position + Vector2.left * _right.transform.localScale.x / 2;
 
         var d = (lp.x + rp.x) / 2 - _rigidbody.position.x;
-        var x = d;//Mathf.Clamp( d, -1, 1 );
+        var x = Mathf.Abs(d) < Air.Density ? d : 0;//Mathf.Clamp( d, -1, 1 );
         var f = new Vector2(x, 0);
         return f;
     }

@@ -9,8 +9,9 @@ public class ForceMover2D : MonoBehaviour
         Avg
     }
 
-    [SerializeField] private float _speed = 1;
     [SerializeField] private ForceMixType _mixType = ForceMixType.Avg;
+    [SerializeField] private bool _useAirDrag = true;
+    [SerializeField, Range(0, 1)] private float _drag = 0.1f;
 
 
     private IForceProvider2D[] _providers;
@@ -58,8 +59,8 @@ public class ForceMover2D : MonoBehaviour
         if (_rigidbody.isKinematic)
         {
             var velocity = force * Time.fixedDeltaTime + _velocityLast;
-            velocity *= 1 - Air.Drag;
-            _rigidbody.MovePosition(_rigidbody.position + velocity * _speed);
+            velocity *= (1 - (_useAirDrag ? Air.Drag : _drag)) / _rigidbody.mass;
+            _rigidbody.MovePosition(_rigidbody.position + velocity);
             _velocityLast = velocity;
         }
         else
