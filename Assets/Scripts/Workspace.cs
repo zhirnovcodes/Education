@@ -6,12 +6,31 @@ public class Workspace : MonoBehaviour
 {
     [SerializeField] private GameObject _moleculePrefab;
     [SerializeField] private Rigidbody2D _ear;
-    [SerializeField] private Rigidbody2D _wall;
-    [SerializeField] private float xMax;
+    [SerializeField] private Rigidbody2D _leftEarWall;
+    [SerializeField] private Rigidbody2D _rightEarWall;
+    //[SerializeField] private float xMax;
 
     private List<List<GameObject>> _molecules = new List<List<GameObject>>();
     private List<String1D> _strings = new List<String1D>();
     private List<LowPressureForceProvider1D> _earLpfs = new List<LowPressureForceProvider1D>();
+
+    public GameObject Ear => _ear.gameObject;
+
+    public IEnumerable<GameObject> Molecules
+    {
+        get
+        {
+            foreach (var m in _molecules)
+            {
+                foreach (var g in m)
+                {
+                    yield return g;
+                }
+            }
+        }
+    }
+
+    public IEnumerable<String1D> Strings => _strings;
 
     public int StringsCount 
     { 
@@ -49,7 +68,7 @@ public class Workspace : MonoBehaviour
     private void Start()
     {
         _strings = FindObjectsOfType<String1D>().ToList();
-        _earLpfs = _ear.GetComponents<LowPressureForceProvider1D>().ToList();
+        _earLpfs = _ear.GetComponents<LowPressureForceProvider1D>().Where(l => l.Left == null).ToList();
     }
 
     public void SpawnRow(float dens, int stringId)
@@ -79,6 +98,7 @@ public class Workspace : MonoBehaviour
         var s = _strings[stringId];
         var mS = _molecules[stringId];
         var xMin = s.Position.x + s.transform.localScale.x / 2;
+        var xMax = _leftEarWall.position.x - _leftEarWall.transform.localScale.x / 2;
         var scale = _moleculePrefab.transform.localScale.x;
         var count = (int)Mathf.Max((xMax - xMin) / scale * dens, 1);
         var offset = (xMax - xMin) / (float)(count + 1);
@@ -103,26 +123,26 @@ public class Workspace : MonoBehaviour
             mS.Add(go);
         }
 
-        var mL = mS[count - 1];
-
         if (_earLpfs.Count <= stringId)
         {
             var countToAdd = stringId - _earLpfs.Count;
             for (int i = 0; i <= countToAdd; i++)
             {
                 var c = _ear.gameObject.AddComponent<LowPressureForceProvider1D>();
-                c.Rigth = _wall;
+                c.Rigth = _rightEarWall;
                 _earLpfs.Add(c);
             }
         }
 
+        var mL = mS[count - 1];
 
         _earLpfs[stringId].Left = mL.GetComponent<Rigidbody2D>();
 
         _earLpfs[stringId].gameObject.SetActive(false);
+        _ear.transform.position = new Vector3( (mL.transform.position.x + scale / 2 + xMax) / 2, _ear.transform.position.y, 0);
         _earLpfs[stringId].gameObject.SetActive(true);
 
-        mL.GetComponent<LowPressureForceProvider1D>().Rigth = _wall.GetComponent<Rigidbody2D>();
+        mL.GetComponent<LowPressureForceProvider1D>().Rigth = _leftEarWall.GetComponent<Rigidbody2D>();
     }
 
 }

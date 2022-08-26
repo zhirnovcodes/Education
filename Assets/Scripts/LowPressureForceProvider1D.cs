@@ -2,17 +2,13 @@ using UnityEngine;
 
 public class LowPressureForceProvider1D : MonoBehaviour, IForceProvider2D
 {
-    [SerializeField] private float _speed = 1;
-    [SerializeField] private float _maxSpeed = 100;
-    [SerializeField] private float _maxDistance = 5;
-    [SerializeField] private bool _shouldLog = false;
-
     [SerializeField] private Rigidbody2D _left;
     [SerializeField] private Rigidbody2D _right;
+    
+    private Rigidbody2D _rigidbody = null;
 
-    private Collider2D _collider;
-    private Rigidbody2D _rigidbody;
-    private RaycastHit2D[] _hits = new RaycastHit2D[1];
+    [SerializeField] private bool _shouldLog = false;
+
 
     public Rigidbody2D Left { get => _left; set { _left = value; } }
     public Rigidbody2D Rigth { get => _right; set { _right = value; } }
@@ -27,34 +23,14 @@ public class LowPressureForceProvider1D : MonoBehaviour, IForceProvider2D
         var lp = _left.position + Vector2.right * _left.transform.localScale.x / 2;
         var rp = _right.position + Vector2.left * _right.transform.localScale.x / 2;
 
-        /*
-        var ld = (lp - _rigidbody.position) / 2f;
-        var rd = (rp - _rigidbody.position) / 2f;
-
-        var sqrDistanceLeft = ld.sqrMagnitude;
-        var sqrDistanceRight = rd.sqrMagnitude;
-
-        var direction = sqrDistanceLeft > sqrDistanceRight ? ld : rd;
-        var distanceSqr = Mathf.Max(sqrDistanceLeft, sqrDistanceRight);
-
-        if (distanceSqr >= _maxSpeed * _maxSpeed)
-        {
-            direction = direction.normalized * _maxSpeed;
-        }
-
-        var direction2D = (Vector2)(direction * _speed );
-        
-        return direction2D;
-        */
-
-        var f =  ((lp + rp) / 2 - _rigidbody.position) * _speed;
-        f.y = 0;
+        var d = (lp.x + rp.x) / 2 - _rigidbody.position.x;
+        var x = d;//Mathf.Clamp( d, -1, 1 );
+        var f = new Vector2(x, 0);
         return f;
     }
 
     private void Start()
     {
-        _collider = _collider ?? GetComponent<Collider2D>();
         _rigidbody = _rigidbody ?? GetComponent<Rigidbody2D>();
     }
 

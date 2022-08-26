@@ -3,7 +3,6 @@ using UnityEngine;
 public class Membrane1D : MonoBehaviour, IForceProvider2D
 {
     [SerializeField] private float _power = 1;
-    [SerializeField] private float _stabelizeDistance = 0.2f;
     [SerializeField] private float _maxDeviation = 1f;
 
     private Rigidbody2D _rigidbody;
@@ -15,11 +14,14 @@ public class Membrane1D : MonoBehaviour, IForceProvider2D
         _stablePosition = _stablePosition ?? _rigidbody.position;
 
         var dir = _stablePosition.Value - _rigidbody.position;
-        var sqrDist = dir.sqrMagnitude;
+        var x = (InvLerp(-_maxDeviation, _maxDeviation, dir.x) - 0.5f) * 2;
 
-        //var dirPower = Mathf.Clamp01( Mathf.InverseLerp(_stabelizeDistance * _stabelizeDistance, _maxDeviation * _maxDeviation, sqrDist) );
-        var dirPower = Mathf.Max (0, InvLerp(_stabelizeDistance, _maxDeviation, Mathf.Sqrt( sqrDist )));
-        return dir.normalized * dirPower * _power;
+        return new Vector2(x, 0) * _power;
+    }
+
+    private void OnDisable()
+    {
+        _stablePosition = null;
     }
 
     private float InvLerp(float a, float b, float x)
