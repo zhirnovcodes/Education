@@ -970,7 +970,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2125751238}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.50656563
+  m_Size: 0.5067033
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1272,8 +1272,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81c4ede2b09da774fb6b1d74db25b270, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _drag: 0.041
+  _drag: 0.12
   _density: 0
+  _timeScale: 1
 --- !u!4 &752757987
 Transform:
   m_ObjectHideFlags: 0
@@ -3945,6 +3946,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5123451186966282325, guid: 717bd5d07707b704fbf0f3b9bf444e64, type: 3}
+      propertyPath: _frequency
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 7509456422021139274, guid: 717bd5d07707b704fbf0f3b9bf444e64, type: 3}
       propertyPath: m_Name
       value: String1D
@@ -4004,7 +4009,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4572532060923219540, guid: 3d54a9214cd8503479450d5a04c8d8fd, type: 3}
       propertyPath: _drag
-      value: 0.06
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 4572532060923219547, guid: 3d54a9214cd8503479450d5a04c8d8fd, type: 3}
       propertyPath: m_RootOrder

@@ -5,7 +5,7 @@ public class Air : MonoBehaviour
     private static Air _instance;
 
     [SerializeField, Range(0,1)] private float _drag = 0.1f;
-    [SerializeField, Range(0,5)] private float _density = 0f;
+    [SerializeField, Range(0.1f,5)] private float _density = 0f;
     [SerializeField, Range(0,50)] private float _timeScale = 1f;
 
     public static float Drag
