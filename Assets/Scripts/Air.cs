@@ -5,13 +5,14 @@ public class Air : MonoBehaviour
     private static Air _instance;
 
     [SerializeField, Range(0,1)] private float _drag = 0.1f;
-    [SerializeField, Range(0,6)] private float _density = 0.1f;
+    [SerializeField, Range(0,5)] private float _density = 0f;
+    [SerializeField, Range(0,50)] private float _timeScale = 1f;
 
     public static float Drag
     {
         get
         {
-            return _instance._drag;
+            return _instance?._drag ?? 1;
         }
     }
 
@@ -19,7 +20,7 @@ public class Air : MonoBehaviour
     {
         get
         {
-            return _instance._density;
+            return _instance?._density ?? 1;
         }
     }
 
@@ -36,5 +37,10 @@ public class Air : MonoBehaviour
     private void Awake()
     {
         _instance = this;
+    }
+
+    private void Update()
+    {
+        Time.timeScale = _timeScale;
     }
 }

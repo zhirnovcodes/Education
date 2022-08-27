@@ -13,7 +13,15 @@ public class StringViewController : MonoBehaviour
         set 
         {
             _string = value;
-            Reset();
+
+            if (String == null)
+            {
+                return;
+            }
+
+            FreqValueChanged(_freq.value);
+            AmpValueChanged(_amp.value);
+            DecValueChanged(_dec.value);
         }
         private get 
         {
@@ -21,23 +29,14 @@ public class StringViewController : MonoBehaviour
         } 
     }
 
-    private void Reset()
-    {
-        if (String == null)
-        {
-            return;
-        }
-        String.Reset();
-        FreqValueChanged(_freq.value);
-        AmpValueChanged(_amp.value);
-        DecValueChanged(_dec.value);
-    }
-
     private void OnEnable()
     {
-        _freq.value = _string.Frequency;
-        _amp.value = _string.Amplitude;
-        _dec.value = _string.DecayTime;
+        if (String != null)
+        {
+            _freq.value = _string.Frequency;
+            _amp.value = _string.Amplitude;
+            _dec.value = _string.DecayTime;
+        }
 
         _freq.onValueChanged.AddListener( FreqValueChanged );
         _amp.onValueChanged.AddListener( AmpValueChanged);

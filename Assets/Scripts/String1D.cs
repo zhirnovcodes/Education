@@ -11,7 +11,16 @@ public class String1D : MonoBehaviour
     private float _amplitudeCurr;
     private float _timeStart;
 
-    public Vector3 Position => _rigid.position;
+    public Vector2 Position
+    {
+        get => GetRigidbody().position; 
+        set
+        {
+            Reset();
+            GetRigidbody().position = value;
+            _stable = value;
+        }
+    }
 
     public float Frequency
     {
@@ -50,9 +59,10 @@ public class String1D : MonoBehaviour
         }
     }
 
-    void Start()
+    private Rigidbody2D GetRigidbody()
     {
         _rigid = _rigid ?? GetComponent<Rigidbody2D>();
+        return _rigid;
     }
 
     public void Hit()
@@ -68,11 +78,11 @@ public class String1D : MonoBehaviour
 
     void FixedUpdate()
     {
-        _stable = _stable ?? _rigid.position;
+        _stable = _stable ?? GetRigidbody().position;
 
         if (_amplitudeCurr <= 0)
         {
-            _rigid.MovePosition(_stable.Value);
+            GetRigidbody().MovePosition(_stable.Value);
             return;
         }
 
@@ -80,11 +90,11 @@ public class String1D : MonoBehaviour
         if (amp <= 0)
         {
             _amplitudeCurr = 0;
-            _rigid.MovePosition(_stable.Value);
+            GetRigidbody().MovePosition(_stable.Value);
             return;
         }
-        var offset = Mathf.Sin((Time.realtimeSinceStartup - _timeStart) * Frequency * 2 * Mathf.PI ) * amp * Vector3.left;
+        var offset = Mathf.Sin((Time.realtimeSinceStartup * Time.timeScale - _timeStart) * Frequency * 2 * Mathf.PI ) * amp * Vector3.left;
         var position = offset + _stable.Value;
-        _rigid.MovePosition(position);
+        GetRigidbody().MovePosition(position);
     }
 }

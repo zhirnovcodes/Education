@@ -23,15 +23,12 @@ public class LowPressureForceProvider1D : MonoBehaviour, IForceProvider2D
         var lp = _left.position + Vector2.right * _left.transform.localScale.x / 2;
         var rp = _right.position + Vector2.left * _right.transform.localScale.x / 2;
 
+        _rigidbody = _rigidbody ?? GetComponent<Rigidbody2D>();
+
         var d = (lp.x + rp.x) / 2 - _rigidbody.position.x;
-        var x = Mathf.Abs(d) < Air.Density ? d : 0;//Mathf.Clamp( d, -1, 1 );
+        var x = d == 0 ? 0 : Mathf.Sign(d);//Mathf.Abs(d) < Air.Density ? 0 : (Mathf.Clamp(d, -1, 1) * (Mathf.Abs( d ) - Air.Density));//Mathf.Clamp( d, -1, 1 );
         var f = new Vector2(x, 0);
         return f;
-    }
-
-    private void Start()
-    {
-        _rigidbody = _rigidbody ?? GetComponent<Rigidbody2D>();
     }
 
     private void Log(object log)

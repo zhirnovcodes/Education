@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8283946059254225879}
   - component: {fileID: 2802657690887220154}
   - component: {fileID: 4034703322385355173}
+  - component: {fileID: -4454398674536491923}
   m_Layer: 0
   m_Name: Molecule1D
   m_TagString: Untagged
@@ -138,3 +139,16 @@ MonoBehaviour:
   _mixType: 0
   _useAirDrag: 1
   _drag: 0
+  _mass: 0.5
+--- !u!114 &-4454398674536491923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3140793240690954789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 154ba5c699e71a64c813fc763f3547c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

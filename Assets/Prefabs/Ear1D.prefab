@@ -150,6 +150,7 @@ MonoBehaviour:
   _mixType: 0
   _useAirDrag: 0
   _drag: 0.17
+  _mass: 1
 --- !u!114 &4572532060923219542
 MonoBehaviour:
   m_ObjectHideFlags: 0

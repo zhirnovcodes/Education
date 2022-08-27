@@ -7,11 +7,14 @@ public class StringCountViewController : MonoBehaviour
     [SerializeField] private Workspace _workspace;
     [SerializeField] private StringViewController _vcPrefab;
     [SerializeField] private Slider _slider;
+    [SerializeField] private GameObject _content;
 
     private List<StringViewController> _vcs = new List<StringViewController>();
 
     private void OnEnable()
     {
+        _slider.value = _workspace.StringsCount;
+        SetViewControllers();
         _slider.onValueChanged.AddListener(OnValueChanged);
     }
 
@@ -22,20 +25,56 @@ public class StringCountViewController : MonoBehaviour
 
     private void OnValueChanged(float value)
     {
-        for (int i = 0; i < _vcs.Count; i++)
+        _workspace.StringsCount = Mathf.RoundToInt( _slider.value );
+
+        SetViewControllers();
+    }
+
+    private void SetViewControllers()
+    {
+        var value = Mathf.RoundToInt(_slider.value);
+        if (value < _vcs.Count)
         {
-            GameObject.Destroy(_vcs[i].gameObject);
+            for (int i = 0; i < _vcs.Count - value; i++)
+            {
+                DeleteStringFromEnd();
+            }
         }
-
-        _vcs.Clear();
-
-        _workspace.StringsCount = (int)_slider.value;
-
-        for (int i = 0; i < _workspace.StringsCount; i++)
+        else if (value > _vcs.Count)
         {
-            var vc = GameObject.Instantiate(_vcPrefab).GetComponent<StringViewController>();
-            vc.String = _workspace.StringById(i);
-            _vcs.Add(vc);
+            for (int i = 0; i < value - _vcs.Count; i++)
+            {
+                AddStringToEnd();
+            }
         }
     }
+
+    private void DeleteStringFromEnd()
+    {
+        if (_vcs.Count == 0)
+        {
+            return;
+        }
+
+        var stringId = _vcs.Count - 1;
+
+        var go = _vcs[stringId].gameObject;
+        _vcs.RemoveAt(stringId);
+        GameObject.Destroy(go);
+    }
+
+    private void AddStringToEnd()
+    {
+        var newIndex = _vcs.Count;
+        var go = GameObject.Instantiate(_vcPrefab.gameObject);
+        var s = go.GetComponent<StringViewController>();
+        s.String = _workspace.StringById(newIndex);
+
+        go.SetActive(false);
+        go.transform.parent = _content.transform;
+        go.SetActive(true);
+
+        _vcs.Add(s);
+    }
+
 }
