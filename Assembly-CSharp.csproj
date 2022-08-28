@@ -79,6 +79,7 @@
     <Compile Include="Assets\Scripts\IForceProvider.cs" />
     <Compile Include="Assets\Scripts\MoleculesCountViewController.cs" />
     <Compile Include="Assets\Scripts\FluctuatingObjectMover1D.cs" />
+    <Compile Include="Assets\Scripts\EarDrumOffsetMaterial.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

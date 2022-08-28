@@ -1,26 +1,20 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EarDrumOffsetDrawer : MonoBehaviour
 {
-    [SerializeField] private Transform _target;
-    [SerializeField] private ComputeShader _shader;
-    [SerializeField] private int _count = 10;
-    [SerializeField, Range(0.01f, 1f)] private float _length = 0.01f;
-    [SerializeField, Range(1, 20f)] private float _scale = 1f;
-    [SerializeField, Range(0.001f, 2f)] private float _analysisDeltaSec = 0.1f;
-    [SerializeField, Range(0, 7)] private float _minOffset = 1f;
-    public RenderTexture Texture { get; private set; }
-    [SerializeField] private RenderTexture _valuesTexture;
-
     private const string ResultName = "Result";
     private const string ResultSizeName = "ResultSize";
     private const string ValuesName = "Values";
-    private const string ValueYOffsetName = "ValueYOffset";
     private const string ValueScaleName = "ValueScale";
     private const string ValueSizeName = "ValuesSize";
     private const string ValueNewName = "ValueNew";
     private const string IndexNewName = "IndexNew";
+
+    [SerializeField] private Transform _target;
+    [SerializeField] private ComputeShader _shader;
+    [SerializeField, Range(0.001f, 2f)] private float _analysisDeltaSec = 0.1f;
+    [SerializeField, Range(0.01f, 7)] private float _minOffset = 1f;
+    [SerializeField] private RenderTexture _valuesTexture;
 
     private int _initResultKernelIndex;
     private int _initValuesKernelIndex;
@@ -28,20 +22,49 @@ public class EarDrumOffsetDrawer : MonoBehaviour
     private int _addValueKernelIndex;
     private int _scaleKernelIndex;
 
-    private float _lastX;
-    private float _lastTime;
-    private float _currentTime;
-    private float _minVal = float.MaxValue;
-    private float _maxVal = float.MinValue;
-
     private float _timeWithoutPainting;
     private int _lastValuesIndex;
-    private float _lastValue;
     private float _lastOffset;
+    private Vector2 _stablePos;
+    private RenderTexture _mainTexture;
 
+    /*
     private Queue<PeakValley> _peaks = new Queue<PeakValley>(10);
     private Queue<PeakValley> _valleys = new Queue<PeakValley>(10);
-    private Vector2 _stablePos;
+    private float _minVal = float.MaxValue;
+    private float _maxVal = float.MinValue;
+    */
+    public RenderTexture Texture 
+    { 
+        get 
+        {
+            if (_mainTexture == null)
+            {
+                _mainTexture = new RenderTexture(256, 128, 1);
+                _mainTexture.filterMode = FilterMode.Point;
+                _mainTexture.enableRandomWrite = true;
+                _mainTexture.Create();
+            }
+            return _mainTexture;
+        } 
+    }
+
+    public float MinOffset
+    {
+        get
+        {
+            return _minOffset;
+        }
+        set
+        {
+            if (value == 0)
+            {
+                return;
+            }
+
+            _minOffset = Mathf.Abs(value);
+        }
+    }
 
     private void OnEnable()
     {
@@ -54,18 +77,12 @@ public class EarDrumOffsetDrawer : MonoBehaviour
         _stablePos = _target.position;
         _lastOffset = _minOffset;
 
-        Texture = new RenderTexture(256, 128, 1);
-        Texture.filterMode = FilterMode.Point;
-        Texture.enableRandomWrite = true;
-        Texture.Create();
-
         _valuesTexture = new RenderTexture(256, 1, 1);
-        _valuesTexture.filterMode = FilterMode.Point;
+        _valuesTexture.filterMode = FilterMode.Trilinear;
         _valuesTexture.enableRandomWrite = true;
         _valuesTexture.format = RenderTextureFormat.RFloat;
         _valuesTexture.Create();
 
-        Debug.Log(_shader.name);
         _shader = (ComputeShader)Instantiate(Resources.Load(_shader.name));
 
         _initResultKernelIndex = _shader.FindKernel("InitResult");
@@ -79,13 +96,11 @@ public class EarDrumOffsetDrawer : MonoBehaviour
 
         _shader.SetTexture(_addValueKernelIndex, ValuesName, _valuesTexture);
         _shader.SetTexture(_paintKernelIndex, ValuesName, _valuesTexture);
-        _shader.SetTexture(_paintKernelIndex, ResultName, Texture);
-        
         _shader.SetTexture(_initValuesKernelIndex, ValuesName, _valuesTexture);
-        _shader.SetTexture(_initResultKernelIndex, ResultName, Texture);
+        _shader.SetTexture(_scaleKernelIndex, ValuesName, _valuesTexture);
 
-        var material = GetComponent<MeshRenderer>()?.material;
-        material.mainTexture = Texture;
+        _shader.SetTexture(_paintKernelIndex, ResultName, Texture);
+        _shader.SetTexture(_initResultKernelIndex, ResultName, Texture);
     }
 
     // Update is called once per frame
@@ -104,8 +119,7 @@ public class EarDrumOffsetDrawer : MonoBehaviour
 
             if (_lastOffset != _minOffset)
             {
-                _shader.SetFloat(ValueScaleName, 1);
-                _shader.SetFloat(ValueYOffsetName, 0);
+                _shader.SetFloat(ValueScaleName, _lastOffset / _minOffset);
                 _shader.Dispatch(_scaleKernelIndex, Texture.width / 8, 1, 1);
             }
 
@@ -114,9 +128,7 @@ public class EarDrumOffsetDrawer : MonoBehaviour
             _shader.Dispatch(_addValueKernelIndex, _valuesTexture.width / 8, 1, 1);
             _shader.Dispatch(_paintKernelIndex, Texture.width / 8, Texture.height / 8, 1);
 
-            _lastValue = posX;
             _lastValuesIndex++;
-            _lastTime = Time.realtimeSinceStartup;
             _lastOffset = _minOffset;
         }
         else
@@ -126,9 +138,9 @@ public class EarDrumOffsetDrawer : MonoBehaviour
 
     }
 
+    /*
     private float CalcMax(float value, int index, int indexMin)
     {
-        /*
         var delta = value - _lastValue;
 
         var wasChanged = false;
@@ -159,14 +171,12 @@ public class EarDrumOffsetDrawer : MonoBehaviour
         {
             _maxVal = Mathf.Max(_maxVal, value);
         }
-        */
         _maxVal = Mathf.Max(_maxVal, value);
         return _maxVal;
     }
 
     private float CalcMin(float value, int index, int indexMin)
     {
-        /*
         var delta = value - _lastValue;
 
         var wasChanged = false;
@@ -197,7 +207,6 @@ public class EarDrumOffsetDrawer : MonoBehaviour
         {
             _minVal = Mathf.Min(_minVal, value);
         }
-        */
 
         _minVal = Mathf.Min(_minVal, value);
         return _maxVal;
@@ -208,4 +217,5 @@ public class EarDrumOffsetDrawer : MonoBehaviour
         public float Value;
         public int Index;
     }
+*/
 }
