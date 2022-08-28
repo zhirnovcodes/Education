@@ -50,7 +50,7 @@ public class FluctuatingObject1D : MonoBehaviour, IFluctuatingObject1D
 
         timeStart += Mathf.Abs(_stablePosition.Value.x) * 2f / _source.Fluctuation.Frequency / Air.Density;
 
-        var deltaTime = Time.realtimeSinceStartup - timeStart;
+        var deltaTime = Air.Time - timeStart;
         var x = _source.Fluctuation.GetValue(deltaTime);
         return x;
     }

@@ -61,24 +61,24 @@
     <Compile Include="Assets\Scripts\Air.cs" />
     <Compile Include="Assets\Scripts\EarDrumOffsetDrawer.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
+    <Compile Include="Assets\Scripts\FluctuatingObject1D.cs" />
     <Compile Include="Assets\Scripts\Ear.cs" />
     <Compile Include="Assets\Scripts\DensityScaleChanger.cs" />
     <Compile Include="Assets\Scripts\PushForceField.cs" />
     <Compile Include="Assets\Scripts\String1D.cs" />
     <Compile Include="Assets\Scripts\LowPressureForceProvider1D.cs" />
+    <Compile Include="Assets\Scripts\FluctuatingString1D.cs" />
+    <Compile Include="Assets\Scripts\MathIZ.cs" />
     <Compile Include="Assets\Scripts\PressureField.cs" />
     <Compile Include="Assets\Scripts\Membrane1D.cs" />
     <Compile Include="Assets\Scripts\Molecule1D.cs" />
     <Compile Include="Assets\Scripts\AirViewController.cs" />
     <Compile Include="Assets\Scripts\KeyboardController.cs" />
     <Compile Include="Assets\Scripts\StringViewController.cs" />
+    <Compile Include="Assets\Scripts\FluctuatingStringKeyboardController.cs" />
     <Compile Include="Assets\Scripts\IForceProvider.cs" />
     <Compile Include="Assets\Scripts\MoleculesCountViewController.cs" />
-    <Compile Include="Assets\Scripts\FluctuatingObject1D.cs" />
-    <Compile Include="Assets\Scripts\MathIZ.cs" />
-    <Compile Include="Assets\Scripts\FluctuatingString1D.cs" />
     <Compile Include="Assets\Scripts\FluctuatingObjectMover1D.cs" />
-    <Compile Include="Assets\Scripts\FluctuatingStringKeyboardController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -100,7 +100,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
-    <None Include="Assets\Shaders\EarDrumOffset.compute" />
+    <None Include="Assets\Shaders\Resources\EarDrumOffset.compute" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
   </ItemGroup>

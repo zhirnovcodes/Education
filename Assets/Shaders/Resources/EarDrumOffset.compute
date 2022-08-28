@@ -1,0 +1,83 @@
+#pragma kernel InitResult
+#pragma kernel InitValues
+#pragma kernel Paint
+#pragma kernel AddValue
+#pragma kernel ScaleAndOffsetValues
+
+RWTexture2D<float4> Result;
+RWTexture2D<float4> Values;
+
+float2 ResultSize;
+float ValueYOffset;
+float ValueScale;
+float ValueNew;
+int ValuesSize;
+int IndexNew;
+
+#define EMPTY_COL float4(-2, 0, 0 ,0)
+#define IS_EMPTY(x) Values[float2(x, 0)].r <= EMPTY_COL.r
+
+[numthreads(8,8,1)]
+void InitResult (uint3 id : SV_DispatchThreadID)
+{
+    Result[id.xy] = float4(0, 0, 0, 1);
+}
+
+[numthreads(8,1,1)]
+void InitValues (uint3 id : SV_DispatchThreadID)
+{
+    Values[id.xy] = EMPTY_COL;
+}
+
+[numthreads(8,8,1)]
+void Paint (uint3 id : SV_DispatchThreadID)
+{
+    float c = ResultSize.y / 2;
+    float val = clamp(Values[float2(id.x, 0)].r * c + c, 0, ResultSize.y - 1);
+
+    if (IS_EMPTY(id.x)){
+        Result[id.xy] = float4(0, 0, 0, 1);
+        return;
+	}
+
+    if (clamp(id.y, min(c, val), max(c, val)) == id.y){
+        Result[id.xy] = float4(1, 1, 1, 1);
+        return;
+	}
+
+    Result[id.xy] = float4(0, 0, 0, 1);
+}
+
+[numthreads(8,1,1)]
+void AddValue (uint3 id : SV_DispatchThreadID)
+{
+    if ((int)id.x == IndexNew){
+        Values[id.xy] = float4(ValueNew, 0, 0, 0);
+        return;
+	}
+
+    if (IndexNew >= ValuesSize){
+        if ((int)id.x == ValuesSize - 1){
+            Values[id.xy] = float4(ValueNew, 0, 0, 0);
+            return;
+	    }
+
+        Values[id.xy] = Values[id.xy + float2(1, 0)];
+        return;
+    }
+
+    if (id.x > IndexNew){
+        Values[id.xy] = EMPTY_COL;
+	}
+}
+
+[numthreads(8,1,1)]
+void ScaleAndOffsetValues (uint3 id : SV_DispatchThreadID)
+{
+    float4 val = Values[id.xy];
+    if (IS_EMPTY(id.x)){
+        return;
+    }
+
+    Values[id.xy] = float4( saturate( val.r * ValueScale + ValueYOffset ), 0, 0,1 );
+}

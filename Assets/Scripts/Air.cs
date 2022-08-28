@@ -15,6 +15,13 @@ public class Air : MonoBehaviour
             return _instance?._drag ?? 1;
         }
     }
+    public static float Time
+    {
+        get
+        {
+            return (_instance?._timeScale ?? 1) * UnityEngine.Time.realtimeSinceStartup;
+        }
+    }
 
     public static float Density
     {
@@ -41,6 +48,6 @@ public class Air : MonoBehaviour
 
     private void Update()
     {
-        Time.timeScale = _timeScale;
+        //UnityEngine.Time.timeScale = _timeScale;
     }
 }

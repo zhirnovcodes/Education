@@ -17,7 +17,7 @@ public class FluctuatingStringKeyboardController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            _str.TimeStart = Time.realtimeSinceStartup;
+            _str.TimeStart = Air.Time;
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {

@@ -14,7 +14,7 @@ public class FluctuatingString1D : MonoBehaviour, IFluctuatingObject1D
             return 0;
         }
 
-        var deltaTime = Time.realtimeSinceStartup - TimeStart;
+        var deltaTime = Air.Time - TimeStart;
         var x = _fluctuation.GetValue(deltaTime);
         return x;
     }
