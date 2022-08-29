@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EarDrumOffsetDrawer : MonoBehaviour
+public class PositionOffsetDrawer : MonoBehaviour
 {
     private const string ResultName = "Result";
     private const string ResultSizeName = "ResultSize";
@@ -25,7 +25,7 @@ public class EarDrumOffsetDrawer : MonoBehaviour
     private float _timeWithoutPainting;
     private int _lastValuesIndex;
     private float _lastOffset;
-    private Vector2 _stablePos;
+    private Vector3 _stablePos;
     private RenderTexture _mainTexture;
 
     /*
@@ -106,7 +106,7 @@ public class EarDrumOffsetDrawer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var posX = _target.position.x - _stablePos.x;
+        var offset = (_target.position - _stablePos).magnitude;
 
         if (_timeWithoutPainting >= _analysisDeltaSec)
         {
@@ -114,16 +114,13 @@ public class EarDrumOffsetDrawer : MonoBehaviour
 
             var timeIndex = Mathf.RoundToInt( Mathf.Clamp(_lastValuesIndex, 0, _valuesTexture.width));
 
-            //max = (max - min) >= _maxHeight ? max : min + _maxHeight;
-            var normValue = (Mathf.InverseLerp(-_minOffset, _minOffset, posX) - 0.5f) * 2f;
-
             if (_lastOffset != _minOffset)
             {
                 _shader.SetFloat(ValueScaleName, _lastOffset / _minOffset);
                 _shader.Dispatch(_scaleKernelIndex, Texture.width / 8, 1, 1);
             }
 
-            _shader.SetFloat(ValueNewName, normValue);
+            _shader.SetFloat(ValueNewName, offset);
             _shader.SetInt(IndexNewName, timeIndex);
             _shader.Dispatch(_addValueKernelIndex, _valuesTexture.width / 8, 1, 1);
             _shader.Dispatch(_paintKernelIndex, Texture.width / 8, Texture.height / 8, 1);

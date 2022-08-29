@@ -38,9 +38,4 @@ public class LowPressureForceProvider1D : MonoBehaviour, IForceProvider2D
             Debug.Log(log);
         }
     }
-    private float InvLerp(float a, float b, float x)
-    {
-        b = a == b ? b + 0.000001f : b;
-        return (x - a) / (b - a);
-    }
 }

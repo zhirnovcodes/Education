@@ -14,7 +14,7 @@ float ValueNew;
 int ValuesSize;
 int IndexNew;
 
-#define EMPTY_COL float4(0, 0, 0 ,0)
+#define EMPTY_COL float4(0, 0, 0, 0)
 
 [numthreads(8,8,1)]
 void InitResult (uint3 id : SV_DispatchThreadID)
@@ -28,13 +28,26 @@ void InitValues (uint3 id : SV_DispatchThreadID)
     Values[id.xy] = EMPTY_COL;
 }
 
+float ValueToUV(float x){
+    float s = ResultSize.y - 1;
+    float val = Values[float2(x, 0)].r + s / 2;
+    return val;
+}
+
 [numthreads(8,8,1)]
 void Paint (uint3 id : SV_DispatchThreadID)
 {
-    float c = ResultSize.y / 2;
-    float val = clamp(Values[float2(id.x, 0)].r * c + c, 0, ResultSize.y - 1);
+    float val = ValueToUV(id.x);
 
-    if (clamp(id.y, min(c, val), max(c, val)) == id.y){
+    float prevVal = id.x < 1 ? val : ValueToUV(id.x - 1);
+    float nextVal = id.x >= ResultSize.x - 1 ? val : ValueToUV(id.x + 1);
+
+    float v1 = ( prevVal + val ) / 2;
+    float v2 = ( nextVal + val ) / 2;
+
+    //if (clamp(id.y, min(v1, v2), max(v1, v2)) == id.y){
+    if (id.y < val)
+    {
         Result[id.xy] = float4(1, 1, 1, 1);
         return;
 	}

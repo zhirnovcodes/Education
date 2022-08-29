@@ -15,5 +15,10 @@ public static class MathIZ
         var res = Mathf.Sin(x * f.Frequency * 2 * Mathf.PI) * amp;
         return res;
     }
+    public static float InvLerp(float a, float b, float x)
+    {
+        b = a == b ? b + 0.000001f : b;
+        return (x - a) / (b - a);
+    }
 }
 

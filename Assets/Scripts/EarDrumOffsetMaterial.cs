@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Renderer))]
 public class EarDrumOffsetMaterial : MonoBehaviour
 {
-    [SerializeField] private EarDrumOffsetDrawer _drawer;
+    [SerializeField] private PositionOffsetDrawer _drawer;
 
     void Start()
     {

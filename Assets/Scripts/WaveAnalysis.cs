@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class WaveAnalysis : MonoBehaviour
 {
-    [SerializeField] private EarDrumOffsetDrawer _drawer;
+    [SerializeField] private PositionOffsetDrawer _drawer;
     [SerializeField] private SpriteRenderer _renderer;
 
     private Sprite _sprite;
 
     void Start()
     {
-        _drawer = _drawer ?? GetComponentInChildren<EarDrumOffsetDrawer>();
+        _drawer = _drawer ?? GetComponentInChildren<PositionOffsetDrawer>();
         _renderer = _renderer ?? GetComponent<SpriteRenderer>();
 
         //_renderer.sprite = _drawer.Texture;
