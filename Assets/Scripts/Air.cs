@@ -19,7 +19,7 @@ public class Air : MonoBehaviour
     {
         get
         {
-            return (_instance?._timeScale ?? 1) * UnityEngine.Time.realtimeSinceStartup;
+            return UnityEngine.Time.time;
         }
     }
 
@@ -48,6 +48,6 @@ public class Air : MonoBehaviour
 
     private void Update()
     {
-        //UnityEngine.Time.timeScale = _timeScale;
+        UnityEngine.Time.timeScale = _timeScale;
     }
 }

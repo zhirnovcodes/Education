@@ -5,26 +5,30 @@ public class PositionOffsetDrawer : MonoBehaviour
     private const string ResultName = "Result";
     private const string ResultSizeName = "ResultSize";
     private const string ValuesName = "Values";
-    private const string ValueScaleName = "ValueScale";
+    private const string MaxOffsetName = "MaxOffset";
     private const string ValueSizeName = "ValuesSize";
     private const string ValueNewName = "ValueNew";
     private const string IndexNewName = "IndexNew";
 
+    private const string BckgColName = "BckgColor";
+    private const string LinesColName = "LinesCol";
+
     [SerializeField] private Transform _target;
     [SerializeField] private ComputeShader _shader;
     [SerializeField, Range(0.001f, 2f)] private float _analysisDeltaSec = 0.1f;
-    [SerializeField, Range(0.01f, 7)] private float _minOffset = 1f;
+    [SerializeField, Range(0.01f, 7)] private float _maxOffset = 1f;
     [SerializeField] private RenderTexture _valuesTexture;
+
+    [SerializeField] private Color _bckgColor = new Color(0,0,0,0);
+    [SerializeField] private Color _linesColor = new Color(1,1,1,1);
 
     private int _initResultKernelIndex;
     private int _initValuesKernelIndex;
     private int _paintKernelIndex;
     private int _addValueKernelIndex;
-    private int _scaleKernelIndex;
 
     private float _timeWithoutPainting;
     private int _lastValuesIndex;
-    private float _lastOffset;
     private Vector3 _stablePos;
     private RenderTexture _mainTexture;
 
@@ -49,11 +53,11 @@ public class PositionOffsetDrawer : MonoBehaviour
         } 
     }
 
-    public float MinOffset
+    public float MaxOffset
     {
         get
         {
-            return _minOffset;
+            return _maxOffset;
         }
         set
         {
@@ -62,7 +66,7 @@ public class PositionOffsetDrawer : MonoBehaviour
                 return;
             }
 
-            _minOffset = Mathf.Abs(value);
+            _maxOffset = Mathf.Abs(value);
         }
     }
 
@@ -70,12 +74,14 @@ public class PositionOffsetDrawer : MonoBehaviour
     {
         _shader.Dispatch(_initValuesKernelIndex, _valuesTexture.width / 8, 1, 1);
         _shader.Dispatch(_initResultKernelIndex, Texture.width / 8, Texture.height / 8, 1);
+
+        _lastValuesIndex = 0;
+        _timeWithoutPainting = 0;
     }
 
     void Awake()
     {
         _stablePos = _target.position;
-        _lastOffset = _minOffset;
 
         _valuesTexture = new RenderTexture(256, 1, 1);
         _valuesTexture.filterMode = FilterMode.Trilinear;
@@ -89,7 +95,6 @@ public class PositionOffsetDrawer : MonoBehaviour
         _initValuesKernelIndex = _shader.FindKernel("InitValues");
         _paintKernelIndex = _shader.FindKernel("Paint");
         _addValueKernelIndex = _shader.FindKernel("AddValue");
-        _scaleKernelIndex = _shader.FindKernel("ScaleAndOffsetValues");
 
         _shader.SetInt(ValueSizeName, _valuesTexture.width);
         _shader.SetVector(ResultSizeName, new Vector2(Texture.width, Texture.height));
@@ -97,16 +102,14 @@ public class PositionOffsetDrawer : MonoBehaviour
         _shader.SetTexture(_addValueKernelIndex, ValuesName, _valuesTexture);
         _shader.SetTexture(_paintKernelIndex, ValuesName, _valuesTexture);
         _shader.SetTexture(_initValuesKernelIndex, ValuesName, _valuesTexture);
-        _shader.SetTexture(_scaleKernelIndex, ValuesName, _valuesTexture);
 
         _shader.SetTexture(_paintKernelIndex, ResultName, Texture);
         _shader.SetTexture(_initResultKernelIndex, ResultName, Texture);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        var offset = (_target.position - _stablePos).magnitude;
+        var offset = (_target.position - _stablePos).magnitude * Mathf.Sign((_target.position - _stablePos).x);
 
         if (_timeWithoutPainting >= _analysisDeltaSec)
         {
@@ -114,19 +117,16 @@ public class PositionOffsetDrawer : MonoBehaviour
 
             var timeIndex = Mathf.RoundToInt( Mathf.Clamp(_lastValuesIndex, 0, _valuesTexture.width));
 
-            if (_lastOffset != _minOffset)
-            {
-                _shader.SetFloat(ValueScaleName, _lastOffset / _minOffset);
-                _shader.Dispatch(_scaleKernelIndex, Texture.width / 8, 1, 1);
-            }
+            _shader.SetVector(BckgColName, _bckgColor);
+            _shader.SetVector(LinesColName, _linesColor);
 
             _shader.SetFloat(ValueNewName, offset);
+            _shader.SetFloat(MaxOffsetName, _maxOffset);
             _shader.SetInt(IndexNewName, timeIndex);
             _shader.Dispatch(_addValueKernelIndex, _valuesTexture.width / 8, 1, 1);
             _shader.Dispatch(_paintKernelIndex, Texture.width / 8, Texture.height / 8, 1);
 
             _lastValuesIndex++;
-            _lastOffset = _minOffset;
         }
         else
         {

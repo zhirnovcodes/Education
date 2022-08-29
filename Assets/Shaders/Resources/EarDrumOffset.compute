@@ -2,14 +2,14 @@
 #pragma kernel InitValues
 #pragma kernel Paint
 #pragma kernel AddValue
-#pragma kernel ScaleAndOffsetValues
 
 RWTexture2D<float4> Result;
 RWTexture2D<float4> Values;
 
 float4 BckgCol;
+float4 LinesCol;
 float2 ResultSize;
-float ValueScale;
+float MaxOffset;
 float ValueNew;
 int ValuesSize;
 int IndexNew;
@@ -29,8 +29,8 @@ void InitValues (uint3 id : SV_DispatchThreadID)
 }
 
 float ValueToUV(float x){
-    float s = ResultSize.y - 1;
-    float val = Values[float2(x, 0)].r + s / 2;
+    float c = (ResultSize.y - 1);
+    float val = (clamp(Values[float2(x, 0)].r, -MaxOffset, MaxOffset) / MaxOffset + 1) / 2 * c;
     return val;
 }
 
@@ -45,12 +45,17 @@ void Paint (uint3 id : SV_DispatchThreadID)
     float v1 = ( prevVal + val ) / 2;
     float v2 = ( nextVal + val ) / 2;
 
-    //if (clamp(id.y, min(v1, v2), max(v1, v2)) == id.y){
+    if (clamp(id.y, min(v1, v2), max(v1, v2)) == id.y){
+        Result[id.xy] = LinesCol;
+        return;
+	}
+    /*
     if (id.y < val)
     {
         Result[id.xy] = float4(1, 1, 1, 1);
         return;
 	}
+    */
 
     Result[id.xy] = BckgCol;
 }
@@ -76,11 +81,4 @@ void AddValue (uint3 id : SV_DispatchThreadID)
     if (id.x > IndexNew){
         Values[id.xy] = EMPTY_COL;
 	}
-}
-
-[numthreads(8,1,1)]
-void ScaleAndOffsetValues (uint3 id : SV_DispatchThreadID)
-{
-    float val = Values[id.xy].r;
-    Values[id.xy] = float4( val * ValueScale, 0, 0, 1 );
 }
