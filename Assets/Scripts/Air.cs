@@ -7,6 +7,7 @@ public class Air : MonoBehaviour
     [SerializeField, Range(0,1)] private float _drag = 0.1f;
     [SerializeField, Range(0.1f,5)] private float _density = 0f;
     [SerializeField, Range(0,50)] private float _timeScale = 1f;
+    [SerializeField, Range(0,1)] private float _airPressure = 1f;
 
     public static float Drag
     {
@@ -28,6 +29,14 @@ public class Air : MonoBehaviour
         get
         {
             return _instance?._density ?? 1;
+        }
+    }
+
+    public static float AirPressure
+    {
+        get
+        {
+            return 1 / (_instance?._airPressure ?? 1);
         }
     }
 

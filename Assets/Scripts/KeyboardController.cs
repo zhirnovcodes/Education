@@ -20,7 +20,6 @@ public class KeyboardController : MonoBehaviour
         {
             if (Time.realtimeSinceStartup - _lastDelayTime <= 0.5f)
             {
-                MoleculesReset();
                 EarReset();
             }
             else
@@ -45,15 +44,6 @@ public class KeyboardController : MonoBehaviour
         foreach (var str in _workspace.Strings)
         {
             str.Reset();
-        }
-    }
-
-    private void MoleculesReset()
-    {
-        foreach (var mol in _workspace.Molecules)
-        {
-            mol.SetActive(false);
-            mol.SetActive(true);
         }
     }
 

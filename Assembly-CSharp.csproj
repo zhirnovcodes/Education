@@ -55,12 +55,13 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Workspace.cs" />
     <Compile Include="Assets\Scripts\WaveAnalysis.cs" />
+    <Compile Include="Assets\Scripts\PositionOffsetDrawer.cs" />
     <Compile Include="Assets\Scripts\ForceMover2D.cs" />
     <Compile Include="Assets\Scripts\StringCountViewController.cs" />
     <Compile Include="Assets\Scripts\BounceForceProvider2D.cs" />
     <Compile Include="Assets\Scripts\Air.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
-    <Compile Include="Assets\Scripts\FluctuatingObject1D.cs" />
+    <Compile Include="Assets\Scripts\FluctuatingMolecule1D.cs" />
     <Compile Include="Assets\Scripts\Ear.cs" />
     <Compile Include="Assets\Scripts\DensityScaleChanger.cs" />
     <Compile Include="Assets\Scripts\PushForceField.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Assets\Scripts\Membrane1D.cs" />
     <Compile Include="Assets\Scripts\Molecule1D.cs" />
     <Compile Include="Assets\Scripts\AirViewController.cs" />
+    <Compile Include="Assets\Scripts\FilesExtensions.cs" />
     <Compile Include="Assets\Scripts\KeyboardController.cs" />
     <Compile Include="Assets\Scripts\StringViewController.cs" />
     <Compile Include="Assets\Scripts\FluctuatingStringKeyboardController.cs" />
@@ -79,9 +81,7 @@
     <Compile Include="Assets\Scripts\MoleculesCountViewController.cs" />
     <Compile Include="Assets\Scripts\FluctuatingObjectMover1D.cs" />
     <Compile Include="Assets\Scripts\EarDrumOffsetMaterial.cs" />
-    <Compile Include="Assets\Scripts\PositionOffsetDrawer.cs" />
     <Compile Include="Assets\Scripts\OffsetDrawerKeyboardController.cs" />
-    <Compile Include="Assets\Scripts\FilesExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

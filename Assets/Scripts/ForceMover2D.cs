@@ -57,10 +57,14 @@ public class ForceMover2D : MonoBehaviour
             force /= _providers.Length;
         }
 
+        _rigidbody.mass = _mass;
+        var linearDrag = _useAirDrag ? Air.Drag : _drag;
+        _rigidbody.drag = linearDrag;
+
         if (_rigidbody.isKinematic)
         {
-            var velocity = force * Time.fixedDeltaTime / _mass + _velocityLast;
-            velocity *= (1 - Mathf.Pow(_useAirDrag ? Air.Drag : _drag, 2));
+            var velocity = force * Time.fixedDeltaTime / _rigidbody.mass + _velocityLast;
+            velocity *= linearDrag * linearDrag;
             _rigidbody.MovePosition(_rigidbody.position + velocity);
             _velocityLast = velocity;
         }

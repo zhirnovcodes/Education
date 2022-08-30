@@ -7,8 +7,7 @@ public class Workspace : MonoBehaviour
     [SerializeField] private GameObject _moleculePrefab;
     [SerializeField] private GameObject _stringPrefab;
     [SerializeField] private Rigidbody2D _ear;
-    [SerializeField] private Rigidbody2D _leftEarWall;
-    [SerializeField] private Rigidbody2D _rightEarWall;
+    [SerializeField] private Rigidbody2D _wall;
     [SerializeField] private Vector2 _stringDefaultPosition;
     [SerializeField] private float _stringOffset = 2;
     //[SerializeField] private float xMax;
@@ -23,7 +22,7 @@ public class Workspace : MonoBehaviour
         return _strings;
     }
 
-    public GameObject Ear => _ear.gameObject;
+    public GameObject Ear => _ear?.gameObject;
 
     public Vector2 StringPosition
     {
@@ -159,7 +158,7 @@ public class Workspace : MonoBehaviour
         var s = GetStrings()[stringId];
         var mS = _molecules[stringId];
         var xMin = s.Position.x + s.transform.localScale.x / 2;
-        var xMax = _leftEarWall.position.x - _leftEarWall.transform.localScale.x / 2;
+        var xMax = _wall.position.x - _wall.transform.localScale.x / 2;
         var scale = _moleculePrefab.transform.localScale.x;
         var count = (int)Mathf.Max((xMax - xMin) / scale * _moleculesDensity, 1);
         var offset = (xMax - xMin) / (float)(count + 1);
@@ -184,26 +183,30 @@ public class Workspace : MonoBehaviour
             mS.Add(go);
         }
 
+        var mL = mS[count - 1];
+        mL.GetComponent<LowPressureForceProvider1D>().Rigth = _wall.GetComponent<Rigidbody2D>();
+
+        if (_ear == null) 
+        {
+            return;
+        }
+
         if (_earLpfs.Count <= stringId)
         {
             var countToAdd = stringId - _earLpfs.Count;
             for (int i = 0; i <= countToAdd; i++)
             {
                 var c = _ear.gameObject.AddComponent<LowPressureForceProvider1D>();
-                c.Rigth = _rightEarWall;
+                c.Rigth = _ear;
                 _earLpfs.Add(c);
             }
         }
 
-        var mL = mS[count - 1];
-
         _earLpfs[stringId].Left = mL.GetComponent<Rigidbody2D>();
 
         _earLpfs[stringId].gameObject.SetActive(false);
-        _ear.transform.position = new Vector3( (mL.transform.position.x + scale / 2 + xMax) / 2, _ear.transform.position.y, 0);
+        _ear.transform.position = new Vector3( (mL.transform.position.x + scale / 2 + xMax) / 2, (_ear ?? _wall).transform.position.y, 0);
         _earLpfs[stringId].gameObject.SetActive(true);
-
-        mL.GetComponent<LowPressureForceProvider1D>().Rigth = _leftEarWall.GetComponent<Rigidbody2D>();
     }
 
     private void ResetXPosition()

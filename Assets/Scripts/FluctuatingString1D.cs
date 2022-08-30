@@ -1,27 +1,22 @@
 using UnityEngine;
 
-public class FluctuatingString1D : MonoBehaviour, IFluctuatingObject1D
+public class FluctuatingString1D : FluctuatingObject1D
 {
     [SerializeField] private Fluctuation _fluctuation;
 
-    public float TimeStart { get; set; }
-    public Fluctuation Fluctuation => _fluctuation;
+    private float _timeStart;
+    public override float TimeStart => _timeStart;
+    public override Fluctuation Fluctuation => _fluctuation;
 
-    public float GetX()
-    {
-        if (TimeStart == 0)
-        {
-            return 0;
-        }
-
-        var deltaTime = Air.Time - TimeStart;
-        var x = _fluctuation.GetValue(deltaTime);
-        return x;
-    }
 
     private void OnEnable()
     {
-        TimeStart = 0;
+        _timeStart = 0;
+    }
+
+    public void Hit()
+    {
+        _timeStart = Time.time;
     }
 }
 

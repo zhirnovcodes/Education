@@ -4,6 +4,7 @@ public class LowPressureForceProvider1D : MonoBehaviour, IForceProvider2D
 {
     [SerializeField] private Rigidbody2D _left;
     [SerializeField] private Rigidbody2D _right;
+    [SerializeField] private float _power = 1;
     
     private Rigidbody2D _rigidbody = null;
 
@@ -27,7 +28,7 @@ public class LowPressureForceProvider1D : MonoBehaviour, IForceProvider2D
 
         var d = (lp.x + rp.x) / 2 - _rigidbody.position.x;
         var x = d == 0 ? 0 : Mathf.Sign(d);//Mathf.Abs(d) < Air.Density ? 0 : (Mathf.Clamp(d, -1, 1) * (Mathf.Abs( d ) - Air.Density));//Mathf.Clamp( d, -1, 1 );
-        var f = new Vector2(x, 0);
+        var f = new Vector2(x, 0) * _power;
         return f;
     }
 

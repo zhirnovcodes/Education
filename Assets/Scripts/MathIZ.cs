@@ -6,8 +6,13 @@ public static class MathIZ
 {
     public static float GetValue(this Fluctuation f, float x)
     {
+        if (x <= 0)
+        {
+            return 0;
+        }
+
         var amp = Mathf.Lerp(f.Amplitude, 0, Mathf.InverseLerp(0, f.Length, x));
-        amp *= Mathf.InverseLerp(0, f.Attack, x);
+        amp *= f.Attack == 0 ? 1 : Mathf.InverseLerp(0, f.Attack, x);
         if (amp <= 0)
         {
             return 0;

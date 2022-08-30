@@ -17,11 +17,16 @@ public class FluctuatingStringKeyboardController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            _str.TimeStart = Air.Time;
+            if (_str.TimeStart <= 0)
+            {
+                _str.Hit();
+                return;
+            }
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            _str.TimeStart = 0;
+            _str.gameObject.SetActive( false );
+            _str.gameObject.SetActive( true );
         }
     }
 }
