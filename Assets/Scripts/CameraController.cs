@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private float _moveSpeed = 0.5f; 
-    [SerializeField] private float _zoomSpeed = 0.5f;
-    [SerializeField] private float _yClickZoneMin;
-    [SerializeField] private float _yClickZoneMax;
+    [SerializeField] private float _moveSpeed = 5f; 
+    [SerializeField] private float _zoomSpeed = 100f;
+    [SerializeField] private float _yClickZoneMin = -Mathf.Infinity;
+    [SerializeField] private float _yClickZoneMax = Mathf.Infinity;
     [SerializeField] private RectTransform _clickZone;
 
     private Camera _camera;
@@ -26,7 +26,6 @@ public class CameraController : MonoBehaviour
     {
         if (_yClickZoneMin <= Input.mousePosition.y && Input.mousePosition.y < _yClickZoneMax)
         {
-
             if (Input.GetKey(KeyCode.Mouse0))
             {
                 _lastPosition = _lastPosition ?? Input.mousePosition;
@@ -41,7 +40,7 @@ public class CameraController : MonoBehaviour
 
             if (Input.mouseScrollDelta.y != 0)
             {
-                _camera.orthographicSize += Input.mouseScrollDelta.y * _zoomSpeed * Time.deltaTime;
+                _camera.orthographicSize = Mathf.Max(0, _camera.orthographicSize - Input.mouseScrollDelta.y * _zoomSpeed * Time.deltaTime);
             }
 
             if (Input.GetKey(KeyCode.Mouse1))

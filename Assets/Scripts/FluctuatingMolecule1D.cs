@@ -29,6 +29,7 @@ public class FluctuatingMolecule1D : FluctuatingObject1D
         set
         {
             _source = value;
+            _distance = null;
         }
     }
 
@@ -60,7 +61,7 @@ public class FluctuatingMolecule1D : FluctuatingObject1D
         get
         {
             var f = _source.Fluctuation;
-            f.Amplitude /= Air.AirPressure;
+            f.Amplitude /= Air.Rigid;
             return f; 
         }
     }

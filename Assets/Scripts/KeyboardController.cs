@@ -20,7 +20,7 @@ public class KeyboardController : MonoBehaviour
         {
             if (Time.realtimeSinceStartup - _lastDelayTime <= 0.5f)
             {
-                EarReset();
+                //EarReset();
             }
             else
             {
@@ -43,7 +43,8 @@ public class KeyboardController : MonoBehaviour
     {
         foreach (var str in _workspace.Strings)
         {
-            str.Reset();
+            str.gameObject.SetActive(false);
+            str.gameObject.SetActive(true);
         }
     }
 

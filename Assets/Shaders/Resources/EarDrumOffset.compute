@@ -16,6 +16,10 @@ int IndexNew;
 
 #define EMPTY_COL float4(0, 0, 0, 0)
 
+bool IsEmpty(float x){
+    return Values[float2(x, 0)].r == EMPTY_COL.r;
+}
+
 [numthreads(8,8,1)]
 void InitResult (uint3 id : SV_DispatchThreadID)
 {
@@ -37,6 +41,10 @@ float ValueToUV(float x){
 [numthreads(8,8,1)]
 void Paint (uint3 id : SV_DispatchThreadID)
 {
+    if (IsEmpty(id.x)){
+        return;
+	}
+
     float val = ValueToUV(id.x);
 
     float prevVal = id.x < 1 ? val : ValueToUV(id.x - 1);
@@ -45,7 +53,7 @@ void Paint (uint3 id : SV_DispatchThreadID)
     float v1 = ( prevVal + val ) / 2;
     float v2 = ( nextVal + val ) / 2;
 
-    if (clamp(id.y, min(v1, v2), max(v1, v2)) == id.y){
+    if (clamp(id.y, min(v1, v2)-1, max(v1, v2)+1) == id.y){
         Result[id.xy] = LinesCol;
         return;
 	}

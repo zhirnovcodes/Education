@@ -58,7 +58,7 @@ public class ForceMover2D : MonoBehaviour
         }
 
         _rigidbody.mass = _mass;
-        var linearDrag = _useAirDrag ? Air.Drag : _drag;
+        var linearDrag = _useAirDrag ? Air.Rigid : _drag;
         _rigidbody.drag = linearDrag;
 
         if (_rigidbody.isKinematic)

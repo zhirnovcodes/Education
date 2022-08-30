@@ -6,9 +6,9 @@ public class StringViewController : MonoBehaviour
     [SerializeField] private Slider _freq;
     [SerializeField] private Slider _amp;
     [SerializeField] private Slider _dec;
-    [SerializeField] private String1D _string;
+    [SerializeField] private FluctuatingString1D _string;
 
-    public String1D String 
+    public FluctuatingString1D String 
     { 
         set 
         {
@@ -33,9 +33,9 @@ public class StringViewController : MonoBehaviour
     {
         if (String != null)
         {
-            _freq.value = _string.Frequency;
-            _amp.value = _string.Amplitude;
-            _dec.value = _string.DecayTime;
+            _freq.value = _string.Fluctuation.Frequency;
+            _amp.value = _string.Fluctuation.Amplitude;
+            _dec.value = _string.Fluctuation.Length;
         }
 
         _freq.onValueChanged.AddListener( FreqValueChanged );
@@ -52,16 +52,16 @@ public class StringViewController : MonoBehaviour
 
     private void FreqValueChanged(float value)
     {
-        _string.Frequency = value;
+        _string.SetFrq(value);
     }
 
     private void AmpValueChanged(float value)
     {
-        _string.Amplitude = value;
+        _string.SetAmp(value);
     }
 
     private void DecValueChanged(float value)
     {
-        _string.DecayTime = value;
+        _string.SetLen( value );
     }
 }

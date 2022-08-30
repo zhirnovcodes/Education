@@ -7,32 +7,24 @@ public class Workspace : MonoBehaviour
     [SerializeField] private GameObject _moleculePrefab;
     [SerializeField] private GameObject _stringPrefab;
     [SerializeField] private Rigidbody2D _ear;
-    [SerializeField] private Rigidbody2D _wall;
-    [SerializeField] private Vector2 _stringDefaultPosition;
+    [SerializeField] private Transform _leftAnchor;
+    [SerializeField] private Transform _rightAnchor;
     [SerializeField] private float _stringOffset = 2;
+
+    [SerializeField, Range(0,1)] private float _moleculesDensity = 0.5f;
     //[SerializeField] private float xMax;
 
     private List<List<GameObject>> _molecules = new List<List<GameObject>>();
-    private List<String1D> _strings = null;
-    private List<LowPressureForceProvider1D> _earLpfs = new List<LowPressureForceProvider1D>();
+    private List<FluctuatingString1D> _strings = null;
+    //private List<LowPressureForceProvider1D> _earLpfs = new List<LowPressureForceProvider1D>();
 
-    private List<String1D> GetStrings()
+    private List<FluctuatingString1D> GetStrings()
     {
-        _strings = _strings ?? FindObjectsOfType<String1D>().ToList();
+        _strings = _strings ?? FindObjectsOfType<FluctuatingString1D>().ToList();
         return _strings;
     }
 
     public GameObject Ear => _ear?.gameObject;
-
-    public Vector2 StringPosition
-    {
-        get => _stringDefaultPosition;
-        set
-        {
-            _stringDefaultPosition = value;
-            ResetXPosition();
-        }
-    }
 
     public IEnumerable<GameObject> Molecules
     {
@@ -48,7 +40,7 @@ public class Workspace : MonoBehaviour
         }
     }
 
-    public IEnumerable<String1D> Strings => GetStrings();
+    public IEnumerable<FluctuatingString1D> Strings => GetStrings();
 
     public int StringsCount 
     { 
@@ -90,9 +82,7 @@ public class Workspace : MonoBehaviour
         }
     }
 
-    private float _moleculesDensity;
-
-    public String1D StringById(int stringId)
+    public FluctuatingString1D StringById(int stringId)
     {
         return GetStrings()[stringId];
     }
@@ -116,21 +106,21 @@ public class Workspace : MonoBehaviour
     {
         var newIndex = GetStrings().Count;
         var go = GameObject.Instantiate(_stringPrefab);
-        var s = go.GetComponent<String1D>();
+        var s = go.GetComponent<FluctuatingString1D>();
 
         _strings.Add(s);
 
-        ResetXPosition(newIndex);
+        ResetStringPosition(newIndex);
 
         AddMoleculesRow(newIndex);
     }
 
     private void DeleteMoleculesRow(int stringId)
     {
-        if (_earLpfs.Count > stringId)
-        {
-            _earLpfs[stringId].Left = null;
-        }
+        //if (_earLpfs.Count > stringId)
+        //{
+        //    _earLpfs[stringId].Left = null;
+        //}
 
         if (_molecules.Count > stringId)
         {
@@ -157,8 +147,8 @@ public class Workspace : MonoBehaviour
 
         var s = GetStrings()[stringId];
         var mS = _molecules[stringId];
-        var xMin = s.Position.x + s.transform.localScale.x / 2;
-        var xMax = _wall.position.x - _wall.transform.localScale.x / 2;
+        var xMin = s.transform.position.x + s.transform.localScale.x / 2;
+        var xMax = _rightAnchor.position.x - _rightAnchor.localScale.x / 2;
         var scale = _moleculePrefab.transform.localScale.x;
         var count = (int)Mathf.Max((xMax - xMin) / scale * _moleculesDensity, 1);
         var offset = (xMax - xMin) / (float)(count + 1);
@@ -166,31 +156,27 @@ public class Workspace : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             var posX = Mathf.Lerp(xMin + offset, xMax, (float)i / count);
-            var pos = new Vector3(posX, s.Position.y, 0);
+            var pos = new Vector3(posX, s.transform.position.y, 0);
 
             var go = GameObject.Instantiate(_moleculePrefab);
+            go.SetActive(false);
+
             go.transform.position = pos;
 
-            var force = go.GetComponent<LowPressureForceProvider1D>();
-            
-            force.Left = (i == 0 ? s.gameObject : mS[i - 1]).GetComponent<Rigidbody2D>();
+            var molecule = go.GetComponent<FluctuatingMolecule1D>();
 
-            if (i > 0)
-            {
-                mS[i - 1].GetComponent<LowPressureForceProvider1D>().Rigth = go.GetComponent<Rigidbody2D>();
-            }
+            molecule.Source = (i == 0 ? s.gameObject : mS[i - 1]).GetComponent<FluctuatingObject1D>();
+            go.SetActive(true);
 
             mS.Add(go);
         }
-
-        var mL = mS[count - 1];
-        mL.GetComponent<LowPressureForceProvider1D>().Rigth = _wall.GetComponent<Rigidbody2D>();
 
         if (_ear == null) 
         {
             return;
         }
 
+        /*
         if (_earLpfs.Count <= stringId)
         {
             var countToAdd = stringId - _earLpfs.Count;
@@ -207,21 +193,17 @@ public class Workspace : MonoBehaviour
         _earLpfs[stringId].gameObject.SetActive(false);
         _ear.transform.position = new Vector3( (mL.transform.position.x + scale / 2 + xMax) / 2, (_ear ?? _wall).transform.position.y, 0);
         _earLpfs[stringId].gameObject.SetActive(true);
+        */
     }
 
-    private void ResetXPosition()
+    private void ResetStringPosition(int index)
     {
-        for (int i = 0; i < _strings.Count; i++)
-        {
-            ResetXPosition(i);
-        }
-    }
-    private void ResetXPosition(int index)
-    {
-        var x = _stringDefaultPosition.x;
-        var y = _stringDefaultPosition.y - (_stringOffset + _stringPrefab.transform.localScale.y) * (float)index;
+        var x = _leftAnchor.position.x;
+        var y = _leftAnchor.position.y - (_stringOffset + _stringPrefab.transform.localScale.y) * (float)index;
 
-        _strings[index].Position = new Vector2(x, y);
+        _strings[index].gameObject.SetActive(false);
+        _strings[index].transform.position = new Vector2(x, y);
+        _strings[index].gameObject.SetActive(true);
     }
 
 }

@@ -8,6 +8,20 @@ public class FluctuatingString1D : FluctuatingObject1D
     public override float TimeStart => _timeStart;
     public override Fluctuation Fluctuation => _fluctuation;
 
+    public void SetFrq(float value)
+    {
+        _fluctuation.Frequency = value;
+    }
+
+    public void SetAmp(float value)
+    {
+        _fluctuation.Amplitude = value;
+    }
+
+    public void SetLen(float value)
+    {
+        _fluctuation.Length = value;
+    }
 
     private void OnEnable()
     {

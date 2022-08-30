@@ -11,9 +11,18 @@ public class StringCountViewController : MonoBehaviour
 
     private List<StringViewController> _vcs = new List<StringViewController>();
 
+    private void Awake()
+    {
+        
+    }
+
     private void OnEnable()
     {
         _slider.value = _workspace.StringsCount;
+        if (_workspace.StringsCount != _slider.value)
+        {
+            _workspace.StringsCount = Mathf.RoundToInt(_slider.value);
+        }
         SetViewControllers();
         _slider.onValueChanged.AddListener(OnValueChanged);
     }

@@ -19,7 +19,7 @@ public class AirViewController : MonoBehaviour
 
     private void ValueChanged( float value )
     {
-        _air.SetDrag( value );
+        _air.SetRigid( value );
     }
 
 }

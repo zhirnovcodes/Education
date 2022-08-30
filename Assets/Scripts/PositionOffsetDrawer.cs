@@ -38,6 +38,15 @@ public class PositionOffsetDrawer : MonoBehaviour
     private float _minVal = float.MaxValue;
     private float _maxVal = float.MinValue;
     */
+    public Transform Target
+    {
+        set
+        {
+            _target = value;
+            _stablePos = _target.position;
+        }
+    }
+
     public RenderTexture Texture 
     { 
         get 
@@ -81,10 +90,13 @@ public class PositionOffsetDrawer : MonoBehaviour
 
     void Awake()
     {
-        _stablePos = _target.position;
+        if (_target != null)
+        {
+            _stablePos = _target.position;
+        }
 
         _valuesTexture = new RenderTexture(256, 1, 1);
-        _valuesTexture.filterMode = FilterMode.Trilinear;
+        _valuesTexture.filterMode = FilterMode.Point;
         _valuesTexture.enableRandomWrite = true;
         _valuesTexture.format = RenderTextureFormat.RFloat;
         _valuesTexture.Create();
@@ -109,6 +121,11 @@ public class PositionOffsetDrawer : MonoBehaviour
 
     void Update()
     {
+        if (_target == null)
+        {
+            return;
+        }
+
         var offset = (_target.position - _stablePos).magnitude * Mathf.Sign((_target.position - _stablePos).x);
 
         if (_timeWithoutPainting >= _analysisDeltaSec)

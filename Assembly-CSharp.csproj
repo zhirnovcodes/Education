@@ -82,6 +82,7 @@
     <Compile Include="Assets\Scripts\FluctuatingObjectMover1D.cs" />
     <Compile Include="Assets\Scripts\EarDrumOffsetMaterial.cs" />
     <Compile Include="Assets\Scripts\OffsetDrawerKeyboardController.cs" />
+    <Compile Include="Assets\Scripts\StringView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -96,6 +97,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+    <None Include="Assets\Shaders\DustShader.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
