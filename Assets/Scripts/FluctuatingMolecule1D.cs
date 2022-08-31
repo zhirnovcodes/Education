@@ -51,7 +51,7 @@ public class FluctuatingMolecule1D : FluctuatingObject1D
     {
         if (_distance == null)
         {
-            _distance = _source == null ? (float?)null : Mathf.Abs(_source.transform.position.x - transform.position.x);
+            _distance = _source == null ? (float?)null : (_source.transform.position - transform.position).magnitude;
         }
         return _distance ?? 0;
     }

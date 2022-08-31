@@ -13,17 +13,17 @@ public class FluctuatingObjectMover1D : MonoBehaviour
         //todo performance
         var o = _flucObjects.Select(f => f.TimeStart <= 0 ? 0 : f.Fluctuation.GetValue(Time.time - f.TimeStart)).Sum();
 
-        transform.position = _stablePosition + Vector2.right * o;
+        transform.localPosition = _stablePosition + Vector2.right * o;
     }
 
     private void OnEnable()
     {
-        _stablePosition = transform.position;
+        _stablePosition = transform.localPosition;
     }
 
     private void OnDisable()
     {
-        transform.position = _stablePosition;
+        transform.localPosition = _stablePosition;
         _flucObjects = null;
     }
 }

@@ -1,6 +1,7 @@
+using System;
 using UnityEngine;
 
-public class PositionOffsetDrawer : MonoBehaviour
+public class PositionOffsetDrawer : MonoBehaviour, IDisposable
 {
     private const string ResultName = "Result";
     private const string ResultSizeName = "ResultSize";
@@ -150,6 +151,20 @@ public class PositionOffsetDrawer : MonoBehaviour
             _timeWithoutPainting += Time.deltaTime;
         }
 
+    }
+
+    public void Dispose()
+    {
+        Texture.Release();
+        if ( _valuesTexture != null)
+        {
+            _valuesTexture.Release();
+        }
+
+        if (_shader != null)
+        {
+            Destroy(_shader);
+        }
     }
 
     /*
