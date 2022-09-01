@@ -1,12 +1,10 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed = 5f; 
     [SerializeField] private float _zoomSpeed = 100f;
-    [SerializeField] private float _yClickZoneMin = -Mathf.Infinity;
-    [SerializeField] private float _yClickZoneMax = Mathf.Infinity;
-    [SerializeField] private RectTransform _clickZone;
 
     private Camera _camera;
 
@@ -24,7 +22,12 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_yClickZoneMin <= Input.mousePosition.y && Input.mousePosition.y < _yClickZoneMax)
+        if (IsMouseOverUI())
+        {
+            return;
+        }
+
+        //if (_yClickZoneMin <= Input.mousePosition.y && Input.mousePosition.y < _yClickZoneMax)
         {
             if (Input.GetKey(KeyCode.Mouse0))
             {
@@ -51,5 +54,10 @@ public class CameraController : MonoBehaviour
             }
         }
 
+    }
+
+    private bool IsMouseOverUI()
+    {
+        return EventSystem.current?.IsPointerOverGameObject() ?? false;
     }
 }

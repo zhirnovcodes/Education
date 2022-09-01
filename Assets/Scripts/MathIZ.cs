@@ -11,7 +11,8 @@ public static class MathIZ
             return 0;
         }
 
-        var amp = Mathf.Lerp(f.Amplitude, 0, Mathf.InverseLerp(0, f.Length, x));
+        var time = Mathf.Max(f.Time, 0.01f);
+        var amp = Mathf.Lerp(f.Amplitude, 0, Mathf.InverseLerp(0, time, x));
         amp *= f.Attack == 0 ? 1 : Mathf.InverseLerp(0, f.Attack, x);
         if (amp <= 0)
         {

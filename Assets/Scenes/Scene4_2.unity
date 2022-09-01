@@ -155,6 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 582721385}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!114 &42884864
 MonoBehaviour:
@@ -169,6 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &42884865
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -268,6 +270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 2039708464}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!114 &52349185
 MonoBehaviour:
@@ -282,6 +285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &52349186
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -381,6 +385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 240502786}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!114 &69278121
 MonoBehaviour:
@@ -395,6 +400,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &69278122
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -494,6 +500,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 1472564800}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!114 &124866396
 MonoBehaviour:
@@ -508,6 +515,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &124866397
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -607,6 +615,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 1998863376}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!114 &152747358
 MonoBehaviour:
@@ -621,6 +630,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &152747359
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -720,6 +730,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 663548730}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!114 &160537450
 MonoBehaviour:
@@ -734,6 +745,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &160537451
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -833,6 +845,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 1426872536}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!114 &161546105
 MonoBehaviour:
@@ -847,6 +860,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &161546106
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -946,6 +960,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 867174607}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!114 &178100112
 MonoBehaviour:
@@ -960,6 +975,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &178100113
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1059,6 +1075,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 1113265226}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!4 &240502787
 Transform:
@@ -1088,6 +1105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &240502789
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1172,6 +1190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 42884863}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!114 &242123563
 MonoBehaviour:
@@ -1186,6 +1205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &242123564
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1279,6 +1299,10 @@ PrefabInstance:
     - target: {fileID: 2406083420597937049, guid: cbd2edde513a46842a6e94624e000669, type: 3}
       propertyPath: m_SortingOrder
       value: -8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2406083420597937052, guid: cbd2edde513a46842a6e94624e000669, type: 3}
+      propertyPath: _fluctuation.Time
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2406083420597937052, guid: cbd2edde513a46842a6e94624e000669, type: 3}
       propertyPath: _fluctuation.Attack
@@ -1382,6 +1406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 501523606}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!114 &325389219
 MonoBehaviour:
@@ -1396,6 +1421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &325389220
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1510,6 +1536,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!114 &439984737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1523,6 +1550,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 178100111}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!212 &439984738
 SpriteRenderer:
@@ -1608,6 +1636,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 124866395}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!114 &501523607
 MonoBehaviour:
@@ -1622,6 +1651,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &501523608
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1721,6 +1751,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 1795733360}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!114 &505725891
 MonoBehaviour:
@@ -1735,6 +1766,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &505725892
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1834,6 +1866,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 945302903}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!114 &582721386
 MonoBehaviour:
@@ -1848,6 +1881,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &582721387
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1947,6 +1981,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 1949820258}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!4 &599171908
 Transform:
@@ -1976,6 +2011,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &599171910
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2125,6 +2161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!114 &661147652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2138,6 +2175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 160537449}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!212 &661147653
 SpriteRenderer:
@@ -2223,6 +2261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 702151219}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!114 &663548731
 MonoBehaviour:
@@ -2237,6 +2276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &663548732
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2336,6 +2376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 505725890}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!114 &702151220
 MonoBehaviour:
@@ -2350,6 +2391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &702151221
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2449,6 +2491,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 812435465}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!4 &723361512
 Transform:
@@ -2478,6 +2521,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &723361514
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2593,6 +2637,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 2021417674}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!4 &753820545
 Transform:
@@ -2622,6 +2667,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &753820547
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2706,6 +2752,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 1587508661}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!114 &788892271
 MonoBehaviour:
@@ -2720,6 +2767,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &788892272
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2819,6 +2867,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 1231275708}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!4 &812435466
 Transform:
@@ -2848,6 +2897,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &812435468
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2978,6 +3028,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 1967920053}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!4 &853629271
 Transform:
@@ -3007,6 +3058,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &853629273
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3091,6 +3143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 1370764925}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!114 &867174608
 MonoBehaviour:
@@ -3105,6 +3158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &867174609
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3204,6 +3258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 1472564800}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!114 &905548288
 MonoBehaviour:
@@ -3218,6 +3273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &905548289
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3332,6 +3388,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!114 &932698449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3345,6 +3402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 1660284793}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!212 &932698450
 SpriteRenderer:
@@ -3430,6 +3488,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 69278120}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!114 &945302904
 MonoBehaviour:
@@ -3444,6 +3503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &945302905
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3604,6 +3664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 1941525948}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!114 &996123698
 MonoBehaviour:
@@ -3618,6 +3679,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &996123699
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3742,7 +3804,6 @@ GameObject:
   - component: {fileID: 1034347517}
   - component: {fileID: 1034347516}
   - component: {fileID: 1034347515}
-  - component: {fileID: 1034347519}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3764,9 +3825,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 3
   _zoomSpeed: 80
-  _yClickZoneMin: -Infinity
-  _yClickZoneMax: Infinity
-  _clickZone: {fileID: 0}
 --- !u!81 &1034347516
 AudioListener:
   m_ObjectHideFlags: 0
@@ -3833,18 +3891,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1034347519
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1034347514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdaa73ddd029711488ad41346a6b2f3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1055082491
 GameObject:
   m_ObjectHideFlags: 0
@@ -3992,6 +4038,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 2051592613}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!4 &1113265227
 Transform:
@@ -4021,6 +4068,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &1113265229
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4105,6 +4153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 325389218}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!114 &1142517955
 MonoBehaviour:
@@ -4119,6 +4168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &1142517956
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4218,6 +4268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 1248070836}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!114 &1165292104
 MonoBehaviour:
@@ -4232,6 +4283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &1165292105
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4331,6 +4383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 1142517954}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!114 &1226828937
 MonoBehaviour:
@@ -4345,6 +4398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &1226828938
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4444,6 +4498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 753820544}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!4 &1231275709
 Transform:
@@ -4473,6 +4528,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &1231275711
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4618,6 +4674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 1902586174}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!114 &1248070837
 MonoBehaviour:
@@ -4632,6 +4689,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &1248070838
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4798,6 +4856,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 932698449}
+  _withDelay: 1
   _shouldLog: 0
 --- !u!114 &1277545678
 MonoBehaviour:
@@ -4812,6 +4871,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!1 &1370764924
 GameObject:
   m_ObjectHideFlags: 0
@@ -4844,6 +4904,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 996123697}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!114 &1370764926
 MonoBehaviour:
@@ -4858,6 +4919,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &1370764927
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4957,6 +5019,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 52349184}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!114 &1426872537
 MonoBehaviour:
@@ -4971,6 +5034,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &1426872538
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5081,6 +5145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 1920375731}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!114 &1472961452
 MonoBehaviour:
@@ -5095,6 +5160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &1472961453
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5194,6 +5260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 1472961451}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!114 &1587508662
 MonoBehaviour:
@@ -5208,6 +5275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &1587508663
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5307,6 +5375,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 1768439605}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!114 &1660284794
 MonoBehaviour:
@@ -5321,6 +5390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &1660284795
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5420,6 +5490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 661147652}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!114 &1758668551
 MonoBehaviour:
@@ -5434,6 +5505,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &1758668552
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5533,6 +5605,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 788892270}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!114 &1768439606
 MonoBehaviour:
@@ -5547,6 +5620,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &1768439607
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5646,6 +5720,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 161546104}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!114 &1795733361
 MonoBehaviour:
@@ -5660,6 +5735,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &1795733362
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5759,6 +5835,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 2033626758}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!4 &1871490644
 Transform:
@@ -5788,6 +5865,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &1871490646
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5872,6 +5950,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 1226828936}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!114 &1902586175
 MonoBehaviour:
@@ -5886,6 +5965,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &1902586176
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5985,6 +6065,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 1758668550}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!114 &1920375732
 MonoBehaviour:
@@ -5999,6 +6080,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &1920375733
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6098,6 +6180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 1165292103}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!114 &1941525949
 MonoBehaviour:
@@ -6112,6 +6195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &1941525950
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6211,6 +6295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 723361511}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!4 &1949820259
 Transform:
@@ -6240,6 +6325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &1949820261
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6408,6 +6494,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 599171907}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!4 &1967920054
 Transform:
@@ -6437,6 +6524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &1967920056
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6560,6 +6648,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 242123562}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!114 &1998863377
 MonoBehaviour:
@@ -6574,6 +6663,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &1998863378
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6673,6 +6763,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 905548287}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!4 &2021417675
 Transform:
@@ -6702,6 +6793,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &2021417677
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6786,6 +6878,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 853629270}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!4 &2033626759
 Transform:
@@ -6815,6 +6908,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &2033626761
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6899,6 +6993,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 152747357}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!114 &2039708465
 MonoBehaviour:
@@ -6913,6 +7008,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &2039708466
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7060,6 +7156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 1871490643}
+  _withDelay: 1
   _shouldLog: 1
 --- !u!4 &2051592614
 Transform:
@@ -7089,6 +7186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &2051592616
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7173,6 +7271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
+  _power: 1
 --- !u!212 &3794488464915666533
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7253,4 +7352,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 439984737}
+  _withDelay: 1
   _shouldLog: 0

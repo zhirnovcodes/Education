@@ -1,11 +1,8 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class StringViewController : MonoBehaviour
 {
-    [SerializeField] private Slider _freq;
-    [SerializeField] private Slider _amp;
-    [SerializeField] private Slider _dec;
+    [SerializeField] private StringView _view;
     [SerializeField] private FluctuatingString1D _string;
 
     public FluctuatingString1D String 
@@ -14,14 +11,14 @@ public class StringViewController : MonoBehaviour
         {
             _string = value;
 
-            if (String == null)
+            if (_string == null)
             {
                 return;
             }
 
-            FreqValueChanged(_freq.value);
-            AmpValueChanged(_amp.value);
-            DecValueChanged(_dec.value);
+            _view.Freq = _string.Fluctuation.Frequency;
+            _view.Amp = _string.Fluctuation.Amplitude;
+            _view.Time = _string.Fluctuation.Time;
         }
         private get 
         {
@@ -33,21 +30,21 @@ public class StringViewController : MonoBehaviour
     {
         if (String != null)
         {
-            _freq.value = _string.Fluctuation.Frequency;
-            _amp.value = _string.Fluctuation.Amplitude;
-            _dec.value = _string.Fluctuation.Length;
+            _view.Freq = _string.Fluctuation.Frequency;
+            _view.Amp = _string.Fluctuation.Amplitude;
+            _view.Time = _string.Fluctuation.Time;
         }
 
-        _freq.onValueChanged.AddListener( FreqValueChanged );
-        _amp.onValueChanged.AddListener( AmpValueChanged);
-        _dec.onValueChanged.AddListener( DecValueChanged );
+        _view.OnFreqChanged += FreqValueChanged;
+        _view.OnAmpChanged += AmpValueChanged;
+        _view.OnTimeChanged += TimeValueChanged;
     }
 
     private void OnDisable()
     {
-        _freq.onValueChanged.RemoveListener(FreqValueChanged);
-        _amp.onValueChanged.RemoveListener(AmpValueChanged);
-        _dec.onValueChanged.RemoveListener(DecValueChanged);
+        _view.OnFreqChanged -= FreqValueChanged;
+        _view.OnAmpChanged -= AmpValueChanged;
+        _view.OnTimeChanged -= TimeValueChanged;
     }
 
     private void FreqValueChanged(float value)
@@ -60,7 +57,7 @@ public class StringViewController : MonoBehaviour
         _string.SetAmp(value);
     }
 
-    private void DecValueChanged(float value)
+    private void TimeValueChanged(float value)
     {
         _string.SetLen( value );
     }

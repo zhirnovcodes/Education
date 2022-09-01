@@ -20,7 +20,7 @@ public class FluctuatingString1D : FluctuatingObject1D
 
     public void SetLen(float value)
     {
-        _fluctuation.Length = value;
+        _fluctuation.Time = value;
     }
 
     public void SetAtt(float value)

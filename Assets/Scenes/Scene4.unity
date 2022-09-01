@@ -135,6 +135,10 @@ PrefabInstance:
       value: String
       objectReference: {fileID: 0}
     - target: {fileID: 2406083420597937052, guid: cbd2edde513a46842a6e94624e000669, type: 3}
+      propertyPath: _fluctuation.Time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2406083420597937052, guid: cbd2edde513a46842a6e94624e000669, type: 3}
       propertyPath: _fluctuation.Attack
       value: 1
       objectReference: {fileID: 0}
@@ -442,9 +446,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 3
   _zoomSpeed: 80
-  _yClickZoneMin: -Infinity
-  _yClickZoneMax: Infinity
-  _clickZone: {fileID: 0}
 --- !u!81 &1034347516
 AudioListener:
   m_ObjectHideFlags: 0

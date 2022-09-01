@@ -79,9 +79,9 @@ public class StringCountViewController : MonoBehaviour
         var s = go.GetComponent<StringViewController>();
         s.String = _workspace.StringById(newIndex);
 
-        go.SetActive(false);
+        //go.SetActive(false);
         go.transform.parent = _content.transform;
-        go.SetActive(true);
+        //go.SetActive(true);
 
         _vcs.Add(s);
     }

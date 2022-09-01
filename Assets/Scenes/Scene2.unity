@@ -792,9 +792,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 5
   _zoomSpeed: 100
-  _yClickZoneMin: 0
-  _yClickZoneMax: 350
-  _clickZone: {fileID: 1848245304}
 --- !u!1 &519595202
 GameObject:
   m_ObjectHideFlags: 0
@@ -986,7 +983,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2125751238}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.46995354
+  m_Size: 0.1896252
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1291,7 +1288,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigid: 1
   _density: 0
-  _timeScale: 1
   _airPressure: 1
 --- !u!4 &752757987
 Transform:
@@ -1324,7 +1320,7 @@ MonoBehaviour:
   _rightAnchor: {fileID: 836442704}
   _molPrefab: {fileID: 3794488465365237149, guid: 5f626f1d770e2f243a9ced9afca2c854, type: 3}
   _first: {fileID: 0}
-  _count: 10
+  _density: 0.8
   _shoudSpawn: 0
 --- !u!1 &766375647
 GameObject:
@@ -1412,6 +1408,14 @@ PrefabInstance:
     - target: {fileID: 2406083420597937029, guid: cbd2edde513a46842a6e94624e000669, type: 3}
       propertyPath: m_Name
       value: FluctuatingString1D
+      objectReference: {fileID: 0}
+    - target: {fileID: 2406083420597937052, guid: cbd2edde513a46842a6e94624e000669, type: 3}
+      propertyPath: _fluctuation.Time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2406083420597937052, guid: cbd2edde513a46842a6e94624e000669, type: 3}
+      propertyPath: _fluctuation.Attack
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2406083420597937054, guid: cbd2edde513a46842a6e94624e000669, type: 3}
       propertyPath: m_RootOrder
@@ -2166,6 +2170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceaf7161e71dd4640a40f778dafde708, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxOffset: Infinity
 --- !u!1 &1123136850
 GameObject:
   m_ObjectHideFlags: 0
@@ -3210,7 +3215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _workspace: {fileID: 1855299017}
-  _vcPrefab: {fileID: 4466791619203109048, guid: b36a94d3f3145c94eb40b5b417c72a00, type: 3}
+  _vcPrefab: {fileID: 9128485650444610754, guid: 6c7fe1ce7dcf5d846992a88c64f1f60c, type: 3}
   _slider: {fileID: 1335064378}
   _content: {fileID: 2041957414}
 --- !u!114 &1838415833
@@ -3760,7 +3765,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0.0015258789}
-  m_SizeDelta: {x: 707.2195, y: 0.1943}
+  m_SizeDelta: {x: 2693.3684, y: 0.1943}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2041957416
 MonoBehaviour:

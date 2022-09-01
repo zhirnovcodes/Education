@@ -63,23 +63,6 @@ public class PositionOffsetDrawer : MonoBehaviour, IDisposable
         } 
     }
 
-    public float MaxOffset
-    {
-        get
-        {
-            return _maxOffset;
-        }
-        set
-        {
-            if (value == 0)
-            {
-                return;
-            }
-
-            _maxOffset = Mathf.Abs(value);
-        }
-    }
-
     private void OnEnable()
     {
         _shader.Dispatch(_initValuesKernelIndex, _valuesTexture.width / 8, 1, 1);
@@ -139,7 +122,8 @@ public class PositionOffsetDrawer : MonoBehaviour, IDisposable
             _shader.SetVector(LinesColName, _linesColor);
 
             _shader.SetFloat(ValueNewName, offset);
-            _shader.SetFloat(MaxOffsetName, _maxOffset);
+            var maxOffset = GraphController.MaxOffset ?? _maxOffset;
+            _shader.SetFloat(MaxOffsetName, maxOffset);
             _shader.SetInt(IndexNewName, timeIndex);
             _shader.Dispatch(_addValueKernelIndex, _valuesTexture.width / 8, 1, 1);
             _shader.Dispatch(_paintKernelIndex, Texture.width / 8, Texture.height / 8, 1);
