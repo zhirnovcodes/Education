@@ -1131,4 +1131,4 @@ MonoBehaviour:
   _minFreq: 0.125
   _maxFreq: 5
   _amplitude: 1
-  _wt: 1
+  _wt: 2

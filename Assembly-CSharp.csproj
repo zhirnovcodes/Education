@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,17 +53,23 @@
     <UnityVersion>2021.2.8f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Assets\Scripts\Workspace.cs" />
+    <Compile Include="Assets\Scripts\GraphController.cs" />
     <Compile Include="Assets\Scripts\SceneSpawner.cs" />
     <Compile Include="Assets\Scripts\TimeController.cs" />
     <Compile Include="Assets\Scripts\PositionOffsetDrawer.cs" />
     <Compile Include="Assets\Scripts\ForceMover2D.cs" />
     <Compile Include="Assets\Scripts\StringCountViewController.cs" />
     <Compile Include="Assets\Scripts\Air.cs" />
+    <Compile Include="Assets\Scripts\SceneController.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\FluctuatingMolecule1D.cs" />
     <Compile Include="Assets\Scripts\Ear.cs" />
     <Compile Include="Assets\Scripts\SpawnSpecialStrings.cs" />
+    <Compile Include="Assets\Scripts\Amplifier.cs" />
     <Compile Include="Assets\Scripts\String1D.cs" />
     <Compile Include="Assets\Scripts\LowPressureForceProvider1D.cs" />
     <Compile Include="Assets\Scripts\FluctuatingString1D.cs" />
@@ -72,6 +78,7 @@
     <Compile Include="Assets\Scripts\StringPlayer.cs" />
     <Compile Include="Assets\Scripts\Membrane1D.cs" />
     <Compile Include="Assets\Scripts\Molecule1D.cs" />
+    <Compile Include="Assets\Scripts\OffsetToElectricity.cs" />
     <Compile Include="Assets\Scripts\AirViewController.cs" />
     <Compile Include="Assets\Scripts\FilesExtensions.cs" />
     <Compile Include="Assets\Scripts\KeyboardController.cs" />
@@ -84,10 +91,6 @@
     <Compile Include="Assets\Scripts\EarDrumOffsetMaterial.cs" />
     <Compile Include="Assets\Scripts\OffsetDrawerKeyboardController.cs" />
     <Compile Include="Assets\Scripts\SceneSpawnerEditor.cs" />
-    <Compile Include="Assets\Scripts\GraphController.cs" />
-    <Compile Include="Assets\Scripts\OffsetToElectricity.cs" />
-    <Compile Include="Assets\Scripts\Amplifier.cs" />
-    <Compile Include="Assets\Scripts\SceneController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

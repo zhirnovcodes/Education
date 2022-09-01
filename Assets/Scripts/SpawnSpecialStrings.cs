@@ -31,6 +31,11 @@ public class SpawnSpecialStrings : MonoBehaviour
                 SpawnSquare(_count, _minFreq);
                 break;
             }
+            case WaveType.Noise:
+            {
+                SpawnNoise(_count, _minFreq, 0.03f);
+                break;
+            }
         }
     }
 
@@ -120,6 +125,29 @@ public class SpawnSpecialStrings : MonoBehaviour
         }
     }
 
+    public void SpawnNoise(int count, float minFreq, float offsetF)
+    {
+        var height = _yOffset * (count - 1);
+
+        var y = _leftAnchor.position.y;
+        var offsetY = (_yOffset + _stringPrefab.transform.localScale.y);
+
+        ClearEar();
+
+        var y0 = y + height / 2;
+
+        for (int i = 0; i < count; i++)
+        {
+            var freq = minFreq + (i * (offsetF + Random.Range(0,1f)));
+            var amp = 1f;
+            amp *= _amplitude;
+
+            SpawnString(freq, amp, y0);
+
+            y0 -= offsetY;
+        }
+    }
+
     private void SpawnString(float freq, float amp, float y)
     {
         var x = _leftAnchor.position.x;
@@ -152,6 +180,7 @@ public class SpawnSpecialStrings : MonoBehaviour
     private enum WaveType
     {
         Square,
-        Saw
+        Saw,
+        Noise
     }
 }
