@@ -54,6 +54,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Workspace.cs" />
+    <Compile Include="Assets\Scripts\SceneSpawner.cs" />
     <Compile Include="Assets\Scripts\PositionOffsetDrawer.cs" />
     <Compile Include="Assets\Scripts\ForceMover2D.cs" />
     <Compile Include="Assets\Scripts\StringCountViewController.cs" />
@@ -74,12 +75,15 @@
     <Compile Include="Assets\Scripts\StringViewController.cs" />
     <Compile Include="Assets\Scripts\FluctuatingStringKeyboardController.cs" />
     <Compile Include="Assets\Scripts\IForceProvider.cs" />
+    <Compile Include="Assets\Scripts\ReverbWorkspace.cs" />
     <Compile Include="Assets\Scripts\MoleculesCountViewController.cs" />
     <Compile Include="Assets\Scripts\FluctuatingObjectMover1D.cs" />
     <Compile Include="Assets\Scripts\EarDrumOffsetMaterial.cs" />
     <Compile Include="Assets\Scripts\OffsetDrawerKeyboardController.cs" />
-    <Compile Include="Assets\Scripts\SceneSpawner.cs" />
     <Compile Include="Assets\Scripts\SceneSpawnerEditor.cs" />
+    <Compile Include="Assets\Scripts\TimeController.cs" />
+    <Compile Include="Assets\Scripts\SpawnSpecialStrings.cs" />
+    <Compile Include="Assets\Scripts\StringPlayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

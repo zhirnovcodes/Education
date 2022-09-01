@@ -23,6 +23,11 @@ public class FluctuatingString1D : FluctuatingObject1D
         _fluctuation.Length = value;
     }
 
+    public void SetAtt(float value)
+    {
+        _fluctuation.Attack = value;
+    }
+
     private void OnEnable()
     {
         _timeStart = 0;

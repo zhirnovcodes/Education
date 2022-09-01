@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class FluctuatingObjectMover1D : MonoBehaviour
 {
+    [SerializeField] private float _maxOffset = Mathf.Infinity;
+
     private FluctuatingObject1D[] _flucObjects;
     private Vector2 _stablePosition;
 
@@ -12,6 +14,8 @@ public class FluctuatingObjectMover1D : MonoBehaviour
 
         //todo performance
         var o = _flucObjects.Select(f => f.TimeStart <= 0 ? 0 : f.Fluctuation.GetValue(Time.time - f.TimeStart)).Sum();
+
+        o = Mathf.Clamp(o, -_maxOffset, _maxOffset);
 
         transform.localPosition = _stablePosition + Vector2.right * o;
     }

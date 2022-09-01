@@ -4,6 +4,13 @@ using UnityEngine;
 
 public static class SceneSpawner
 {
+    public static GameObject SpawnMoleculesChain(GameObject moleculesPrefab, Vector3 posLeft, Vector3 posRight, float density, FluctuatingObject1D first)
+    {
+        var scale = moleculesPrefab.transform.localScale.x;
+        var count = (int)Mathf.Max((posRight - posLeft).magnitude / scale * density, 1);
+        return SpawnMoleculesChain(moleculesPrefab, posLeft, posRight, count, first);
+    }
+
     public static GameObject SpawnMoleculesChain(GameObject moleculesPrefab, Vector3 posLeft, Vector3 posRight, int count, FluctuatingObject1D first)
     {
         if (count <= 0)
@@ -16,7 +23,7 @@ public static class SceneSpawner
 
         var xDir = (posRight - posLeft);
         var cross = Vector3.Angle(Vector3.right, xDir);
-        parent.transform.rotation = Quaternion.Euler(0, 0, cross);
+        parent.transform.rotation = Quaternion.FromToRotation(Vector3.right, posRight - posLeft);
 
         var length = (posRight - posLeft).magnitude;
         var offset = length / count;

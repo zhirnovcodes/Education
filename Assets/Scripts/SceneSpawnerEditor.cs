@@ -6,7 +6,7 @@ public class SceneSpawnerEditor : MonoBehaviour
     [SerializeField] private Transform _rightAnchor;
     [SerializeField] private GameObject _molPrefab;
     [SerializeField] private FluctuatingObject1D _first;
-    [SerializeField] private int _count;
+    [SerializeField] private float _density = 0.8f;
     [SerializeField] private bool _shoudSpawn = false;
 
     private GameObject _go;
@@ -14,7 +14,7 @@ public class SceneSpawnerEditor : MonoBehaviour
 #if UNITY_EDITOR
     private void OnValidate()
     {
-        if (_leftAnchor == null || _rightAnchor == null || _molPrefab == null || _count <= 0 || !_shoudSpawn)
+        if (_leftAnchor == null || _rightAnchor == null || _molPrefab == null || _density <= 0 || !_shoudSpawn)
         {
             return;
         }
@@ -24,7 +24,7 @@ public class SceneSpawnerEditor : MonoBehaviour
             //StartCoroutine(DestroyCor(_go));
         }
 
-        _go = SceneSpawner.SpawnMoleculesChain(_molPrefab, _leftAnchor.position, _rightAnchor.position, _count, _first);
+        _go = SceneSpawner.SpawnMoleculesChain(_molPrefab, _leftAnchor.position, _rightAnchor.position, _density, _first);
     }
 #endif
 }

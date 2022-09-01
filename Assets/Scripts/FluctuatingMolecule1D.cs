@@ -20,9 +20,18 @@ public abstract class FluctuatingObject1D : MonoBehaviour
 public class FluctuatingMolecule1D : FluctuatingObject1D
 {
     [SerializeField] private FluctuatingObject1D _source;
+    [SerializeField] private bool _withDelay = true;
     [SerializeField] private bool _shouldLog;
 
     private float? _distance;
+
+    public bool WithDelay
+    {
+        set
+        {
+            _withDelay = value;
+        }
+    }
 
     public FluctuatingObject1D Source
     {
@@ -42,7 +51,7 @@ public class FluctuatingMolecule1D : FluctuatingObject1D
                 return 0;
             }
             var timeStartSource = _source == null ? 0 : _source.TimeStart;
-            var timeStart = timeStartSource == 0 ? 0 : (timeStartSource + 1 / _source.Fluctuation.Frequency / 4 );
+            var timeStart = timeStartSource == 0 ? 0 : (timeStartSource + 1 / _source.Fluctuation.Frequency / 4 * ( _withDelay ? 1 : 0));
             return timeStart;
         }
     }
