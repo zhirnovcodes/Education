@@ -61,7 +61,8 @@ public class StringView : MonoBehaviour
     private void OnEnable()
     {
         _freqS.onValueChanged.AddListener(FreqSliderValueChanged);
-        _freqI.onValueChanged.AddListener(FreqInputValueChanged);
+        //_freqI.onValueChanged.AddListener(FreqInputValueChanged);
+        _freqI.onSubmit.AddListener( FreqInputValueChanged );
 
         _ampS.onValueChanged.AddListener(AmpSliderValueChanged);
         _ampI.onValueChanged.AddListener(AmpInputValueChanged);
@@ -72,7 +73,7 @@ public class StringView : MonoBehaviour
     private void OnDisable()
     {
         _freqS.onValueChanged.RemoveListener(FreqSliderValueChanged);
-        _freqI.onValueChanged.RemoveListener(FreqInputValueChanged);
+        _freqI.onSubmit.RemoveListener(FreqInputValueChanged);
 
         _ampS.onValueChanged.RemoveListener(AmpSliderValueChanged);
         _ampI.onValueChanged.RemoveListener(AmpInputValueChanged);
