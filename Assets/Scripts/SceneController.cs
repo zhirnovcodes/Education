@@ -15,11 +15,11 @@ public class SceneController : MonoBehaviour
     {
         var indBefore = _index;
 
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             _index = Mathf.Min(_index + 1, SceneManager.sceneCountInBuildSettings - 1);
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             _index = Mathf.Max(_index - 1, 0);
         }
