@@ -65,7 +65,7 @@ public class StringView : MonoBehaviour
         _freqI.onSubmit.AddListener( FreqInputValueChanged );
 
         _ampS.onValueChanged.AddListener(AmpSliderValueChanged);
-        _ampI.onValueChanged.AddListener(AmpInputValueChanged);
+        _ampI.onSubmit.AddListener(AmpInputValueChanged);
 
         _timeS.onValueChanged.AddListener(TimeSliderValueChanged);
     }
@@ -76,7 +76,7 @@ public class StringView : MonoBehaviour
         _freqI.onSubmit.RemoveListener(FreqInputValueChanged);
 
         _ampS.onValueChanged.RemoveListener(AmpSliderValueChanged);
-        _ampI.onValueChanged.RemoveListener(AmpInputValueChanged);
+        _ampI.onSubmit.RemoveListener(AmpInputValueChanged);
 
         _timeS.onValueChanged.RemoveListener(TimeSliderValueChanged);
     }
@@ -111,7 +111,6 @@ public class StringView : MonoBehaviour
             }
         }
     }
-
 
     private void AmpSliderValueChanged(float value)
     {
