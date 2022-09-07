@@ -57,6 +57,7 @@ void Paint (uint3 id : SV_DispatchThreadID)
         Result[id.xy] = LinesCol;
         return;
 	}
+
     /*
     if (id.y < val)
     {
