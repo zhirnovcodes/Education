@@ -57,7 +57,8 @@
     <Compile Include="Assets\Scripts\GraphController.cs" />
     <Compile Include="Assets\Scripts\SceneSpawner.cs" />
     <Compile Include="Assets\Scripts\TimeController.cs" />
-    <Compile Include="Assets\Scripts\PositionOffsetDrawer.cs" />
+    <Compile Include="Assets\Scripts\TextureDrawing\PositionOffsetDrawer.cs" />
+    <Compile Include="Assets\Scripts\KeepBetweenObjects.cs" />
     <Compile Include="Assets\Scripts\ForceMover2D.cs" />
     <Compile Include="Assets\Scripts\StringCountViewController.cs" />
     <Compile Include="Assets\Scripts\Air.cs" />
@@ -88,7 +89,12 @@
     <Compile Include="Assets\Scripts\EarDrumOffsetMaterial.cs" />
     <Compile Include="Assets\Scripts\OffsetDrawerKeyboardController.cs" />
     <Compile Include="Assets\Scripts\SceneSpawnerEditor.cs" />
-    <Compile Include="Assets\Scripts\KeepBetweenObjects.cs" />
+    <Compile Include="Assets\Scripts\FluctuatingFollower1D.cs" />
+    <Compile Include="Assets\Scripts\ShowModelSettings.cs" />
+    <Compile Include="Assets\Scripts\AnalogueViewController.cs" />
+    <Compile Include="Assets\Scripts\ElectricitySettings.cs" />
+    <Compile Include="Assets\Scripts\Digital\Memory.cs" />
+    <Compile Include="Assets\Scripts\TextureDrawing\GraphDrawer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
