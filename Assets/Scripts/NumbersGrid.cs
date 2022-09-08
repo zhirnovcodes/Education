@@ -6,35 +6,30 @@ using UnityEngine;
 
 public class NumbersGrid : MonoBehaviour, IDisposable
 {
-    [SerializeField] private PositionOffsetDrawer _drawer;
+    [SerializeField] private PositionOffsetDrawer _graph;
     [SerializeField] private Transform _canvas;
+    [SerializeField] private Transform _quadsParent;
     [SerializeField] private TextMeshProUGUI _textPrefab;
+    [SerializeField] private GameObject _quadPrefab;
+    [SerializeField] private Vector2Int _cellsCount = new Vector2Int(16, 16);
 
     private Grid _grid;
-    private Vector2Int _size;
     private Texture2D _bufferTex;
-
-    public Vector2Int GridSize
-    {
-        get
-        {
-            Init();
-            return _size;
-        }
-    }
 
     public IEnumerable<Vector3> LeftColumn()
     {
-        for (int y = -GridSize.y/2; y < GridSize.y/2; y++)
+        Init();
+        for (int y = -_cellsCount.y/2; y < _cellsCount.y/2; y++)
         {
-            yield return _grid.GetCellCenterWorld(new Vector3Int(-_size.x / 2 - 1, y, 0));
+            yield return _grid.GetCellCenterWorld(new Vector3Int(-_cellsCount.x / 2 - 1, y, 0));
         }
     }
     public IEnumerable<Vector3> BottomColumn()
     {
-        for (int x = -GridSize.x / 2; x < GridSize.x / 2; x++)
+        Init();
+        for (int x = -_cellsCount.x / 2; x < _cellsCount.x / 2; x++)
         {
-            yield return _grid.GetCellCenterWorld(new Vector3Int(x, -_size.y / 2 - 1, 0));
+            yield return _grid.GetCellCenterWorld(new Vector3Int(x, -_cellsCount.y / 2 - 1, 0));
         }
     }
 
@@ -52,13 +47,10 @@ public class NumbersGrid : MonoBehaviour, IDisposable
         }
 
         _grid = GetComponent<Grid>();
-        var texture = _drawer.Texture;
-        var texScale = _drawer.transform.localScale;
+        var texScale = _graph.transform.localScale;
 
-        _grid.cellSize = new Vector3(texScale.x / texture.width, texScale.y / texture.height, _grid.cellSize.z);
-        transform.position = _drawer.transform.position;
-
-        _size = new Vector2Int( _drawer.Texture.width, _drawer.Texture.height);
+        _grid.cellSize = new Vector3(texScale.x / _cellsCount.x, texScale.y / _cellsCount.y, _grid.cellSize.z);
+        transform.position = _graph.transform.position;
 
         int index = 0;
 
@@ -77,7 +69,7 @@ public class NumbersGrid : MonoBehaviour, IDisposable
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            var valTex = _drawer.Values;
+            var valTex = _graph.Values;
 
             if (_bufferTex == null)
             {
@@ -92,16 +84,22 @@ public class NumbersGrid : MonoBehaviour, IDisposable
             int index = 0;
             foreach (var pos in BottomColumn())
             {
+                var valueX = (index + 0.5f) * valTex.width / _cellsCount.x;
                 var t = GameObject.Instantiate(_textPrefab.gameObject, _canvas).GetComponent<TextMeshProUGUI>();
-                var value = _bufferTex.GetPixel(index, 0).r;
+                var value = _bufferTex.GetPixel((int)valueX, 0).r;
 
-                float c = _drawer.Texture.height;
-                var maxOffset = _drawer.MaxOffset;
+                float c = _cellsCount.y;
+                var maxOffset = _graph.MaxOffset;
                 maxOffset = GraphController.MaxOffset ?? maxOffset;
                 value = (Mathf.Clamp(value, -maxOffset, maxOffset) / maxOffset + 1) / 2f * c;
 
-                t.text = Mathf.RoundToInt(value).ToString() + ";";
+                var valueInt = Mathf.RoundToInt(value);
+
+                t.text = valueInt.ToString() + ";";
                 t.transform.position = pos;
+
+                SpawnQuad(index, valueInt);
+
                 index++;
             }
         }
@@ -113,6 +111,17 @@ public class NumbersGrid : MonoBehaviour, IDisposable
         {
             UnityEngine.Object.Destroy(_bufferTex);
         }
+    }
+
+    private void SpawnQuad(int x, int value)
+    {
+        var q = GameObject.Instantiate(_quadPrefab, _quadsParent);
+
+        q.transform.localScale = _grid.cellSize;
+
+        var cell = new Vector3Int(x - _cellsCount.x / 2, value - _cellsCount.y / 2, 0);
+        var pos = _grid.GetCellCenterWorld(cell);
+        q.transform.position = pos;
     }
 }
 
