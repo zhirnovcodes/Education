@@ -72,15 +72,29 @@ public class GridDrawer : MonoBehaviour, IDisposable, IGraphDrawer
         _texture.filterMode = FilterMode.Point;
         _texture.enableRandomWrite = true;
         _texture.Create();
-
-        _shader.SetTexture(_paintGridKernelIndex, ResultName, _texture);
     }
 
     private void PaintGrid(Color gridColor, Vector2Int cellSize)
     {
+        _shader.SetTexture(_paintGridKernelIndex, ResultName, _texture);
+
         _shader.SetVector(BckgColName, _bckgColor);
         _shader.SetVector(GridColName, gridColor);
         _shader.SetVector(CellSizeName, (Vector2)cellSize);
         _shader.Dispatch(_paintGridKernelIndex, Texture.width / 8, Texture.height / 8, 1);
+    }
+
+    public void PaintGrid(Vector2Int cellSizePixels, RenderTexture texture)
+    {
+        if (_shader == null)
+        {
+            CreateShader();
+        }
+        _shader.SetTexture(_paintGridKernelIndex, ResultName, texture);
+
+        _shader.SetVector(BckgColName, _bckgColor);
+        _shader.SetVector(GridColName, _gridColor);
+        _shader.SetVector(CellSizeName, (Vector2)cellSizePixels);
+        _shader.Dispatch(_paintGridKernelIndex, texture.width / 8, texture.height / 8, 1);
     }
 }

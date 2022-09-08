@@ -16,6 +16,7 @@ public class NumbersGrid : MonoBehaviour, IDisposable
     private Grid _grid;
     private Texture2D _bufferTex;
     private List<int> _numbers = new List<int>();
+    private GridDrawer _gridDrawer;
 
     public List<int> Numbers => _numbers;
     public int MaxHeight => _cellsCount.y;
@@ -49,11 +50,14 @@ public class NumbersGrid : MonoBehaviour, IDisposable
             return;
         }
 
+        _gridDrawer = GetComponent<GridDrawer>();
+
         _grid = GetComponent<Grid>();
         var texScale = _graph.transform.localScale;
 
         _grid.cellSize = new Vector3(texScale.x / _cellsCount.x, texScale.y / _cellsCount.y, _grid.cellSize.z);
         transform.position = _graph.transform.position;
+
 
         int index = 0;
 
@@ -79,7 +83,12 @@ public class NumbersGrid : MonoBehaviour, IDisposable
                 _bufferTex = new Texture2D(valTex.width, valTex.height, TextureFormat.RFloat, false);
 
             }
-            
+
+            var texScale = _graph.transform.localScale;
+            var cellSizePixels = new Vector2Int((int)(_graph.Texture.width * _grid.cellSize.x / texScale.x),
+                (int)(_graph.Texture.height * _grid.cellSize.y / texScale.y));
+            _gridDrawer.PaintGrid(cellSizePixels, _graph.Texture);
+
             RenderTexture.active = valTex;
             _bufferTex.ReadPixels(new Rect(0, 0, valTex.width, valTex.height), 0, 0);
             _bufferTex.Apply();

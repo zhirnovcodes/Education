@@ -15,5 +15,5 @@ void PaintGrid (uint3 id : SV_DispatchThreadID)
         return;
 	}
 
-    Result[id.xy] = BckgCol;
+    Result[id.xy] += BckgCol;
 }
