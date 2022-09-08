@@ -209,9 +209,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _target: {fileID: 0}
-  _shader: {fileID: 7200000, guid: ee97a3dc7ff1f6147a2f2094790daa76, type: 3}
   _analysisDeltaSec: 0.02
   _maxOffset: 3
-  _valuesTexture: {fileID: 0}
+  _pixelsInSecond: 30
+  _timeOfFilling: 8
   _bckgColor: {r: 0, g: 0, b: 0, a: 0}
   _linesColor: {r: 0, g: 0.7972157, b: 1, a: 1}
+  _textureWidth: 256
+  _textureHeight: 128

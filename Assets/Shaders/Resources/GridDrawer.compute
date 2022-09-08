@@ -1,0 +1,19 @@
+#pragma kernel PaintGrid
+
+RWTexture2D<float4> Result;
+
+float4 BckgCol;
+float4 GridCol;
+float2 CellSize;
+
+
+[numthreads(8,8,1)]
+void PaintGrid (uint3 id : SV_DispatchThreadID)
+{
+    if (fmod(id.x, CellSize.x) == 0 || fmod(id.y, CellSize.y) == 0){
+        Result[id.xy] = GridCol;
+        return;
+	}
+
+    Result[id.xy] = BckgCol;
+}

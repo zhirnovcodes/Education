@@ -1,7 +1,12 @@
 using System.Linq;
 using UnityEngine;
 
-public class FluctuatingObjectMover1D : MonoBehaviour
+public interface IFluctuatingObject1D
+{
+    public float Offset { get; }
+}
+
+public class FluctuatingObjectMover1D : MonoBehaviour, IFluctuatingObject1D
 {
     [SerializeField] private float _maxOffset = Mathf.Infinity;
     [SerializeField] private float _power = 1;

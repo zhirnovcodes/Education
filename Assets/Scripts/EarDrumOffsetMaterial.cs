@@ -3,12 +3,11 @@ using UnityEngine;
 [RequireComponent(typeof(Renderer))]
 public class EarDrumOffsetMaterial : MonoBehaviour
 {
-    [SerializeField] private PositionOffsetDrawer _drawer;
-
     void Start()
     {
         var renderer = GetComponent<Renderer>();
+        var drawer = GetComponent<IGraphDrawer>();
 
-        renderer.material.mainTexture = _drawer.Texture;
+        renderer.material.mainTexture = drawer.Texture;
     }
 }

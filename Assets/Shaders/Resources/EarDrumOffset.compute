@@ -13,6 +13,7 @@ float MaxOffset;
 float ValueNew;
 int ValuesSize;
 int IndexNew;
+int DrawType = 0;
 
 #define EMPTY_COL float4(0, 0, 0, 0)
 
@@ -33,7 +34,7 @@ void InitValues (uint3 id : SV_DispatchThreadID)
 }
 
 float ValueToUV(float x){
-    float c = (ResultSize.y - 1);
+    float c = ResultSize.y;
     float val = (clamp(Values[float2(x, 0)].r, -MaxOffset, MaxOffset) / MaxOffset + 1) / 2 * c;
     return val;
 }
@@ -42,29 +43,31 @@ float ValueToUV(float x){
 void Paint (uint3 id : SV_DispatchThreadID)
 {
     if (IsEmpty(id.x)){
+        Result[id.xy] = BckgCol;
         return;
 	}
 
     float val = ValueToUV(id.x);
 
-    float prevVal = id.x < 1 ? val : ValueToUV(id.x - 1);
-    float nextVal = id.x >= ResultSize.x - 1 ? val : ValueToUV(id.x + 1);
 
-    float v1 = ( prevVal + val ) / 2;
-    float v2 = ( nextVal + val ) / 2;
-
-    if (clamp(id.y, min(v1, v2)-1, max(v1, v2)+1) == id.y){
-        Result[id.xy] = LinesCol;
-        return;
-	}
-
-    /*
-    if (id.y < val)
+    if (DrawType == 0)
     {
-        Result[id.xy] = float4(1, 1, 1, 1);
-        return;
+        float prevVal = id.x < 1 ? val : ValueToUV(id.x - 1);
+        float nextVal = id.x >= ResultSize.x - 1 ? val : ValueToUV(id.x + 1);
+
+        float v1 = ( prevVal + val ) / 2;
+        float v2 = ( nextVal + val ) / 2;
+
+        if (clamp(id.y, min(v1, v2)-1, max(v1, v2)+1) == id.y){
+            Result[id.xy] = LinesCol;
+            return;
+	    }
+	} else if (DrawType == 1){
+        if ((int)round(val) == (int)(id.y)){
+            Result[id.xy] = LinesCol;
+            return;
+	    }
 	}
-    */
 
     Result[id.xy] = BckgCol;
 }

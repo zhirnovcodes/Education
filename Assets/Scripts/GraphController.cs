@@ -17,8 +17,11 @@ public class GraphController : MonoBehaviour
 
     private void Awake()
     {
-        _instance = this;
-        DontDestroyOnLoad(this);
+        if (_instance == null)
+        {
+            _instance = this;
+            DontDestroyOnLoad(this);
+        }
     }
 
     private void Update()
