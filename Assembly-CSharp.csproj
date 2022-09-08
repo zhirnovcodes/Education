@@ -99,6 +99,7 @@
     <Compile Include="Assets\Scripts\SceneSpawnerEditor.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\GridDrawer.cs" />
     <Compile Include="Assets\Scripts\NumbersGrid.cs" />
+    <Compile Include="Assets\Scripts\TextureDrawing\DigitalizedGraphDrawer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

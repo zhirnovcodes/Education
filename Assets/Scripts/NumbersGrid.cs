@@ -15,7 +15,10 @@ public class NumbersGrid : MonoBehaviour, IDisposable
 
     private Grid _grid;
     private Texture2D _bufferTex;
+    private List<int> _numbers = new List<int>();
 
+    public List<int> Numbers => _numbers;
+    public int MaxHeight => _cellsCount.y;
     public IEnumerable<Vector3> LeftColumn()
     {
         Init();
@@ -94,6 +97,8 @@ public class NumbersGrid : MonoBehaviour, IDisposable
                 value = (Mathf.Clamp(value, -maxOffset, maxOffset) / maxOffset + 1) / 2f * c;
 
                 var valueInt = Mathf.RoundToInt(value);
+
+                _numbers.Add(valueInt);
 
                 t.text = valueInt.ToString() + ";";
                 t.transform.position = pos;
