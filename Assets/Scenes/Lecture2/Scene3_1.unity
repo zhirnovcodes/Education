@@ -524,6 +524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _digital: {fileID: 368028500}
+  _drawFullGrid: 1
 --- !u!1 &310446299
 GameObject:
   m_ObjectHideFlags: 0
@@ -1011,6 +1012,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _digital: {fileID: 1494517441}
+  _drawFullGrid: 1
 --- !u!114 &578118192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2040,8 +2042,8 @@ RectTransform:
   m_Children:
   - {fileID: 930420178}
   - {fileID: 887877886}
-  m_Father: {fileID: 2140672299}
-  m_RootOrder: 5
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3201,6 +3203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _digital: {fileID: 582004152}
+  _drawFullGrid: 1
 --- !u!114 &1804176465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3919,7 +3922,6 @@ Transform:
   - {fileID: 977314805}
   - {fileID: 1666761298}
   - {fileID: 368028499}
-  - {fileID: 1127514533}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

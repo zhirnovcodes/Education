@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Lecture1/Scene1.unity
     guid: d41ad544c02c4204db1aafd717d66ccd
   - enabled: 1
+    path: Assets/Scenes/Lecture1/Scene6_1.unity
+    guid: 2f82bcfd68a70254fb4d2ed4a2e63b1f
+  - enabled: 1
     path: Assets/Scenes/Lecture2/Scene0.unity
     guid: 815c6191e2570574caac409b9eeb44c2
   - enabled: 1

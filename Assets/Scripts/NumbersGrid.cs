@@ -121,13 +121,19 @@ public class NumbersGrid : MonoBehaviour, IDisposable
         }
     }
 
-    public void DrawGrid()
+    public void DrawGrid(bool paintRows = true, bool paintCols = true)
     {
         Init();
 
+        //var cellSizePixels = new Vector2Int((int)(_graph.Texture.width * _grid.cellSize.x / texScale.x),
+    //(int)(_graph.Texture.height * _grid.cellSize.y / texScale.y));
+
         var texScale = _graph.transform.localScale;
-        var cellSizePixels = new Vector2Int((int)(_graph.Texture.width * _grid.cellSize.x / texScale.x),
-            (int)(_graph.Texture.height * _grid.cellSize.y / texScale.y));
+
+        var width = (int)(_graph.Texture.width * ( paintRows ? _grid.cellSize.x / texScale.x : 1));
+        var height = (int)(_graph.Texture.height * (paintCols ? _grid.cellSize.y / texScale.y : 1));
+        var cellSizePixels = new Vector2Int(width, height);
+
         _gridDrawer.PaintGrid(cellSizePixels, _graph.Texture);
     }
 
