@@ -55,7 +55,7 @@ public class DigitalToAnalogueGraphDrawer : MonoBehaviour, IGraphDrawer
             var t = (i % cellWidth) / (float)cellWidth;
 
             var val = Mathf.Lerp(number0, number1, t);
-            val = (val / (height) * 2f - 1f) * _maxOffset;
+            val = (val / height * 2f - 1f) * _maxOffset;
 
             _drawer.AddValue(i, val);
         }
