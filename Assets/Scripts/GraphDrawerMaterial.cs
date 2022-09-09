@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Renderer))]
-public class EarDrumOffsetMaterial : MonoBehaviour
+public class GraphDrawerMaterial : MonoBehaviour
 {
     void Start()
     {

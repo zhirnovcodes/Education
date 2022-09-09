@@ -15,10 +15,10 @@ public class NumbersGrid : MonoBehaviour, IDisposable
 
     private Grid _grid;
     private Texture2D _bufferTex;
-    private List<int> _numbers = new List<int>();
+    private List<float> _numbers = new List<float>();
     private GridDrawer _gridDrawer;
 
-    public List<int> Numbers => _numbers;
+    public List<float> Numbers => _numbers;
     public int MaxHeight => _cellsCount.y;
     public IEnumerable<Vector3> LeftColumn()
     {
@@ -28,6 +28,7 @@ public class NumbersGrid : MonoBehaviour, IDisposable
             yield return _grid.GetCellCenterWorld(new Vector3Int(-_cellsCount.x / 2 - 1, y, 0));
         }
     }
+
     public IEnumerable<Vector3> BottomColumn()
     {
         Init();
@@ -37,13 +38,74 @@ public class NumbersGrid : MonoBehaviour, IDisposable
         }
     }
 
-    private void Start()
+    public void DrawIndicies()
     {
         Init();
+
+        int index = 0;
+        foreach (var pos in LeftColumn())
+        {
+            var t = GameObject.Instantiate(_textPrefab.gameObject, _canvas).GetComponent<TextMeshProUGUI>();
+            t.text = index.ToString();
+            t.transform.position = pos;
+            index++;
+        }
+    }
+
+    public void DrawGrid()
+    {
+        Init();
+
+        var texScale = _graph.transform.localScale;
+        var cellSizePixels = new Vector2Int((int)(_graph.Texture.width * _grid.cellSize.x / texScale.x),
+            (int)(_graph.Texture.height * _grid.cellSize.y / texScale.y));
+        _gridDrawer.PaintGrid(cellSizePixels, _graph.Texture);
+    }
+
+    public void DrawValues()
+    {
+        Init();
+
+        var valTex = _graph.Values;
+
+        if (_bufferTex == null)
+        {
+            _bufferTex = new Texture2D(valTex.width, valTex.height, TextureFormat.RFloat, false);
+
+        }
+
+        RenderTexture.active = valTex;
+        _bufferTex.ReadPixels(new Rect(0, 0, valTex.width, valTex.height), 0, 0);
+        _bufferTex.Apply();
+
+        int index = 0;
+        foreach (var pos in BottomColumn())
+        {
+            var valueX = (index + 0.5f) * valTex.width / _cellsCount.x;
+            var t = GameObject.Instantiate(_textPrefab.gameObject, _canvas).GetComponent<TextMeshProUGUI>();
+            var value = _bufferTex.GetPixel((int)valueX, 0).r;
+
+            float c = _cellsCount.y;
+            var maxOffset = _graph.MaxOffset;
+            maxOffset = GraphController.MaxOffset ?? maxOffset;
+            value = (Mathf.Clamp(value, -maxOffset, maxOffset) / maxOffset + 1) / 2f * c;
+
+            var valueInt = Mathf.RoundToInt(value);
+
+            _numbers.Add(valueInt);
+
+            t.text = valueInt.ToString() + ";";
+            t.transform.position = pos;
+
+            SpawnQuad(index, valueInt);
+
+            index++;
+        }
+
     }
 
     // Update is called once per frame
-    void Init()
+    private void Init()
     {
         if (_grid != null)
         {
@@ -58,66 +120,10 @@ public class NumbersGrid : MonoBehaviour, IDisposable
         _grid.cellSize = new Vector3(texScale.x / _cellsCount.x, texScale.y / _cellsCount.y, _grid.cellSize.z);
         transform.position = _graph.transform.position;
 
-
-        int index = 0;
-
         _canvas.position = _grid.transform.position;
-
-        foreach (var pos in LeftColumn())
-        {
-            var t = GameObject.Instantiate(_textPrefab.gameObject, _canvas).GetComponent<TextMeshProUGUI>();
-            t.text = index.ToString();
-            t.transform.position = pos;
-            index++;
-        }
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            var valTex = _graph.Values;
-
-            if (_bufferTex == null)
-            {
-                _bufferTex = new Texture2D(valTex.width, valTex.height, TextureFormat.RFloat, false);
-
-            }
-
-            var texScale = _graph.transform.localScale;
-            var cellSizePixels = new Vector2Int((int)(_graph.Texture.width * _grid.cellSize.x / texScale.x),
-                (int)(_graph.Texture.height * _grid.cellSize.y / texScale.y));
-            _gridDrawer.PaintGrid(cellSizePixels, _graph.Texture);
-
-            RenderTexture.active = valTex;
-            _bufferTex.ReadPixels(new Rect(0, 0, valTex.width, valTex.height), 0, 0);
-            _bufferTex.Apply();
-
-            int index = 0;
-            foreach (var pos in BottomColumn())
-            {
-                var valueX = (index + 0.5f) * valTex.width / _cellsCount.x;
-                var t = GameObject.Instantiate(_textPrefab.gameObject, _canvas).GetComponent<TextMeshProUGUI>();
-                var value = _bufferTex.GetPixel((int)valueX, 0).r;
-
-                float c = _cellsCount.y;
-                var maxOffset = _graph.MaxOffset;
-                maxOffset = GraphController.MaxOffset ?? maxOffset;
-                value = (Mathf.Clamp(value, -maxOffset, maxOffset) / maxOffset + 1) / 2f * c;
-
-                var valueInt = Mathf.RoundToInt(value);
-
-                _numbers.Add(valueInt);
-
-                t.text = valueInt.ToString() + ";";
-                t.transform.position = pos;
-
-                SpawnQuad(index, valueInt);
-
-                index++;
-            }
-        }
-    }
+    private int _index = 0;
 
     public void Dispose()
     {

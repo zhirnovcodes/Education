@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DigitalizedGraphDrawer : MonoBehaviour, IGraphDrawer
+public class DigitalToAnalogueGraphDrawer : MonoBehaviour, IGraphDrawer
 {
     [SerializeField, Range(0.01f, 7)] private float _maxOffset = 1f;
 
@@ -55,20 +55,12 @@ public class DigitalizedGraphDrawer : MonoBehaviour, IGraphDrawer
             var t = (i % cellWidth) / (float)cellWidth;
 
             var val = Mathf.Lerp(number0, number1, t);
-            val = (val - height / 2f) / (Texture.height / height) * _maxOffset;
+            val = (val / (height - 1) * 2f - 1f) * _maxOffset;
 
             _drawer.AddValue(i, val);
         }
 
         _drawer.Paint(_bckgColor, _linesColor, _maxOffset);
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            Fill();
-        }
     }
 
     public void Dispose()
