@@ -35,6 +35,12 @@ public class NumbersGridController : MonoBehaviour
                         _digital.Fill() ;
                         break;
                     }
+                case 3:
+                    {
+                        _digital.transform.position = _grid.transform.position;
+                        _grid.HideValues();
+                        break;
+                    }
             }
             _index++;
         }

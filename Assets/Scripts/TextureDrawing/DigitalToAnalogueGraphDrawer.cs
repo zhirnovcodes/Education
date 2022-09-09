@@ -41,7 +41,7 @@ public class DigitalToAnalogueGraphDrawer : MonoBehaviour, IGraphDrawer
         CreateDrawer();
 
         var numbers = _numbers.Numbers;
-        var height = _numbers.MaxHeight;
+        var height = _numbers.Height;
 
         var cellWidth = (Texture.width / numbers.Count);
 
@@ -55,7 +55,7 @@ public class DigitalToAnalogueGraphDrawer : MonoBehaviour, IGraphDrawer
             var t = (i % cellWidth) / (float)cellWidth;
 
             var val = Mathf.Lerp(number0, number1, t);
-            val = (val / (height - 1) * 2f - 1f) * _maxOffset;
+            val = (val / (height) * 2f - 1f) * _maxOffset;
 
             _drawer.AddValue(i, val);
         }
