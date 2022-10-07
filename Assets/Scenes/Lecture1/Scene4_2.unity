@@ -171,6 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &42884865
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -286,6 +287,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &52349186
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -401,6 +403,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &69278122
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -516,6 +519,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &124866397
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -631,6 +635,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &152747359
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -746,6 +751,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &160537451
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -861,6 +867,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &161546106
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -976,6 +983,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &178100113
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1106,6 +1114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &240502789
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1206,6 +1215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &242123564
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1286,7 +1296,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2406083420597937049, guid: cbd2edde513a46842a6e94624e000669, type: 3}
       propertyPath: m_Size.x
-      value: 2.1285243
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2406083420597937049, guid: cbd2edde513a46842a6e94624e000669, type: 3}
       propertyPath: m_Size.y
@@ -1299,6 +1309,14 @@ PrefabInstance:
     - target: {fileID: 2406083420597937049, guid: cbd2edde513a46842a6e94624e000669, type: 3}
       propertyPath: m_SortingOrder
       value: -8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2406083420597937049, guid: cbd2edde513a46842a6e94624e000669, type: 3}
+      propertyPath: m_SpriteTileMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2406083420597937049, guid: cbd2edde513a46842a6e94624e000669, type: 3}
+      propertyPath: m_AdaptiveModeThreshold
+      value: 0.524
       objectReference: {fileID: 0}
     - target: {fileID: 2406083420597937052, guid: cbd2edde513a46842a6e94624e000669, type: 3}
       propertyPath: _fluctuation.Time
@@ -1334,11 +1352,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2406083420597937054, guid: cbd2edde513a46842a6e94624e000669, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16.6
+      value: -16.1
       objectReference: {fileID: 0}
     - target: {fileID: 2406083420597937054, guid: cbd2edde513a46842a6e94624e000669, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.6
+      value: -3.9
       objectReference: {fileID: 0}
     - target: {fileID: 2406083420597937054, guid: cbd2edde513a46842a6e94624e000669, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1422,6 +1440,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &325389220
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1537,6 +1556,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!114 &439984737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1652,6 +1672,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &501523608
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1767,6 +1788,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &505725892
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1882,6 +1904,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &582721387
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2012,6 +2035,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &599171910
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2162,6 +2186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!114 &661147652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2277,6 +2302,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &663548732
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2392,6 +2418,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &702151221
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2522,6 +2549,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &723361514
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2668,6 +2696,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &753820547
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2768,6 +2797,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &788892272
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2898,6 +2928,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &812435468
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3059,6 +3090,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &853629273
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3159,6 +3191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &867174609
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3274,6 +3307,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &905548289
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3389,6 +3423,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!114 &932698449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3504,6 +3539,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &945302905
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3584,7 +3620,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8510517216633594036, guid: eba655918fab4a141923dc3a4eb2c52b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.75
+      value: 5.88
       objectReference: {fileID: 0}
     - target: {fileID: 8510517216633594036, guid: eba655918fab4a141923dc3a4eb2c52b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3630,6 +3666,22 @@ PrefabInstance:
       propertyPath: _target
       value: 
       objectReference: {fileID: 3794488464915666554}
+    - target: {fileID: 8510517216914999543, guid: eba655918fab4a141923dc3a4eb2c52b, type: 3}
+      propertyPath: _bckgColor.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8510517216914999543, guid: eba655918fab4a141923dc3a4eb2c52b, type: 3}
+      propertyPath: _bckgColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8510517216914999543, guid: eba655918fab4a141923dc3a4eb2c52b, type: 3}
+      propertyPath: _bckgColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8510517216914999543, guid: eba655918fab4a141923dc3a4eb2c52b, type: 3}
+      propertyPath: _bckgColor.r
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eba655918fab4a141923dc3a4eb2c52b, type: 3}
 --- !u!1 &996123696
@@ -3680,6 +3732,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &996123699
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3995,7 +4048,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d94f133e82b64ff4c9aea234bed1c7e5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0bf969b5b3990f548a414c556c6f509f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4069,6 +4122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &1113265229
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4169,6 +4223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &1142517956
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4284,6 +4339,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &1165292105
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4399,6 +4455,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &1226828938
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4529,6 +4586,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &1231275711
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4594,7 +4652,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8510517216633594036, guid: eba655918fab4a141923dc3a4eb2c52b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 27.49
+      value: 32.1
       objectReference: {fileID: 0}
     - target: {fileID: 8510517216633594036, guid: eba655918fab4a141923dc3a4eb2c52b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4640,6 +4698,22 @@ PrefabInstance:
       propertyPath: _target
       value: 
       objectReference: {fileID: 1277545676}
+    - target: {fileID: 8510517216914999543, guid: eba655918fab4a141923dc3a4eb2c52b, type: 3}
+      propertyPath: _bckgColor.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8510517216914999543, guid: eba655918fab4a141923dc3a4eb2c52b, type: 3}
+      propertyPath: _bckgColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8510517216914999543, guid: eba655918fab4a141923dc3a4eb2c52b, type: 3}
+      propertyPath: _bckgColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8510517216914999543, guid: eba655918fab4a141923dc3a4eb2c52b, type: 3}
+      propertyPath: _bckgColor.r
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eba655918fab4a141923dc3a4eb2c52b, type: 3}
 --- !u!1 &1248070835
@@ -4690,6 +4764,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &1248070838
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4872,6 +4947,91 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
+--- !u!1 &1289093828
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1289093830}
+  - component: {fileID: 1289093829}
+  m_Layer: 0
+  m_Name: statue_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &1289093829
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289093828}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: -300
+  m_Sprite: {fileID: 21300000, guid: bfa4c0aea3c5a784f8c7997ed2984e89, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.35686275}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 7.91, y: 12}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &1289093830
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289093828}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 19.5, y: -3.2, z: 0}
+  m_LocalScale: {x: 2.0399, y: 2.0399, z: 2.0399}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1370764924
 GameObject:
   m_ObjectHideFlags: 0
@@ -4920,6 +5080,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &1370764927
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5035,6 +5196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &1426872538
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5161,6 +5323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &1472961453
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5276,6 +5439,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &1587508663
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5391,6 +5555,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &1660284795
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5506,6 +5671,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &1758668552
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5621,6 +5787,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &1768439607
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5736,6 +5903,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &1795733362
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5866,6 +6034,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &1871490646
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5966,6 +6135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &1902586176
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6081,6 +6251,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &1920375733
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6196,6 +6367,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &1941525950
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6326,6 +6498,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &1949820261
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6436,12 +6609,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d94f133e82b64ff4c9aea234bed1c7e5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0bf969b5b3990f548a414c556c6f509f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 21.002077, y: 33.02548}
+  m_Size: {x: 21.002077, y: 43.336357}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -6455,7 +6628,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1953356885}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 49.95, y: 8.775, z: 0}
+  m_LocalPosition: {x: 49.64, y: 3.3746, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6525,6 +6698,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &1967920056
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6664,6 +6838,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &1998863378
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6794,6 +6969,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &2021417677
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6909,6 +7085,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &2033626761
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7009,6 +7186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &2039708466
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7187,6 +7365,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &2051592616
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7272,6 +7451,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxOffset: Infinity
   _power: 1
+  _regime: 0
 --- !u!212 &3794488464915666533
 SpriteRenderer:
   m_ObjectHideFlags: 0

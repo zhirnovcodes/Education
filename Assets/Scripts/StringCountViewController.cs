@@ -19,10 +19,10 @@ public class StringCountViewController : MonoBehaviour
     private void OnEnable()
     {
         _slider.value = _workspace.StringsCount;
-        if (_workspace.StringsCount != _slider.value)
-        {
-            _workspace.StringsCount = Mathf.RoundToInt(_slider.value);
-        }
+        //if (_workspace.StringsCount != _slider.value)
+        //{
+        //    _workspace.StringsCount = Mathf.RoundToInt(_slider.value);
+        //}
         SetViewControllers();
         _slider.onValueChanged.AddListener(OnValueChanged);
     }
@@ -42,16 +42,17 @@ public class StringCountViewController : MonoBehaviour
     private void SetViewControllers()
     {
         var value = Mathf.RoundToInt(_slider.value);
-        if (value < _vcs.Count)
+        var count = _vcs.Count;
+        if (value < count)
         {
-            for (int i = 0; i < _vcs.Count - value; i++)
+            for (int i = 0; i < count - value; i++)
             {
                 DeleteStringFromEnd();
             }
         }
         else if (value > _vcs.Count)
         {
-            for (int i = 0; i < value - _vcs.Count; i++)
+            for (int i = 0; i < value - count; i++)
             {
                 AddStringToEnd();
             }
