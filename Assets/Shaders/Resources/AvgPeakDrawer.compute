@@ -1,0 +1,69 @@
+#pragma kernel Reset
+#pragma kernel Calculate
+#pragma kernel Paint
+
+RWTexture2D<float4> Result;
+RWTexture2D<float4> Values;
+RWStructuredBuffer<float> Buff;
+
+float4 BckgCol;
+float4 AvgCol;
+float4 PeakCol;
+
+float MaxOffset;
+float Transparency;
+int ValuesSize;
+int ResultHeight;
+
+#define NULL_VAL -9999999
+
+[numthreads(1,8,1)]
+void Reset (uint3 id : SV_DispatchThreadID)
+{
+    Buff[0] = -9999999;
+    Buff[1] = 0;
+    Buff[2] = 0;
+
+    Result[id.xy] = BckgCol;
+}
+
+[numthreads(1,1,1)]
+void Calculate (uint3 id : SV_DispatchThreadID)
+{
+    for (int x = 0; x < ValuesSize; x++){
+        float value = Values[float2(x, 0)].r;
+        if (value <= NULL_VAL){
+            continue;
+	    }
+
+        Buff[0] = max(Buff[0], value);
+        Buff[1] += value;
+        Buff[2]++;
+    }
+
+}
+
+void PaintPixels(float value, float4 color, uint3 id){
+    float val = (clamp(value, -MaxOffset, MaxOffset) / MaxOffset + 1) / 2 * (float)ResultHeight;
+
+    if ((int)round(val) > (int)(id.y)){
+        color.a = Transparency;
+        Result[id.xy] += color;
+        return;
+	} else if ((int)round(val) == (int)(id.y)){
+        Result[id.xy] = color;
+        return;
+	}
+
+}
+
+[numthreads(1,8,1)]
+void Paint (uint3 id : SV_DispatchThreadID)
+{
+    if (Buff[2] == 0){
+        return;
+	}
+    
+    PaintPixels(Buff[0], PeakCol, id);
+    PaintPixels(Buff[1] / Buff[2], AvgCol, id);
+}

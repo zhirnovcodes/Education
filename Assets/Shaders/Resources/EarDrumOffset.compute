@@ -16,9 +16,10 @@ int IndexNew;
 int DrawType = 0;
 
 #define EMPTY_COL float4(0, 0, 0, 0)
+#define NULL_VAL float4(-9999999, 0, 0, 0)
 
 bool IsEmpty(float x){
-    return Values[float2(x, 0)].r == EMPTY_COL.r;
+    return Values[float2(x, 0)].r <= NULL_VAL.r;
 }
 
 [numthreads(8,8,1)]
@@ -30,7 +31,7 @@ void InitResult (uint3 id : SV_DispatchThreadID)
 [numthreads(8,1,1)]
 void InitValues (uint3 id : SV_DispatchThreadID)
 {
-    Values[id.xy] = EMPTY_COL;
+    Values[id.xy] = NULL_VAL;
 }
 
 float ValueToUV(float x){
@@ -53,7 +54,8 @@ void Paint (uint3 id : SV_DispatchThreadID)
     if (DrawType == 0)
     {
         float prevVal = id.x < 1 ? val : ValueToUV(id.x - 1);
-        float nextVal = id.x >= ResultSize.x - 1 ? val : ValueToUV(id.x + 1);
+        float nextVal = id.x >= ResultSize.x - 1 ? val : 
+            (IsEmpty(id.x + 1) ? val : ValueToUV(id.x + 1));
 
         float v1 = ( prevVal + val ) / 2;
         float v2 = ( nextVal + val ) / 2;
@@ -64,6 +66,11 @@ void Paint (uint3 id : SV_DispatchThreadID)
 	    }
 	} else if (DrawType == 1){
         if ((int)round(val) == (int)(id.y)){
+            Result[id.xy] = LinesCol;
+            return;
+	    }
+	} else if (DrawType == 2){
+        if ((int)round(val) <= (int)(id.y)){
             Result[id.xy] = LinesCol;
             return;
 	    }
@@ -91,6 +98,6 @@ void AddValue (uint3 id : SV_DispatchThreadID)
     }
 
     if (id.x > IndexNew){
-        Values[id.xy] = EMPTY_COL;
+        Values[id.xy] = NULL_VAL;
 	}
 }

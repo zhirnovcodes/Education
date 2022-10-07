@@ -130,7 +130,8 @@ public class GraphDrawer : IDisposable
     public enum DrawType
     {
         Lines = 0,
-        Point = 1
+        Point = 1,
+        FillColor = 2
     }
 }
 
