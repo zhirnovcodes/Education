@@ -105,6 +105,7 @@
     <Compile Include="Assets\Scripts\SceneSpawnerEditor.cs" />
     <Compile Include="Assets\Scripts\Dummy.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\PeakAvgDrawer.cs" />
+    <Compile Include="Assets\Scripts\TextureDrawing\GainReductionDrawer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
