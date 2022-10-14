@@ -55,7 +55,6 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Workspace.cs" />
     <Compile Include="Assets\Scripts\RotateAround.cs" />
-    <Compile Include="Assets\Scripts\GraphController.cs" />
     <Compile Include="Assets\Scripts\ElectricitySettings.cs" />
     <Compile Include="Assets\Scripts\SceneSpawner.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\GridDrawer.cs" />
@@ -64,6 +63,7 @@
     <Compile Include="Assets\Scripts\TextureDrawing\PositionOffsetDrawer.cs" />
     <Compile Include="Assets\Scripts\KeepBetweenObjects.cs" />
     <Compile Include="Assets\Scripts\ForceMover2D.cs" />
+    <Compile Include="Assets\Scripts\TextureDrawing\GainReductionDrawer.cs" />
     <Compile Include="Assets\Scripts\StringCountViewController.cs" />
     <Compile Include="Assets\Scripts\Air.cs" />
     <Compile Include="Assets\Scripts\SceneController.cs" />
@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\DigitalToAnalogueGraphDrawer.cs" />
     <Compile Include="Assets\Scripts\Digital\DigitalGraphDrawer.cs" />
+    <Compile Include="Assets\Scripts\TextureDrawing\PeakAvgDrawer.cs" />
     <Compile Include="Assets\Scripts\NumbersGridController.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\GraphDrawer.cs" />
     <Compile Include="Assets\Scripts\FluctuatingMolecule1D.cs" />
@@ -104,8 +105,13 @@
     <Compile Include="Assets\Scripts\OffsetDrawerKeyboardController.cs" />
     <Compile Include="Assets\Scripts\SceneSpawnerEditor.cs" />
     <Compile Include="Assets\Scripts\Dummy.cs" />
-    <Compile Include="Assets\Scripts\TextureDrawing\PeakAvgDrawer.cs" />
-    <Compile Include="Assets\Scripts\TextureDrawing\GainReductionDrawer.cs" />
+    <Compile Include="Assets\Scripts\TextureDrawing\GraphFunctionBase.cs" />
+    <Compile Include="Assets\Scripts\TextureDrawing\GraphDrawerBase.cs" />
+    <Compile Include="Assets\Scripts\TextureDrawing\PositionOffsetFunction.cs" />
+    <Compile Include="Assets\Scripts\TextureDrawing\ThresholdFunction.cs" />
+    <Compile Include="Assets\Scripts\TextureDrawing\GainReductionFunction.cs" />
+    <Compile Include="Assets\Scripts\GraphController.cs" />
+    <Compile Include="Assets\Scripts\TextureDrawing\FunctionOperationFunction.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

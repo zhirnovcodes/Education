@@ -74,6 +74,11 @@ void Paint (uint3 id : SV_DispatchThreadID)
             Result[id.xy] = LinesCol;
             return;
 	    }
+	} else if (DrawType == 3){
+        if ((int)round(val) >= (int)(id.y)){
+            Result[id.xy] = LinesCol;
+            return;
+	    }
 	}
 
     Result[id.xy] = BckgCol;

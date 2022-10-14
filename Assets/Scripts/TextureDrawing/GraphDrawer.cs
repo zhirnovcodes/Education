@@ -85,11 +85,16 @@ public class GraphDrawer : IDisposable
 
     public void Clear()
     {
-        _shader.Dispatch(_initValuesKernelIndex, Values.width / 8, 1, 1);
-        _shader.Dispatch(_initResultKernelIndex, Texture.width / 8, Texture.height / 8, 1);
+        ClearValues();
+        ClearTexture();
     }
 
-    public void ClearResult()
+    public void ClearValues()
+    {
+        _shader.Dispatch(_initValuesKernelIndex, Values.width / 8, 1, 1);
+    }
+
+    public void ClearTexture()
     {
         _shader.Dispatch(_initResultKernelIndex, Texture.width / 8, Texture.height / 8, 1);
     }
@@ -104,7 +109,6 @@ public class GraphDrawer : IDisposable
 
     public void Paint(Color bckgColor, Color dotsColor, float maxOffset, DrawType type = DrawType.Lines)
     {
-        maxOffset = GraphController.MaxOffset ?? maxOffset;
         _shader.SetFloat(MaxOffsetName, maxOffset);
         _shader.SetInt(DrawTypeName, (int)type);
 
@@ -131,7 +135,8 @@ public class GraphDrawer : IDisposable
     {
         Lines = 0,
         Point = 1,
-        FillColor = 2
+        FillColor = 2,
+        FillColorBckg = 3
     }
 }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 public class GraphDrawerMaterial : MonoBehaviour
 {
     [SerializeField] private Renderer _renderer;
+    [SerializeField] private GraphDrawerBase _drawer;
 
     void Start()
     {
@@ -11,8 +12,11 @@ public class GraphDrawerMaterial : MonoBehaviour
         {
             _renderer = GetComponent<Renderer>();
         }
-        var drawer = GetComponent<IGraphDrawer>();
+        if (_drawer == null)
+        {
+            _drawer = GetComponent<GraphDrawerBase>();
+        }
 
-        _renderer.material.mainTexture = drawer.Texture;
+        _renderer.material.mainTexture = _drawer.Texture;
     }
 }
