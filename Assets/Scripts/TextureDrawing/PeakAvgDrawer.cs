@@ -18,7 +18,7 @@ public class PeakAvgDrawerAdapter : IDisposable
 
     private const string ShaderName = "AvgPeakDrawer";
 
-    public PeakAvgDrawerAdapter(RenderTexture values, int height)
+    public PeakAvgDrawerAdapter(RenderTexture values, int height, int? calcRange = null)
     {
         _values = values;
 
@@ -37,7 +37,9 @@ public class PeakAvgDrawerAdapter : IDisposable
 
         // Int
 
+        calcRange = calcRange ?? values.width;
         _shader.SetInt("ValuesSize", values.width);
+        _shader.SetInt("CalcRange", calcRange.Value);
         _shader.SetInt("ResultHeight", height);
 
         // Textures
@@ -87,6 +89,7 @@ public class PeakAvgDrawer : MonoBehaviour, IGraphDrawer, IDisposable
     [SerializeField] private GraphDrawerBase _drawer;
     [SerializeField, Range(0.01f, 7)] private float _maxOffset = 1f;
     [SerializeField, Range(0, 1)] private float _transparency = 0.1f;
+    [SerializeField] private int _range = 100;
 
     [SerializeField] private Color _bckgColor = new Color(0, 0, 0, 0);
     [SerializeField] private Color _avgColor = new Color(0, 1, 0, 1);
@@ -104,7 +107,7 @@ public class PeakAvgDrawer : MonoBehaviour, IGraphDrawer, IDisposable
     private PeakAvgDrawerAdapter _adapter;
     private void Start()
     {
-        _adapter = _adapter ?? new PeakAvgDrawerAdapter(_drawer.Values, 128);
+        _adapter = _adapter ?? new PeakAvgDrawerAdapter(_drawer.Values, 128, _range);
     }
 
     private void Update()

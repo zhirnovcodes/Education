@@ -6,6 +6,7 @@ using UnityEngine;
 public class CompressorViewController : MonoBehaviour
 {
     [SerializeField] private GainReductionFunction _gr;
+    [SerializeField] private ScalarOperationFunction _scalar;
     [SerializeField] private ScalarOperationFunction _makeupFunction;
     [SerializeField] private CompressorView _view;
 
@@ -42,6 +43,11 @@ public class CompressorViewController : MonoBehaviour
         _gr.Ratio = _view.Ratio;
 
         _makeupFunction.Scalar = _view.Makeup;
+
+        if (_scalar != null)
+        {
+            _scalar.Scalar = _view.Makeup;
+        }
     }
 
     private void UpdateThreshold()

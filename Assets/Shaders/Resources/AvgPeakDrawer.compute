@@ -13,6 +13,7 @@ float4 PeakCol;
 float MaxOffset;
 float Transparency;
 int ValuesSize;
+int CalcRange;
 int ResultHeight;
 
 #define NULL_VAL -9999999
@@ -30,13 +31,24 @@ void Reset (uint3 id : SV_DispatchThreadID)
 [numthreads(1,1,1)]
 void Calculate (uint3 id : SV_DispatchThreadID)
 {
-    for (int x = 0; x < ValuesSize; x++){
+    int startValue = max(ValuesSize - CalcRange, 0);
+    for (int x = startValue; x < ValuesSize; x++){
         float value = Values[float2(x, 0)].r;
         if (value <= NULL_VAL){
             continue;
 	    }
 
         Buff[0] = max(Buff[0], value);
+        Buff[1] += value;
+        Buff[2]++;
+    }
+
+    for (int x = 0; x < startValue; x++){
+        float value = Values[float2(x, 0)].r;
+        if (value <= NULL_VAL){
+            continue;
+	    }
+
         Buff[1] += value;
         Buff[2]++;
     }

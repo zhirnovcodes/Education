@@ -7,13 +7,15 @@ public class VisibleViewController : MonoBehaviour
     public MeshRenderer Compressed;
     public MeshRenderer Threshold;
     public MeshRenderer GR;
-    public Transform Makeup;
+    public MeshRenderer Makeup;
+    public MeshRenderer DefMakeup;
 
     public Toggle UncompressedT;
     public Toggle CompressedT;
     public Toggle ThresholdT;
     public Toggle GRT;
     public Toggle MakeupT;
+    public Toggle DefMakeupT;
 
     private Vector3 _makeupPos;
 
@@ -23,9 +25,8 @@ public class VisibleViewController : MonoBehaviour
         CompressedT.isOn = Compressed.enabled;
         ThresholdT.isOn = Threshold.enabled;
         GRT.isOn = GR.enabled;
-
-        MakeupT.isOn = false;
-        _makeupPos = Makeup.position;
+        DefMakeupT.isOn = DefMakeup.enabled;
+        MakeupT.isOn = Makeup.enabled;
     }
 
     private void Update()
@@ -50,6 +51,15 @@ public class VisibleViewController : MonoBehaviour
             GR.enabled = GRT.isOn;
         }
 
-        Makeup.position = MakeupT.isOn ? Threshold.transform.position : _makeupPos;
+        if (Makeup.enabled != MakeupT.isOn)
+        {
+            Makeup.enabled = MakeupT.isOn;
+        }
+
+        if (DefMakeup.enabled != DefMakeupT.isOn)
+        {
+            DefMakeup.enabled = DefMakeupT.isOn;
+        }
+
     }
 }

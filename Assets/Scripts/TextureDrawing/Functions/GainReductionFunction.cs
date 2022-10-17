@@ -10,6 +10,7 @@ public class GainReductionFunction : GraphFunctionBase, IThresholdFunction
     [SerializeField] private GraphFunctionBase _function;
 
     private float _value;
+    private float _lastValue;
     private float _startTime = -1;
     private float _releaseTime = -1;
     private float _releaseScale = -1;
@@ -38,6 +39,7 @@ public class GainReductionFunction : GraphFunctionBase, IThresholdFunction
     {
         _startTime = -1;
         _value = 0;
+        _lastValue = 0;
     }
 
     private void Update()
@@ -71,7 +73,7 @@ public class GainReductionFunction : GraphFunctionBase, IThresholdFunction
         var grValue = _startTime >= 0 ? Mathf.InverseLerp(_startTime, _startTime + Attack, Time.time) :
             (_releaseTime >= 0 ? Mathf.InverseLerp(_releaseTime + Release, _releaseTime, Time.time) : 0);
 
-        var grScale = _releaseTime >= 0 ? _releaseScale : Mathf.Lerp( 1, Threshold / value, Ratio);
+        var grScale = _releaseTime >= 0 ? _releaseScale : Mathf.Lerp( 0, value - Threshold, Ratio);
 
         if (_releaseTime < 0)
         {
@@ -79,5 +81,6 @@ public class GainReductionFunction : GraphFunctionBase, IThresholdFunction
         }
 
         _value = -1 * grScale * grValue;
+        _lastValue = value;
     }
 }

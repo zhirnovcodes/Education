@@ -7,7 +7,7 @@ public interface IFluctuatingObject1D
     public float Offset { get; }
 }
 
-public class FluctuatingObjectMover1D : MonoBehaviour, IFluctuatingObject1D
+public class FluctuatingObjectMover1D : GraphFunctionBase, IFluctuatingObject1D
 {
     [SerializeField] private float _maxOffset = Mathf.Infinity;
     [SerializeField] private float _power = 1;
@@ -18,9 +18,11 @@ public class FluctuatingObjectMover1D : MonoBehaviour, IFluctuatingObject1D
 
     public float Offset { get; private set; }
 
+    public override float Value => Offset;
+
     private void FixedUpdate()
     {
-        _functions = _functions ?? GetComponents<GraphFunctionBase>();
+        _functions = _functions ?? GetComponents<GraphFunctionBase>().Where(f => f != this).ToArray();
 
         //todo performance
         float o = 0;
