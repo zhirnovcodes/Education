@@ -15,6 +15,7 @@ public class GraphDrawerBase : MonoBehaviour
 
     [SerializeField] private GraphDrawer.DrawType _drawType = GraphDrawer.DrawType.Lines;
     [SerializeField] private bool _drawBeforeFirstValue = false;
+    [SerializeField] private bool _antiAliasing = false;
 
     private GraphDrawer _drawer;
 
@@ -22,7 +23,7 @@ public class GraphDrawerBase : MonoBehaviour
     {
         get
         {
-            _drawer = _drawer ?? new GraphDrawer(_textureWidth, _textureHeight);
+            _drawer = _drawer ?? new GraphDrawer(_textureWidth, _textureHeight, _antiAliasing);
             return _drawer;
         }
     }

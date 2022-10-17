@@ -14,6 +14,7 @@ public class ReverbWorkspace : MonoBehaviour
     private List<GameObject> _molecules = new List<GameObject>();
     private List<FluctuatingMolecule1D> _earComps = new List<FluctuatingMolecule1D>();
 
+    /*
     public void Start()
     {
         SpawnToEar(_ear);
@@ -51,7 +52,7 @@ public class ReverbWorkspace : MonoBehaviour
         var lastMol2 = gr2.transform.GetChild(gr2.transform.childCount - 1).GetComponent<FluctuatingMolecule1D>();
 
         var m = ear.AddComponent<FluctuatingMolecule1D>();
-        m.Source = lastMol2;
+        m.Sources.Add( lastMol2 as FluctuatingObject1D );
 
         _molecules.Add(gr1);
         _molecules.Add(gr2);
@@ -70,4 +71,5 @@ public class ReverbWorkspace : MonoBehaviour
         _molecules.Add(gr);
         _earComps.Add(m);
     }
+    */
 }

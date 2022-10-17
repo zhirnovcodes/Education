@@ -249,7 +249,7 @@ public class Workspace : MonoBehaviour
                 if (_molecules.Count > i)
                 {
                     var mol = _molecules[i].transform.GetChild(_molecules[i].transform.childCount - 1).GetComponent<FluctuatingObject1D>();
-                    earM.Source = mol;
+                    //earM.Sources = mol;
                     _earComps.Add(earM);
 
                 }

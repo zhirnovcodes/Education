@@ -1,12 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+public enum FunctionOperation
+{
+    Minus = 0,
+    Plus = 1,
+    Multiply = 2,
+    Divide = 3
+}
+
 
 public class FunctionOperationFunction : GraphFunctionBase
 {
     [SerializeField] private GraphFunctionBase _f1;
     [SerializeField] private GraphFunctionBase _f2;
-    [SerializeField] private Operation _operation;
+    [SerializeField] private FunctionOperation _operation;
 
     private float _value;
 
@@ -23,21 +31,21 @@ public class FunctionOperationFunction : GraphFunctionBase
         }
     }
 
-    public enum Operation
-    {
-        Minus = 0,
-        Plus = 1
-    }
-
     private void Update()
     {
         switch (_operation)
         {
-            case Operation.Minus:
+            case FunctionOperation.Minus:
                 _value = _f1.Value - _f2.Value;
                 break;
-            case Operation.Plus:
+            case FunctionOperation.Plus:
                 _value = _f1.Value + _f2.Value;
+                break;
+            case FunctionOperation.Multiply:
+                _value = _f1.Value * _f2.Value;
+                break;
+            case FunctionOperation.Divide:
+                _value = _f1.Value / _f2.Value;
                 break;
         }
     }

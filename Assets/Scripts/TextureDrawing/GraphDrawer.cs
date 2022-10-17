@@ -31,10 +31,10 @@ public class GraphDrawer : IDisposable
     public RenderTexture Texture { get; }
     public RenderTexture Values { get; }
 
-    public GraphDrawer(int textureWidth = DefaultTextureWidth, int textureHeight = DefaultTextureHeight)
+    public GraphDrawer(int textureWidth = DefaultTextureWidth, int textureHeight = DefaultTextureHeight, bool antiAliasing = false)
     {
         Texture = new RenderTexture(textureWidth, textureHeight, 1);
-        Texture.filterMode = FilterMode.Point;
+        Texture.filterMode = antiAliasing ? FilterMode.Bilinear : FilterMode.Point;
         Texture.enableRandomWrite = true;
         Texture.Create();
 
@@ -91,19 +91,19 @@ public class GraphDrawer : IDisposable
 
     public void ClearValues()
     {
-        _shader.Dispatch(_initValuesKernelIndex, Values.width / 8, 1, 1);
+        _shader.Dispatch(_initValuesKernelIndex, Mathf.Max(Values.width / 8, 1), 1, 1);
     }
 
     public void ClearTexture()
     {
-        _shader.Dispatch(_initResultKernelIndex, Texture.width / 8, Texture.height / 8, 1);
+        _shader.Dispatch(_initResultKernelIndex, Mathf.Max(Texture.width / 8, 1), Mathf.Max(Texture.height / 8, 1), 1);
     }
 
     public void AddValue(int x, float value)
     {
         _shader.SetFloat(ValueNewName, value);
         _shader.SetInt(IndexNewName, x);
-        _shader.Dispatch(_addValueKernelIndex, Values.width / 8, 1, 1);
+        _shader.Dispatch(_addValueKernelIndex, Mathf.Max(Values.width / 8, 1), 1, 1);
 
     }
 
@@ -114,7 +114,7 @@ public class GraphDrawer : IDisposable
 
         _shader.SetVector(BckgColName, bckgColor);
         _shader.SetVector(LinesColName, dotsColor);
-        _shader.Dispatch(_paintKernelIndex, Texture.width / 8, Texture.height / 8, 1);
+        _shader.Dispatch(_paintKernelIndex, Mathf.Max(Texture.width / 8, 1), Mathf.Max(Texture.height / 8, 1), 1);
     }
 
     public void Dispose()

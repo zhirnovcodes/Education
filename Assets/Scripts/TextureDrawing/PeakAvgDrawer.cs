@@ -82,9 +82,9 @@ public class PeakAvgDrawerAdapter : IDisposable
     }
 }
 
-public class PeakAvgDrawer : MonoBehaviour, IGraphDrawer
+public class PeakAvgDrawer : MonoBehaviour, IGraphDrawer, IDisposable
 {
-    [SerializeField] private PositionOffsetDrawer _drawer;
+    [SerializeField] private GraphDrawerBase _drawer;
     [SerializeField, Range(0.01f, 7)] private float _maxOffset = 1f;
     [SerializeField, Range(0, 1)] private float _transparency = 0.1f;
 
@@ -111,5 +111,10 @@ public class PeakAvgDrawer : MonoBehaviour, IGraphDrawer
     {
         var maxOffset = GraphController.MaxOffset ?? _maxOffset;
         _adapter.Draw(_bckgColor, _avgColor, _peakColor, _transparency, maxOffset);
+    }
+
+    public void Dispose()
+    {
+        _adapter.Dispose();
     }
 }

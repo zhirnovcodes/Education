@@ -7,13 +7,8 @@ public class GraphController : MonoBehaviour
 
     [SerializeField] private float _maxOffset = 2f;
     [SerializeField] private float _multiplier = 1.5f;
-    [SerializeField] private float _threshold = 1.5f;
-
-    private GraphDrawerBase[] _drawers;
-    private IThresholdFunction[] _thresholdFunctions;
-
-    private float _threshBefore = -float.MaxValue;
     private float _maxBefore = -float.MaxValue;
+    private GraphDrawerBase[] _drawers;
 
     public static float? MaxOffset
     {
@@ -31,13 +26,8 @@ public class GraphController : MonoBehaviour
             DontDestroyOnLoad(this);
         }
 
-        _thresholdFunctions = UnityEngine.Object.FindObjectsOfType<GraphFunctionBase>().
-            Where(t => t is IThresholdFunction).
-            Select(t => t as IThresholdFunction).ToArray();
-
         _drawers = UnityEngine.Object.FindObjectsOfType<GraphDrawerBase>();
-
-        _threshBefore = -float.MaxValue;
+        
         _maxBefore = -float.MaxValue;
     }
 
@@ -53,24 +43,10 @@ public class GraphController : MonoBehaviour
             _maxOffset /= _multiplier;
         }
 
-        if (_threshBefore != _threshold)
-        {
-            _threshBefore = _threshold;
-            UpdateThreshold();
-        }
-
         if (_maxBefore != _maxOffset)
         {
             _maxBefore = _maxOffset;
             UpdateMaxValue();
-        }
-    }
-
-    private void UpdateThreshold()
-    {
-        foreach (var th in _thresholdFunctions)
-        {
-            th.Threshold = _threshold;
         }
     }
 

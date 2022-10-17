@@ -110,7 +110,6 @@ public abstract class FunctionsDrawer : MonoBehaviour, IDisposable, IGraphDrawer
     {
         _drawer.Dispose();
     }
-
 }
 
 public class PositionOffsetDrawer : FunctionsDrawer

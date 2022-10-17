@@ -41,8 +41,8 @@ public static class SceneSpawner
 
             var molecule = go.GetComponent<FluctuatingMolecule1D>();
 
-            molecule.Source = last;
-            last = molecule;
+            //molecule.Source = last;
+            //last = molecule;
 
             xPos += offset;
 

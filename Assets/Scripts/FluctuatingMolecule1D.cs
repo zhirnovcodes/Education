@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [System.Serializable]
@@ -11,19 +12,39 @@ public struct Fluctuation
     public float Time;
 }
 
-public abstract class FluctuatingObject1D : MonoBehaviour
+public abstract class FluctuatingObject1D : GraphFunctionBase
 {
     public abstract float TimeStart { get; }
     public abstract Fluctuation Fluctuation { get; }
+
+    public override float Value => TimeStart <= 0 ? 0 : Fluctuation.GetValue(Time.time - TimeStart);
 }
 
-public class FluctuatingMolecule1D : FluctuatingObject1D
+public class FluctuatingMolecule1D : GraphFunctionBase
 {
-    [SerializeField] private FluctuatingObject1D _source;
+    [SerializeField] private List<FluctuatingObject1D> _sources = new List<FluctuatingObject1D>();
     [SerializeField] private bool _withDelay = true;
     [SerializeField] private bool _shouldLog;
 
     private float? _distance;
+    private float _value;
+
+    private void OnEnable()
+    {
+        _value = 0;
+    }
+
+    private void Update()
+    {
+        _value = _sources.Select(s =>
+        {
+            var delay = _withDelay ? 1f : 0f;
+            var timeStart = delay * (s.TimeStart + 1 / s.Fluctuation.Frequency / 4f);
+            var value = s.TimeStart <= 0 ? 0 : s.Fluctuation.GetValue(Time.time - timeStart);
+            value /= Air.Rigid;
+            return value;
+        }).Sum();
+    }
 
     public bool WithDelay
     {
@@ -33,47 +54,9 @@ public class FluctuatingMolecule1D : FluctuatingObject1D
         }
     }
 
-    public FluctuatingObject1D Source
-    {
-        set
-        {
-            _source = value;
-            _distance = null;
-        }
-    }
+    public List<FluctuatingObject1D> Sources => _sources;
 
-    public override float TimeStart
-    {
-        get
-        {
-            if (_source == null)
-            {
-                return 0;
-            }
-            var timeStartSource = _source == null ? 0 : _source.TimeStart;
-            var timeStart = timeStartSource == 0 ? 0 : (timeStartSource + 1 / _source.Fluctuation.Frequency / 4 * ( _withDelay ? 1 : 0));
-            return timeStart;
-        }
-    }
-
-    private float GetDistance()
-    {
-        if (_distance == null)
-        {
-            _distance = _source == null ? (float?)null : (_source.transform.position - transform.position).magnitude;
-        }
-        return _distance ?? 0;
-    }
-
-    public override Fluctuation Fluctuation 
-    {
-        get
-        {
-            var f = _source.Fluctuation;
-            f.Amplitude /= Air.Rigid;
-            return f; 
-        }
-    }
+    public override float Value => _value;
 
     private void Log( object l )
     {

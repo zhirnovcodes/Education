@@ -166,8 +166,8 @@ public class SpawnSpecialStrings : MonoBehaviour
         str.gameObject.SetActive(true);
 
         var earComp = _ear.AddComponent<FluctuatingMolecule1D>();
-        earComp.Source = strCom;
-        earComp.WithDelay = false;
+        //earComp.Source = strCom;
+        //earComp.WithDelay = false;
 
         var graph = GameObject.Instantiate(_graphPrefab);
         var graphCom = graph.GetComponentInChildren<PositionOffsetDrawer>();
