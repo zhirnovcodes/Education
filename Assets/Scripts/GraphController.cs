@@ -1,5 +1,6 @@
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GraphController : MonoBehaviour
 {
@@ -26,9 +27,16 @@ public class GraphController : MonoBehaviour
             DontDestroyOnLoad(this);
         }
 
-        _drawers = UnityEngine.Object.FindObjectsOfType<GraphDrawerBase>();
-        
-        _maxBefore = -float.MaxValue;
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     private void Update()
@@ -50,8 +58,20 @@ public class GraphController : MonoBehaviour
         }
     }
 
+    private void OnSceneLoaded(Scene s, LoadSceneMode m)
+    {
+        _drawers = UnityEngine.Object.FindObjectsOfType<GraphDrawerBase>();
+
+        _maxBefore = -float.MaxValue;
+    }
+
     private void UpdateMaxValue()
     {
+        if (_drawers == null)
+        {
+            return;
+        }
+
         foreach (var d in _drawers)
         {
             d.MaxOffset = _maxOffset;

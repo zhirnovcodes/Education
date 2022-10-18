@@ -123,6 +123,78 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &43276244
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 43276247}
+  - component: {fileID: 43276246}
+  - component: {fileID: 43276245}
+  - component: {fileID: 43276248}
+  m_Layer: 0
+  m_Name: Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &43276245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43276244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a33b0552513a7d6419589713fb03e8b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxOffset: 2
+  _multiplier: 1.5
+--- !u!114 &43276246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43276244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdaa73ddd029711488ad41346a6b2f3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &43276247
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43276244}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.8616753, y: -3.2481449, z: 0.095621735}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &43276248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43276244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d61f279bce7eac4a8048d6719e7825e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &50120935
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -541,10 +613,7 @@ GameObject:
   - component: {fileID: 769265757}
   - component: {fileID: 769265756}
   - component: {fileID: 769265755}
-  - component: {fileID: 769265759}
   - component: {fileID: 769265758}
-  - component: {fileID: 769265760}
-  - component: {fileID: 769265761}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -632,44 +701,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 5
   _zoomSpeed: 100
---- !u!114 &769265759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 769265754}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e835326486fc284abb45de9fb7104eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &769265760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 769265754}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdaa73ddd029711488ad41346a6b2f3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &769265761
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 769265754}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a33b0552513a7d6419589713fb03e8b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxOffset: 2
-  _multiplier: 1.5
 --- !u!1 &910428491
 GameObject:
   m_ObjectHideFlags: 0
@@ -721,6 +752,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _renderer: {fileID: 0}
   _drawer: {fileID: 0}
+  _eqDrawer: {fileID: 0}
   _peakAvgDrawer: {fileID: 0}
 --- !u!23 &910428494
 MeshRenderer:
@@ -805,6 +837,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _renderer: {fileID: 320610803}
   _drawer: {fileID: 0}
+  _eqDrawer: {fileID: 0}
   _peakAvgDrawer: {fileID: 0}
 --- !u!114 &910428498
 MonoBehaviour:
@@ -1183,6 +1216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _renderer: {fileID: 0}
   _drawer: {fileID: 0}
+  _eqDrawer: {fileID: 0}
   _peakAvgDrawer: {fileID: 0}
 --- !u!1 &8649916402503831898
 GameObject:

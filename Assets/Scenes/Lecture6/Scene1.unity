@@ -797,6 +797,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _renderer: {fileID: 0}
   _drawer: {fileID: 0}
+  _eqDrawer: {fileID: 0}
   _peakAvgDrawer: {fileID: 0}
 --- !u!23 &322576762
 MeshRenderer:
@@ -3015,6 +3016,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _renderer: {fileID: 0}
   _drawer: {fileID: 0}
+  _eqDrawer: {fileID: 0}
   _peakAvgDrawer: {fileID: 0}
 --- !u!23 &1101253331
 MeshRenderer:
@@ -4458,6 +4460,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _renderer: {fileID: 0}
   _drawer: {fileID: 0}
+  _eqDrawer: {fileID: 0}
   _peakAvgDrawer: {fileID: 0}
 --- !u!23 &1703306768
 MeshRenderer:
@@ -4523,65 +4526,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1786660460
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1786660463}
-  - component: {fileID: 1786660462}
-  - component: {fileID: 1786660461}
-  m_Layer: 0
-  m_Name: Controller
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1786660461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1786660460}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a33b0552513a7d6419589713fb03e8b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxOffset: 10
-  _multiplier: 1.5
---- !u!114 &1786660462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1786660460}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdaa73ddd029711488ad41346a6b2f3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1786660463
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1786660460}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.94, y: 0.3800001, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1803098771
 GameObject:
@@ -5342,6 +5286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _renderer: {fileID: 0}
   _drawer: {fileID: 0}
+  _eqDrawer: {fileID: 0}
   _peakAvgDrawer: {fileID: 0}
 --- !u!23 &1935364868
 MeshRenderer:
@@ -5804,6 +5749,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _renderer: {fileID: 0}
   _drawer: {fileID: 0}
+  _eqDrawer: {fileID: 0}
   _peakAvgDrawer: {fileID: 0}
 --- !u!23 &2087956319
 MeshRenderer:
@@ -5983,6 +5929,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _renderer: {fileID: 0}
   _drawer: {fileID: 0}
+  _eqDrawer: {fileID: 0}
   _peakAvgDrawer: {fileID: 0}
 --- !u!114 &1634642798761303372
 MonoBehaviour:
