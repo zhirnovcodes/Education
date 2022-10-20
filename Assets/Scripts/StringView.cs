@@ -91,11 +91,11 @@ public class StringView : MonoBehaviour
 
         if (_perS != null)
         {
-            _perS.value = 1f / (value);
+            _perS.value = (float)Math.Round(1f / (value), 5);
         }
         if (_perI != null)
         {
-            _perI.text = (1f / (value * 1000f)).ToString();
+            _perI.text = Math.Round(1f / (value * 1000f), 5).ToString();
         }
 
     }
@@ -105,6 +105,7 @@ public class StringView : MonoBehaviour
         if (float.TryParse(value, out var val))
         {
             val /= 1000f;
+            val = (float)Math.Round(val, 5);
             if (_shouldChangeSlider)
             { 
                 _freqS.value = val; 

@@ -23,13 +23,8 @@ public class TrigonometryFunction : GraphFunctionBase
         _value = 0;
     }
 
-    public override float Value => _value;
+    public override float Value => Func(Time.time - _timeStart) * _amplitude;
 
-
-    private void Update()
-    {
-        _value = Func(Time.time - _timeStart) * _amplitude;
-    }
 
     private float Func(float t)
     {

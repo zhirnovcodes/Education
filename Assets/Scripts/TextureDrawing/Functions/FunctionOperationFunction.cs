@@ -16,37 +16,22 @@ public class FunctionOperationFunction : GraphFunctionBase
     [SerializeField] private GraphFunctionBase _f2;
     [SerializeField] private FunctionOperation _operation;
 
-    private float _value;
-
-    private void OnEnable()
-    {
-        _value = 0;
-    }
-
     public override float Value
     {
         get
         {
-            return _value;
-        }
-    }
-
-    private void Update()
-    {
-        switch (_operation)
-        {
-            case FunctionOperation.Minus:
-                _value = _f1.Value - _f2.Value;
-                break;
-            case FunctionOperation.Plus:
-                _value = _f1.Value + _f2.Value;
-                break;
-            case FunctionOperation.Multiply:
-                _value = _f1.Value * _f2.Value;
-                break;
-            case FunctionOperation.Divide:
-                _value = _f1.Value / _f2.Value;
-                break;
+            switch (_operation)
+            {
+                case FunctionOperation.Minus:
+                    return _f1.Value - _f2.Value;
+                case FunctionOperation.Plus:
+                    return _f1.Value + _f2.Value;
+                case FunctionOperation.Multiply:
+                    return _f1.Value * _f2.Value;
+                case FunctionOperation.Divide:
+                    return _f1.Value / _f2.Value;
+            }
+            return 0;
         }
     }
 }
