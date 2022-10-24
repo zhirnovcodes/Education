@@ -4,15 +4,5 @@ using UnityEngine;
 
 public class Molecule1D : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] private FunctionBuffer _buffer;
 }

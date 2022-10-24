@@ -42,6 +42,7 @@ public class PseudoTimer : IDisposable
     private IEnumerator Routine(float interval)
     {
         _timeLast = Time.time;
+        StartTime = Time.time;
 
         yield return new WaitForEndOfFrame();
 

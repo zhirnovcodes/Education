@@ -39,6 +39,11 @@ public class FluctuatingString1D : FunctionBase
 
     public override float GetValue(float t)
     {
+        if (TimeStart == 0)
+        {
+            return 0;
+        }
+
         return Fluctuation.GetValue(t);
     }
 }
