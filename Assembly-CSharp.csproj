@@ -56,6 +56,7 @@
     <Compile Include="Assets\Scripts\Workspace.cs" />
     <Compile Include="Assets\Scripts\RotateAround.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\SquareFunction.cs" />
+    <Compile Include="Assets\Scripts\Function1DMoveController.cs" />
     <Compile Include="Assets\Scripts\ElectricitySettings.cs" />
     <Compile Include="Assets\Scripts\SceneSpawner.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\GridDrawer.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Assets\Scripts\TextureDrawing\GainReductionDrawer.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\GraphFunctionBase.cs" />
     <Compile Include="Assets\Scripts\StringCountViewController.cs" />
+    <Compile Include="Assets\Scripts\TextureDrawing\Functions\FunctionBuffer.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\GraphDrawerBase.cs" />
     <Compile Include="Assets\Scripts\Air.cs" />
     <Compile Include="Assets\Scripts\SceneController.cs" />
@@ -83,6 +85,7 @@
     <Compile Include="Assets\Scripts\TextureDrawing\GraphDrawer.cs" />
     <Compile Include="Assets\Scripts\FluctuatingMolecule1D.cs" />
     <Compile Include="Assets\Scripts\Ear.cs" />
+    <Compile Include="Assets\Scripts\TextureDrawing\Functions\BufferDelayFunction.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\PositionOffsetFunction.cs" />
     <Compile Include="Assets\Scripts\View\CompressorViewController.cs" />
     <Compile Include="Assets\Scripts\View\VisibleViewController.cs" />
@@ -126,10 +129,8 @@
     <Compile Include="Assets\Scripts\OffsetDrawerKeyboardController.cs" />
     <Compile Include="Assets\Scripts\SceneSpawnerEditor.cs" />
     <Compile Include="Assets\Scripts\Dummy.cs" />
-    <Compile Include="Assets\Scripts\Function1DMoveController.cs" />
-    <Compile Include="Assets\Scripts\TextureDrawing\Functions\FunctionBuffer.cs" />
-    <Compile Include="Assets\Scripts\TextureDrawing\Functions\BufferDelayFunction.cs" />
-    <Compile Include="Assets\Scripts\TextureDrawing\Functions\MoleculeFunction.cs" />
+    <Compile Include="Assets\Scripts\IndexedQueue.cs" />
+    <Compile Include="Assets\Scripts\PseudoTimer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

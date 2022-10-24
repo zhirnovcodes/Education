@@ -20,11 +20,10 @@ public abstract class FluctuatingObject1D : GraphFunctionBase
     public override float Value => TimeStart <= 0 ? 0 : Fluctuation.GetValue(Time.time - TimeStart);
 }
 
-public class FluctuatingMolecule1D : GraphFunctionBase
+public class FluctuatingMolecule1D : FunctionBase
 {
-    [SerializeField] private List<FluctuatingObject1D> _sources = new List<FluctuatingObject1D>();
-    [SerializeField] private bool _withDelay = true;
-    [SerializeField] private bool _shouldLog;
+    [SerializeField] private List<FunctionBase> _sources = new List<FunctionBase>();
+    [SerializeField, Range(0, 1f)] private float _positionOffsetFactor = 0;
 
     private float? _distance;
     private float _value;
@@ -36,34 +35,32 @@ public class FluctuatingMolecule1D : GraphFunctionBase
 
     private void Update()
     {
-        _value = _sources.Select(s =>
+        _value = GetValue(Time.time);
+    }
+
+    public override float GetValue(float t)
+    {
+        return _sources.Select(s =>
         {
-            var delay = _withDelay ? 1f : 0f;
-            var timeStart = delay * (s.TimeStart + 1 / s.Fluctuation.Frequency / 4f);
-            var value = s.TimeStart <= 0 ? 0 : s.Fluctuation.GetValue(Time.time - timeStart);
+            /*
+            var timeStart = delay * (s.TimeStart + 1 / s.Fluctuation.Frequency / 4f);*/
+            var value = s.GetValue(t);
             value /= Air.Rigid;
             return value;
         }).Sum();
     }
 
-    public bool WithDelay
+    public float PositionOffsetFactor
     {
         set
         {
-            _withDelay = value;
+            _positionOffsetFactor = value;
         }
     }
 
-    public List<FluctuatingObject1D> Sources => _sources;
+    public List<FunctionBase> Sources => _sources;
 
     public override float Value => _value;
 
-    private void Log( object l )
-    {
-        if (_shouldLog)
-        {
-            Debug.Log(l);
-        }
-    }
 
 }

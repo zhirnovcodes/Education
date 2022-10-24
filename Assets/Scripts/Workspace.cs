@@ -174,8 +174,8 @@ public class Workspace : MonoBehaviour
         var s = GetStrings()[stringId];
         var count = MoleculesCount(s.transform, out var posMin, out var posMax);
 
-        var go = SceneSpawner.SpawnMoleculesChain(_moleculePrefab, posMin, posMax, count, s);
-        _molecules.Add(go);
+        //var go = SceneSpawner.SpawnMoleculesChain(_moleculePrefab, posMin, posMax, count, s);
+        //_molecules.Add(go);
     }
 
     private void ResetStringsPosition()

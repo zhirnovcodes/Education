@@ -1,12 +1,11 @@
 using UnityEngine;
 
-public class FluctuatingString1D : FluctuatingObject1D
+public class FluctuatingString1D : FunctionBase
 {
     [SerializeField] private Fluctuation _fluctuation;
 
-    private float _timeStart;
-    public override float TimeStart => _timeStart;
-    public override Fluctuation Fluctuation => _fluctuation;
+    public float TimeStart { get; private set; }
+    public Fluctuation Fluctuation => _fluctuation;
 
     public void SetFrq(float value)
     {
@@ -30,12 +29,17 @@ public class FluctuatingString1D : FluctuatingObject1D
 
     private void OnEnable()
     {
-        _timeStart = 0;
+        TimeStart = 0;
     }
 
     public void Hit()
     {
-        _timeStart = Time.time;
+        TimeStart = Time.time;
+    }
+
+    public override float GetValue(float t)
+    {
+        return Fluctuation.GetValue(t);
     }
 }
 

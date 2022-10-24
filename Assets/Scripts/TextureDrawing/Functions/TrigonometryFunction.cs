@@ -34,7 +34,8 @@ public class TrigonometryFunction : GraphFunctionBase
                 t *= 2f * Mathf.PI / _period;
                 return Mathf.Sin(t);
             case TrigFunctionType.Square:
-                return (t % _period <= 0.5) ? 1 : -1;
+                t = t / _period;
+                return t - Mathf.Floor(t) <= 0.5 ? 1 : -1;
             default:
                 throw new System.NotImplementedException();
         }
