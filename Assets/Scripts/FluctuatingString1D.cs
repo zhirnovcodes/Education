@@ -44,7 +44,7 @@ public class FluctuatingString1D : FunctionBase
             return 0;
         }
 
-        return Fluctuation.GetValue(t);
+        return Fluctuation.GetValue(t - TimeStart);
     }
 }
 
