@@ -53,9 +53,11 @@ Shader "Unlit/Molecule"
             {
                 v2f o;
 
-                o.offset = float4( sin(_Time.x * PI2 * _Speed.x ) * _Amplitude.x, 
-                    cos(_Time.x * PI2 * _Speed.y) * _Amplitude.y, 
-                    cos(_Time.x * PI2 * _Speed.z) * _Amplitude.z, 0 );
+                float3 time = _Speed * PI2 * _Time.x;
+                //float4 offset = fmod( mul(unity_ObjectToWorld, v.vertex), 2 ) / 2;
+                float4 offset = float4( sin( time.x ), cos( time.y ), cos( time.z ), 0 );
+                o.offset = offset * _Amplitude;
+                
 
                 v.vertex += o.offset;
                 o.vertex = UnityObjectToClipPos(v.vertex);

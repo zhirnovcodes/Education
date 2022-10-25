@@ -29,12 +29,17 @@ public class FluctuatingString1D : FunctionBase
 
     private void OnEnable()
     {
-        TimeStart = 0;
+        Stop();
     }
 
     public void Hit()
     {
         TimeStart = Time.time;
+    }
+
+    public void Stop()
+    {
+        TimeStart = 0;
     }
 
     public override float GetValue(float t)

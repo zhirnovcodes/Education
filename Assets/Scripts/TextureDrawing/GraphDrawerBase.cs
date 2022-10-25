@@ -60,6 +60,14 @@ public class GraphDrawerBase : MonoBehaviour
         }
     }
 
+    public GraphFunctionBase Function
+    {
+        set
+        {
+            _function = value;
+        }
+    }
+
     private void OnEnable()
     {
         Drawer.Clear();
@@ -70,7 +78,7 @@ public class GraphDrawerBase : MonoBehaviour
 
     void Update()
     {
-        var val = _function.Value;
+        var val = _function?.Value ?? 0;
 
         var pixelsInSecond = Drawer.Texture.width / _timeOfFilling;
 

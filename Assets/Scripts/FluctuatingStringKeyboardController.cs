@@ -22,6 +22,9 @@ public class FluctuatingStringKeyboardController : MonoBehaviour
                 _str.Hit();
                 return;
             }
+
+            _str.Stop();
+            return;
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {

@@ -132,6 +132,9 @@
     <Compile Include="Assets\Scripts\IndexedQueue.cs" />
     <Compile Include="Assets\Scripts\PseudoTimer.cs" />
     <Compile Include="Assets\Scripts\FunctionMover1D.cs" />
+    <Compile Include="Assets\Scripts\ObjectsSpawner.cs" />
+    <Compile Include="Assets\Scripts\MoleculesSpawner.cs" />
+    <Compile Include="Assets\Scripts\View\MoleculesSpawnerViewController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -28,8 +28,10 @@ public class FunctionBuffer : MonoBehaviour
 
         }
 
+        _queue.Clear();
         _timer.Start(_deltaTime);
         _timeStart = Time.time;
+        _value = 0;
     }
 
     private void OnTimerTick(float time)
@@ -54,7 +56,7 @@ public class FunctionBuffer : MonoBehaviour
 
         var index = FindIndex(time);
 
-        if (index < 0)
+        if (index < 0 || _queue.Count <= 0)
         {
             return 0;
         }
