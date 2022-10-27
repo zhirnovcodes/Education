@@ -20,29 +20,29 @@ public class ScalarOperationFunction : GraphFunctionBase
         }
     }
 
-    private float _value;
-
-    public override float Value => _value;
-
-    private void Update()
+    public override float Value
     {
-        _value = _function.Value;
-
-        switch (_operation)
+        get
         {
-            case FunctionOperation.Minus:
-                _value -= _scalar;
-                break;
-            case FunctionOperation.Plus:
-                _value += _scalar;
-                break;
-            case FunctionOperation.Multiply:
-                _value *= _scalar;
-                break;
-            case FunctionOperation.Divide:
-                _value /= _scalar;
-                break;
-        }
+            var v = _function.Value;
 
+            switch (_operation)
+            {
+                case FunctionOperation.Minus:
+                    v -= _scalar;
+                    break;
+                case FunctionOperation.Plus:
+                    v += _scalar;
+                    break;
+                case FunctionOperation.Multiply:
+                    v *= _scalar;
+                    break;
+                case FunctionOperation.Divide:
+                    v /= _scalar;
+                    break;
+            }
+
+            return v;
+        }
     }
 }
