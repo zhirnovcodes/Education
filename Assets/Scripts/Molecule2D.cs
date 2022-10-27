@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Molecule2D : MonoBehaviour
@@ -9,6 +7,14 @@ public class Molecule2D : MonoBehaviour
 
     private Vector3 _stablePosition;
 
+    private void Awake()
+    {
+        if (_reverb == null)
+        {
+            _reverb = ReverbZone.Instance;
+        }
+    }
+
     private void OnEnable()
     {
         _stablePosition = transform.position;
@@ -16,7 +22,7 @@ public class Molecule2D : MonoBehaviour
 
     private void OnDisable()
     {
-        transform.position = transform.position;
+        transform.position = _stablePosition;
     }
 
     private void Update()
@@ -26,16 +32,15 @@ public class Molecule2D : MonoBehaviour
             return;
         }
 
-        var t = 0f;
         var d = Vector3.zero;
 
         foreach (var dir in _reverb.Directions(_stablePosition))
         {
-            t = Mathf.Max(dir.w, t);
-            d += (Vector3)dir;
-            break;
+            var t = dir.w;
+            d += (Vector3)dir * _buffer.GetValue(Time.time - t);
+           // break;
         }
 
-        transform.position = _stablePosition + d * _buffer.GetValue(Time.time - t);
+        transform.position = _stablePosition + d;
     }
 }

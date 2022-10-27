@@ -3,13 +3,14 @@ using UnityEngine.UI;
 
 public class MoleculesSpawnerViewController : MonoBehaviour
 {
-    [SerializeField] private MoleculesSpawner _spawner;
+    [SerializeField] private MoleculesGrid _grid;
+    [SerializeField] private Spawner _spawner;
     [SerializeField] private Slider _slider;
 
     private void OnEnable()
     {
         _slider.onValueChanged.AddListener(OnValueChanged);
-        _slider.value = _spawner.Density;
+        _slider.value = _grid.Density;
     }
 
     private void OnDisable()
@@ -19,7 +20,7 @@ public class MoleculesSpawnerViewController : MonoBehaviour
 
     private void OnValueChanged(float value)
     {
-        _spawner.Density = _slider.value;
+        _grid.Density = _slider.value;
         _spawner.Clear();
         _spawner.Spawn();
     }

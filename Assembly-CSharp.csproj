@@ -144,6 +144,8 @@
     <Compile Include="Assets\Scripts\IndexedQueue.cs" />
     <Compile Include="Assets\Scripts\Molecule2D.cs" />
     <Compile Include="Assets\Scripts\MoleculesGrid.cs" />
+    <Compile Include="Assets\Scripts\Molecules1DSpawner.cs" />
+    <Compile Include="Assets\Scripts\Molecules2DSpawner.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -14,6 +14,8 @@ public struct Line
     public Vector3 P2;
 
     public Vector3 Direction => P2 - P1;
+
+    public float Length { get => Direction.magnitude; }
 }
 
 public class ReverbZone : MonoBehaviour
@@ -50,15 +52,16 @@ public class ReverbZone : MonoBehaviour
 
         for (int i = 0; i < _reflectedPositions.Length; i++)
         {
-            yield return GetDirection(position, _reflectedPositions[i]);
+            yield return GetDirection(position, _reflectedPositions[i]); ;
         }
     }
 
     private Vector4 GetDirection(Vector3 objectPos, Vector3 sourcePos)
     {
-        var p2s = objectPos - sourcePos;
-        var magnitude = p2s.magnitude;
-        var result = magnitude <= _radius ? (Vector4)p2s.normalized * magnitude / _radius + new Vector4(0, 0, 0, magnitude * _timeScale) : Vector4.zero;
+        var dir = objectPos - sourcePos;
+        var magnitude = dir.magnitude;
+        var result = magnitude <= _radius ? (Vector4)dir.normalized * (1 - magnitude / _radius) : Vector4.zero;
+        result.w = magnitude * _timeScale;
         return result;
     }
 }

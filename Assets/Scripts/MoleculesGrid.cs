@@ -19,6 +19,8 @@ public class MoleculesGrid : MonoBehaviour
     [SerializeField] private float _moleculeDiameter = 1;
     [SerializeField] private bool _shouldDrawGizmos = true;
 
+    public float Density { get => _density; set { _density = value; } }
+
     public IEnumerable<MoleculePosition> Positions()
     {
         var v1 = transform.position - (Vector3)_planeSize / 2;
