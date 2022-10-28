@@ -44,13 +44,6 @@ public abstract class MoleculesSpawner<T> : Spawner where T : MonoBehaviour
 
             var molecule = spawned.GetComponent<T>();
             SetupComponent(molecule, pos);
-            /*var factor = pos.Uv.x;
-            var delay = Mathf.Lerp(0.1f, maxDelay, factor);
-            var power = Mathf.Lerp(1, minPower, factor);
-            molecule.Delay = delay;
-            molecule.Power = power;
-            molecule.Buffer = _buffer;
-            */
             last = molecule;
 
             _spawned.Add(molecule);

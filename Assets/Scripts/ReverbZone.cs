@@ -21,6 +21,7 @@ public struct Line
 public class ReverbZone : MonoBehaviour
 {
     [SerializeField] private Line[] _walls;
+    [SerializeField] private Transform _source;
     [SerializeField] private float _radius = 1;
     [SerializeField] private float _timeScale = 1;
 
@@ -32,10 +33,26 @@ public class ReverbZone : MonoBehaviour
 
     private Vector3[] _reflectedPositions = new Vector3[0];
 
+    public Transform Source
+    {
+        get
+        {
+            if (_source == null)
+            {
+                _source = transform;
+            }
+            return _source;
+        }
+    }
+
     private void Awake()
     {
         Instance = this;
-        _reflectedPositions = _walls.Select(w => MathIZ.ReflectedPosition(transform.position, w)).Where(w => w.HasValue).Select(w => w.Value).ToArray();
+    }
+
+    private void OnEnable()
+    {
+        _reflectedPositions = _walls.Select(w => MathIZ.ReflectedPosition(Source.position, w)).Where(w => w.HasValue).Select(w => w.Value).ToArray();
     }
 
     private void OnDrawGizmosSelected()
@@ -48,7 +65,7 @@ public class ReverbZone : MonoBehaviour
 
     public IEnumerable< Vector4 > Directions(Vector3 position)
     {
-        yield return GetDirection(position, transform.position);
+        yield return GetDirection(position, Source.position);
 
         for (int i = 0; i < _reflectedPositions.Length; i++)
         {

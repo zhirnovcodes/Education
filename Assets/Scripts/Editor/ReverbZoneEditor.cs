@@ -9,10 +9,10 @@ public class ReverbZoneEditor : Editor
     {
         var zone = target as ReverbZone;
         var walls = zone.Walls;
+        var p0 = zone.Source.transform.position;
 
-        zone.Radius = Handles.RadiusHandle(Quaternion.identity, zone.transform.position, zone.Radius);
+        zone.Radius = Handles.RadiusHandle(Quaternion.identity, p0, zone.Radius);
 
-        var p0 = zone.transform.position;
 
         for (int i = 0; i < walls.Length; i++)
         {
@@ -29,7 +29,6 @@ public class ReverbZoneEditor : Editor
 
             Handles.DrawLine(p1 + perp, p1);
             Handles.DrawLine(p2 + perp, p2);
-
 
             Handles.color = Color.yellow;
             var pos = MathIZ.ReflectedPosition(p0, walls[i]);

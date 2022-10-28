@@ -14,7 +14,7 @@ Shader "Unlit/Molecule"
         Tags {"Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent"}
         ZWrite Off
         Blend SrcAlpha OneMinusSrcAlpha
-        LOD 100
+        LOD 200
 
         Pass
         {
@@ -53,10 +53,11 @@ Shader "Unlit/Molecule"
             {
                 v2f o;
 
-                float4 objWSpaceFactor = sin(abs(float4( unity_ObjectToWorld[0].a, unity_ObjectToWorld[1].a, 0, 0)));
+                float3 worldPosition = unity_ObjectToWorld._m03_m13_m23;
+                float4 objWSpaceFactor = sin(abs(float4( worldPosition, 0)));
                 float3 time = _Speed * PI2 * _Time.x * objWSpaceFactor;
                 //float4 offset = fmod( mul(unity_ObjectToWorld, v.vertex), 2 ) / 2;
-                float4 offset = float4( sin( time.x ), cos( time.y ), cos( time.z ), 0 );
+                float4 offset = float4( sin( time.x ), cos( time.y ), cos( time.z ), 1 );
                 o.offset = offset;
 
                 v.vertex += o.offset;

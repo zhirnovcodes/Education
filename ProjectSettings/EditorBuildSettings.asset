@@ -6,12 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Lecture6/Scene0.unity
-    guid: 46c7d355fb002954f81f2c3dc8d0840f
+    path: Assets/Scenes/Lecture8/Scene1_envelopes.unity
+    guid: 851497975c5c789468bcf6c7ba78fd5c
   - enabled: 1
-    path: Assets/Scenes/Lecture6/Scene1.unity
-    guid: ababc55027c3d0543bce2305421c1754
+    path: Assets/Scenes/Lecture8/Scene2_lfo.unity
+    guid: 77e225f355dab774d99754ef13594b71
   - enabled: 1
-    path: Assets/Scenes/Lecture6/Scene2.unity
-    guid: 4835061d805605348b30e211f9474f5f
+    path: Assets/Scenes/Lecture8/Scene3_reverb.unity
+    guid: 65fd96e10958d844b99247bf9a83eb29
   m_configObjects: {}

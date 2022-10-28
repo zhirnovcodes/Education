@@ -1,6 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Renderer))]
+
 public class GraphDrawerMaterial : MonoBehaviour
 {
     [SerializeField] private Renderer _renderer;
