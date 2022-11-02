@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -52,6 +52,9 @@
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2021.2.8f1</UnityVersion>
   </PropertyGroup>
+  <ItemGroup>
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Workspace.cs" />
     <Compile Include="Assets\Scripts\RotateAround.cs" />
@@ -119,6 +122,7 @@
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\LerpFunction.cs" />
     <Compile Include="Assets\Scripts\Membrane1D.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\AmplitudeFunction.cs" />
+    <Compile Include="Assets\Scripts\VinylDrawer.cs" />
     <Compile Include="Assets\Scripts\Molecule1D.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Equalizer\EqDrawerBase.cs" />
     <Compile Include="Assets\Scripts\OffsetToElectricity.cs" />
@@ -171,6 +175,8 @@
     <None Include="Assets\Shaders\Resources\AvgPeakDrawer.compute" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
+    <None Include="Assets\Shaders\Tessellated.shader" />
+    <None Include="Assets\Shaders\VinylNormalMapCreator.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\Shaders\NewSurfaceShader.shader" />

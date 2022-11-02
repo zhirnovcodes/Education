@@ -44,11 +44,12 @@ public class Molecule2D : GraphFunctionBase
         {
             var t = dir.w;
             var val = _buffer.GetValue(Time.time - t);
-            _value += val * dir.magnitude;
+            _value += val;
             d += (Vector3)dir * val;
            // break;
         }
 
+        _value *= d.magnitude;
         transform.position = _stablePosition + d;
     }
 }

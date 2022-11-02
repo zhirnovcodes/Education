@@ -13,6 +13,7 @@ public struct MoleculePosition
 public class MoleculesGrid : MonoBehaviour
 {
     [SerializeField] private Vector2 _planeSize;
+    [SerializeField] private int _count;
     [SerializeField, Range(0, 1f)] private float _density = 0.5f;
     [SerializeField, Range(0, 1f)] private float _randomizePosition = 0f;
     [SerializeField, Range(0, 1f)] private float _randomizeScale = 0f;
@@ -62,8 +63,10 @@ public class MoleculesGrid : MonoBehaviour
         Gizmos.DrawLine(v3, v4);
         Gizmos.DrawLine(v4, v1);
 
+        _count = 0;
         foreach (var pos in Positions())
         {
+            _count++;
             Gizmos.DrawSphere(pos.Position, _moleculeDiameter * pos.Scale.x / 2);
         }
     }

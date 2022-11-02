@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Lecture8/Scene2_lfo.unity
     guid: 77e225f355dab774d99754ef13594b71
   - enabled: 1
+    path: Assets/Scenes/Lecture8/Scene3_reverb_empty_space.unity
+    guid: 632f1a254fd0d8a45af582a0e86dbba1
+  - enabled: 1
     path: Assets/Scenes/Lecture8/Scene3_reverb.unity
     guid: 65fd96e10958d844b99247bf9a83eb29
   m_configObjects: {}
