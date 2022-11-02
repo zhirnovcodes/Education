@@ -58,7 +58,11 @@ Shader "Zhirnov/VinylNormalMapCreator"
             bool isInRect(float3 p, float3 point1, float3 point2)
             {
                 float3 d = point1 - p;
-                float3 l = point2 - point1; 
+                float3 l = point2 - point1;
+                if (length(d) <= 0.000001 || length(l) <= 0.000001)
+                {
+                    return false;        
+				}
                 float3 n = normalize(cross(d, l));
 
                 float3 r = normalize(cross(l, n));
@@ -87,10 +91,12 @@ Shader "Zhirnov/VinylNormalMapCreator"
 
             float4 frag(v2f_customrendertexture IN) : COLOR
             {
-                float3 distance1 = _Point1 - IN.globalTexcoord;
-                float3 distance2 = _Point2 - IN.globalTexcoord;
+                float3 p = IN.globalTexcoord;
+                p.y = 1 - p.y;
+                float3 distance1 = _Point1 - p;
+                float3 distance2 = _Point2 - p;
                 
-                if (isInRect(IN.globalTexcoord, _Point1, _Point2))
+                if (isInRect(p, _Point1, _Point2))
                 {
                     float3 l = _Point2 - _Point1; 
                     float3 norm = cross(distance1, l);
@@ -109,7 +115,7 @@ Shader "Zhirnov/VinylNormalMapCreator"
                 {
                     return toCircleNormal(distance2);
 				}
-                
+                discard;
                 return NORMAL_UP;
             }
             ENDCG

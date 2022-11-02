@@ -314,9 +314,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _texture: {fileID: 8600000, guid: acc1b7c75eb416841b2ba5d567bc3904, type: 2}
-  _radiusUV: 0.01
-  _point1: {x: 0, y: 0}
-  _point2: {x: 0, y: 0}
+  _radiusPixels: 100
+  _point1: {x: 0.5, y: 0.5}
+  _point2: {x: 0.5, y: 0.5}
 --- !u!1 &1045841998
 GameObject:
   m_ObjectHideFlags: 0
