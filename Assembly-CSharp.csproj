@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,9 +53,6 @@
     <UnityVersion>2021.2.8f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Assets\Scripts\Workspace.cs" />
     <Compile Include="Assets\Scripts\RotateAround.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\SquareFunction.cs" />
@@ -94,6 +91,7 @@
     <Compile Include="Assets\Scripts\NumbersGridController.cs" />
     <Compile Include="Assets\Scripts\Molecules2DSpawner.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\GainReductionFunction.cs" />
+    <Compile Include="Assets\Scripts\VinylGraphDrawer.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\EnvelopeFunction.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\GraphDrawer.cs" />
     <Compile Include="Assets\Scripts\FluctuatingMolecule1D.cs" />
@@ -114,6 +112,7 @@
     <Compile Include="Assets\Scripts\String1D.cs" />
     <Compile Include="Assets\Scripts\LowPressureForceProvider1D.cs" />
     <Compile Include="Assets\Scripts\FluctuatingString1D.cs" />
+    <Compile Include="Assets\Scripts\TextureDrawing\Functions\PeakFunction.cs" />
     <Compile Include="Assets\Scripts\StringView.cs" />
     <Compile Include="Assets\Scripts\MathIZ.cs" />
     <Compile Include="Assets\Scripts\AnalogueViewController.cs" />
@@ -151,7 +150,8 @@
     <Compile Include="Assets\Scripts\SceneSpawnerEditor.cs" />
     <Compile Include="Assets\Scripts\Dummy.cs" />
     <Compile Include="Assets\Scripts\IndexedQueue.cs" />
-    <Compile Include="Assets\Scripts\VinylGraphDrawer.cs" />
+    <Compile Include="Assets\Scripts\VinylNeedleMover.cs" />
+    <Compile Include="Assets\Scripts\VinylController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -173,6 +173,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\Shaders\VinylAlphaCreator.shader" />
     <None Include="Assets\Shaders\Resources\AvgPeakDrawer.compute" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />

@@ -2,7 +2,6 @@ Shader "Zhirnov/VinylNormalMapCreator"
 {
     Properties
     {
-        _Color ("Color", Color) = (1,1,1,1)
         _RadiusV ("Sphere Size", Vector) = (0.1,0.1,0,0)
         _Point1 ("Point One", Vector) = (0,0,0,0)
         _Point2 ("Point Two", Vector) = (1,1,1,1)
@@ -11,7 +10,7 @@ Shader "Zhirnov/VinylNormalMapCreator"
     SubShader
     {
         Lighting Off
-        Blend One Zero
+        Blend One One
 
         Pass
         {
@@ -55,7 +54,7 @@ Shader "Zhirnov/VinylNormalMapCreator"
                 return !(has_neg && has_pos);
             }
 
-            bool isInRect(float3 p, float3 point1, float3 point2)
+            bool pointInRect(float3 p, float3 point1, float3 point2)
             {
                 float3 d = point1 - p;
                 float3 l = point2 - point1;
@@ -89,6 +88,7 @@ Shader "Zhirnov/VinylNormalMapCreator"
                 return float4(c, 1);
 			}
 
+            // normal map
             float4 frag(v2f_customrendertexture IN) : COLOR
             {
                 float3 p = IN.globalTexcoord;
@@ -96,12 +96,12 @@ Shader "Zhirnov/VinylNormalMapCreator"
                 float3 distance1 = _Point1 - p;
                 float3 distance2 = _Point2 - p;
                 
-                if (isInRect(p, _Point1, _Point2))
+                if (pointInRect(p, _Point1, _Point2))
                 {
                     float3 l = _Point2 - _Point1; 
                     float3 norm = cross(distance1, l);
-                    float3 c = normalize(cross(l, norm));
-                    c *= getRadius(c, true);
+                    float3 c = cross(l, norm);
+                    //c *= getRadius(c, true);
 
                     return toCircleNormal(c); 
 				}

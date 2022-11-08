@@ -28,14 +28,15 @@ public class VinylGraphDrawer : MonoBehaviour
     void Update()
     {
         var val = _function.Value;
+        var t = Time.time;
 
-        if (Time.time >= _timeStart + _timeOfFilling)
+        if (t >= _timeStart + _timeOfFilling)
         {
             return;
         }
 
-        float t1 = TimeToUV(Time.time - Time.deltaTime);
-        float t2 = TimeToUV(Time.time);
+        float t1 = TimeToUV(t - Time.deltaTime);
+        float t2 = TimeToUV(t);
 
         _drawer.Point1 = new Vector2(t1, _valueBefore / 2f + 0.5f);
         _drawer.Point2 = new Vector2(t2, val / 2f + 0.5f);
