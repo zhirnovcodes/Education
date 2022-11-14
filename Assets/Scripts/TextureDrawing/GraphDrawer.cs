@@ -21,7 +21,7 @@ public class GraphDrawer : IDisposable
     private const string LinesColName = "LinesCol";
     private const string DrawTypeName = "DrawType";
 
-    private const string ShaderName = "EarDrumOffset";
+    private const string ShaderName = "GraphDrawer";
 
     public const int DefaultTextureWidth = 256;
     public const int DefaultTextureHeight = 128;

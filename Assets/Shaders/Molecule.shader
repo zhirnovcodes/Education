@@ -8,6 +8,11 @@ Shader "Unlit/Molecule"
         _RotationSpeed ("Rotation Speed", Float) = 2.0
         _Amplitude ("Amplitude", Vector) = (1, 1, 0, 0)
 		_BlurSize("Blur Size", Range(0.0, 0.8)) = 0.05
+        
+        _Values ("Values", 2D) = "white" {}
+        _StartTime ("Start Time", Float) = 0
+        _DeltaTime ("Delta Time", Float) = 0
+
     }
     SubShader
     {        
@@ -23,6 +28,7 @@ Shader "Unlit/Molecule"
             #pragma fragment frag
 
             #include "UnityCG.cginc"
+            #include "NoiseSimplex.cginc"
 
             #define PI 3.1415
             #define PI2 (PI * 2)
@@ -47,16 +53,27 @@ Shader "Unlit/Molecule"
             float4 _Amplitude;
             float _RotationSpeed;
             
+            sampler2D _Values;
+            float _StartTime;
+
 			uniform float _BlurSize;
 
             v2f vert (appdata v)
             {
                 v2f o;
 
+
                 float3 worldPosition = unity_ObjectToWorld._m03_m13_m23;
-                float4 objWSpaceFactor = sin(abs(float4( worldPosition, 0)));
-                float3 time = _Speed * PI2 * _Time.x * objWSpaceFactor;
-                //float4 offset = fmod( mul(unity_ObjectToWorld, v.vertex), 2 ) / 2;
+                worldPosition.z = sin(worldPosition.x) * cos(worldPosition.y);
+
+                float noiseOffset = 1;//0.01;
+                float noiseX = snoise(worldPosition + float3(noiseOffset,0,0)) - snoise(worldPosition);
+                float noiseY = snoise(worldPosition + float3(0,noiseOffset,0)) - snoise(worldPosition);
+                float noiseZ = snoise(worldPosition + float3(0,0,noiseOffset)) - snoise(worldPosition);
+
+                float3 noise3D = normalize( float3(noiseX, noiseY, noiseZ) );
+
+                float3 time = _Speed * PI2 * _Time.x * noise3D;
                 float4 offset = float4( sin( time.x ), cos( time.y ), cos( time.z ), 1 );
                 o.offset = offset;
 
@@ -69,6 +86,8 @@ Shader "Unlit/Molecule"
 
             fixed4 frag (v2f i) : SV_Target
             {
+
+            /*
                 float blurLevel = i.offset.z;
 
                 //calculate aspect ratio
@@ -86,6 +105,15 @@ Shader "Unlit/Molecule"
                 col = col / 10;
                 col *= _Color;
                 return col;
+                */
+                float depth = i.offset.z;
+                float tr = depth >= 0 ? 1 : 1 + depth;
+                fixed4 col = tex2D(_MainTex, i.uv) * _Color;
+                col.a = col.a * tr;
+
+                //col = fixed4(depth, 0,0,1);
+                return col;
+                
             }
             ENDCG
         }

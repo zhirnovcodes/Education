@@ -6,7 +6,15 @@ public class Molecule1D : FunctionBase
     [SerializeField] private float _delay;
     [SerializeField] private float _power = 1;
 
-    public FunctionBuffer Buffer { set { _buffer = value; } }
+    public FunctionBuffer Buffer 
+    { 
+        set 
+        { 
+            _buffer = value; 
+        } 
+    }
+
+
     public float Delay { set { _delay = value; } }
     public float Power { set { _power = value; } }
 
