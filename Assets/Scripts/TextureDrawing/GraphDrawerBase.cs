@@ -32,6 +32,23 @@ public class GraphDrawerBase : MonoBehaviour
     private float _timeStart;
     private int _lastValuesIndex;
 
+    public float DeltaTime
+    {
+        get
+        {
+            return _timeOfFilling / _textureWidth;
+        }
+    }
+
+    public float TimeStart
+    {
+        get
+        {
+            var firstIndex = Mathf.Max(0, _lastValuesIndex - _textureWidth + 1);
+            return _timeStart + DeltaTime * firstIndex;
+        }
+    }
+
     public RenderTexture Texture
     {
         get
@@ -80,25 +97,26 @@ public class GraphDrawerBase : MonoBehaviour
     {
         var val = _function?.Value ?? 0;
 
-        var pixelsInSecond = Drawer.Texture.width / _timeOfFilling;
-
         var timeNow = Time.time - _timeStart;
 
-        var indexNow = Mathf.RoundToInt(timeNow * pixelsInSecond);
+        var indexNow = Mathf.RoundToInt(timeNow / DeltaTime);
 
         if (indexNow == _lastValuesIndex)
         {
             return;
         }
 
-        for (int i = _lastValuesIndex + 1; i <= indexNow; i++)
+        var i0 = _lastValuesIndex + 1;
+        _lastValuesIndex = indexNow;
+
+        for (int i = i0; i <= indexNow; i++)
         {
             Drawer.AddValue(i, val);
         }
 
+
         Drawer.Paint(_bckgColor, _linesColor, _maxOffset, _drawType);
 
-        _lastValuesIndex = indexNow;
     }
 
     public void Dispose()

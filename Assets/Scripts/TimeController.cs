@@ -2,13 +2,29 @@ using UnityEngine;
 
 public class TimeController : MonoBehaviour
 {
+    private static TimeController _instance;
+
+    [SerializeField, Range(0,3)] private float _scale = 1;
+
     void Start()
     {
-        DontDestroyOnLoad(this);
+        if (_instance == null)
+        {
+            _instance = this;
+            DontDestroyOnLoad(this);
+            return;
+        }
+
+        if (_instance != this)
+        {
+            Destroy(this);
+        }
     }
 
     void Update()
     {
+        Time.timeScale = _scale;
+
         if (Input.GetKeyDown( KeyCode.P))
         {
             Time.timeScale = Time.timeScale == 0 ? 1 : 0;

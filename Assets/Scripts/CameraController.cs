@@ -3,6 +3,8 @@ using UnityEngine.EventSystems;
 
 public class CameraController : MonoBehaviour
 {
+    [SerializeField, Range(0,3)] private float _floatSpeed = 0f;
+    [SerializeField, Range(0,1)] private float _floatDistance = 0.1f;
     [SerializeField] private float _moveSpeed = 5f; 
     [SerializeField] private float _zoomSpeed = 100f;
     [SerializeField] private float _minSize = 1f;
@@ -70,6 +72,12 @@ public class CameraController : MonoBehaviour
                 _camera.transform.position = _stablePosition;
                 _lastPosition = _stablePosition;
                 _camera.orthographicSize = _stableSize;
+            }
+
+            if (_floatSpeed > 0)
+            {
+                didChange = true;
+                _camera.orthographicSize += Mathf.Sin(Time.time * Mathf.PI * _floatSpeed) * _floatDistance * Time.deltaTime;
             }
 
             if (didChange)

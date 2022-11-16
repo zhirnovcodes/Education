@@ -3,11 +3,23 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
+    private static SceneController _instance;
+
     private int _index = 0;
 
     void Start()
     {
-        DontDestroyOnLoad(this);
+        if (_instance == null)
+        {
+            _instance = this;
+            DontDestroyOnLoad(this);
+            return;
+        }
+
+        if (_instance != this)
+        {
+            Destroy(this);
+        }
     }
 
     // Update is called once per frame
