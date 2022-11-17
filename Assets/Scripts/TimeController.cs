@@ -15,7 +15,7 @@ public class TimeController : MonoBehaviour
             return;
         }
 
-        if (_instance != this)
+        if (!_instance.Equals(this))
         {
             Destroy(this);
         }

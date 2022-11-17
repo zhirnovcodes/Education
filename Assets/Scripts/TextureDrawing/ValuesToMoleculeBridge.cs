@@ -30,5 +30,6 @@ public class ValuesToMoleculeBridge : MonoBehaviour
     private void LateUpdate()
     {
         _materialWithValue.SetFloat("_StartTime", _drawer.TimeStart);
+        _materialWithValue.SetFloat("_MaxIndex", _drawer.MaxIndex);
     }
 }

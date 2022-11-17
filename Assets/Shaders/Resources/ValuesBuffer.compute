@@ -64,3 +64,20 @@ void AddValue (uint3 id : SV_DispatchThreadID)
         Values[id.xy] = NULL_VAL;
 	}
 }
+
+[numthreads(1,1,1)]
+void SetValue(uint3 id : SV_DispatchThreadID)
+{
+
+}
+
+[numthreads(8,1,1)]
+void ShiftValues (uint3 id : SV_DispatchThreadID)
+{
+    if ((int)id.x == ValuesSize - 1){
+        Values[id.xy] = float4(StartTime, 0, 0, 0);
+        return;
+	}
+
+    Values[id.xy] = Values[id.xy + float2(1, 0)];
+}

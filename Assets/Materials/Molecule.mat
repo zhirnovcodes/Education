@@ -19,6 +19,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _BlurText:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -40,7 +44,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: c25c31b15225b564c834656f4981dc64, type: 3}
+        m_Texture: {fileID: 2800000, guid: d44aaf1b45ca2554cb19b2e2a5754475, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -53,6 +57,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PerlinText:
+        m_Texture: {fileID: 2800000, guid: a316bf59c4610c145b803239c21cd83c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Values:
@@ -75,21 +83,23 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _PerlinWidth: 1
     - _RotationSpeed: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _StartTime: 44.755325
+    - _StartTime: 0.71875
     - _UVSec: 0
-    - _WaveDecay: 40
-    - _WaveSpeed: 8
+    - _WaveDecay: 50
+    - _WaveSpeed: 7
     - _ZWrite: 1
     m_Colors:
     - _Amplitude: {r: 1, g: 1, b: 1, a: 0}
-    - _Color: {r: 1, g: 1, b: 1, a: 0.53333336}
+    - _Color: {r: 1, g: 1, b: 1, a: 0.48235294}
+    - _ColorTo: {r: 0.81464344, g: 0.76792455, b: 1, a: 0.8039216}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _RoatationSpeed: {r: 1, g: 0, b: 0, a: 0}
     - _RotationSpeed: {r: 10, g: 0, b: 0, a: 0}
-    - _SourcePos: {r: -11.17, g: -6.6873, b: 0, a: 0}
+    - _SourcePos: {r: -10.71, g: -0.1944, b: 0, a: 0}
     - _Speed: {r: 0.5, g: 0.5, b: 1, a: 0}
   m_BuildTextureStacks: []

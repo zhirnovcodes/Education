@@ -30,6 +30,7 @@ public class GraphDrawerBase : MonoBehaviour
 
 
     private float _timeStart;
+    private float _lastValue;
     private int _lastValuesIndex;
 
     public float DeltaTime
@@ -49,6 +50,13 @@ public class GraphDrawerBase : MonoBehaviour
         }
     }
 
+    public float MaxIndex
+    {
+        get
+        {
+            return Mathf.Min(_lastValuesIndex, _textureWidth - 1);
+        }
+    }
     public RenderTexture Texture
     {
         get
@@ -91,6 +99,7 @@ public class GraphDrawerBase : MonoBehaviour
 
         _lastValuesIndex = -1;
         _timeStart = Time.time;
+        _lastValue = 0;
     }
 
     void Update()
@@ -111,10 +120,11 @@ public class GraphDrawerBase : MonoBehaviour
 
         for (int i = i0; i <= indexNow; i++)
         {
-            Drawer.AddValue(i, val);
+            var valD = Mathf.Lerp(_lastValue, val, Mathf.InverseLerp(i0, indexNow, i));
+            Drawer.AddValue(i, valD);
         }
 
-
+        _lastValue = val;
         Drawer.Paint(_bckgColor, _linesColor, _maxOffset, _drawType);
 
     }

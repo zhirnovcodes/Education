@@ -4729,6 +4729,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 762614610, guid: 9310668d935d4ce4492ef5dad7d26f28, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 762614612, guid: 9310668d935d4ce4492ef5dad7d26f28, type: 3}
       propertyPath: _function.Type
       value: 0
@@ -4805,9 +4809,17 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 61
       objectReference: {fileID: 0}
+    - target: {fileID: 6425590562208649623, guid: 9310668d935d4ce4492ef5dad7d26f28, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6425590562208649624, guid: 9310668d935d4ce4492ef5dad7d26f28, type: 3}
       propertyPath: m_Name
       value: String
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425590562208649624, guid: 9310668d935d4ce4492ef5dad7d26f28, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9310668d935d4ce4492ef5dad7d26f28, type: 3}
@@ -17500,7 +17512,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 214845550}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 11649e6e97591564bbef11548d7802c3, type: 3}
   m_Name: 
@@ -26640,6 +26652,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6770630872622300132, guid: b80f5d2a65aba19478c352fc273473c8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6770630872622300134, guid: b80f5d2a65aba19478c352fc273473c8, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -34402,6 +34418,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: String (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6425590562208649624, guid: 9310668d935d4ce4492ef5dad7d26f28, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9310668d935d4ce4492ef5dad7d26f28, type: 3}
 --- !u!1 &1690393858
@@ -35250,7 +35270,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 6.72
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -35274,7 +35294,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1744667928}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.85999966, y: -0.63999987, z: -10}
+  m_LocalPosition: {x: 1.41, y: 0.69, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -35296,7 +35316,7 @@ MonoBehaviour:
   _floatSpeed: 0
   _floatDistance: 0.09
   _moveSpeed: 5
-  _zoomSpeed: 100
+  _zoomSpeed: 50
   _minSize: 1
   _borders:
     serializedVersion: 2

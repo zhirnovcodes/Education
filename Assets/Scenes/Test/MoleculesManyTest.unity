@@ -4742,7 +4742,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6425590562208649604, guid: 9310668d935d4ce4492ef5dad7d26f28, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6425590562208649604, guid: 9310668d935d4ce4492ef5dad7d26f28, type: 3}
       propertyPath: m_SortingOrder
@@ -19716,9 +19716,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 041231628937ed24ba956703a4d1240b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buffer: {fileID: 839620815}
-  _delay: 0.47984573
-  _power: 0.9074264
+  _buffer: {fileID: 0}
+  _delay: 0
+  _power: 0
 --- !u!33 &965472710
 MeshFilter:
   m_ObjectHideFlags: 0
