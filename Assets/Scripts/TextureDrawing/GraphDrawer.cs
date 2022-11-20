@@ -107,7 +107,7 @@ public class GraphDrawer : IDisposable
 
     }
 
-    public void Paint(Color bckgColor, Color dotsColor, float maxOffset, DrawType type = DrawType.Lines)
+    public void Paint(Color bckgColor, Color dotsColor, float maxOffset, DrawType type = DrawType.Lines )
     {
         _shader.SetFloat(MaxOffsetName, maxOffset);
         _shader.SetInt(DrawTypeName, (int)type);

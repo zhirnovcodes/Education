@@ -14,7 +14,6 @@ public class GraphDrawerBase : MonoBehaviour
     [SerializeField] private int _textureHeight = GraphDrawer.DefaultTextureHeight;
 
     [SerializeField] private GraphDrawer.DrawType _drawType = GraphDrawer.DrawType.Lines;
-    [SerializeField] private bool _drawBeforeFirstValue = false;
     [SerializeField] private bool _antiAliasing = false;
 
     private GraphDrawer _drawer;
@@ -93,6 +92,11 @@ public class GraphDrawerBase : MonoBehaviour
         }
     }
 
+    public void Dispose()
+    {
+        _drawer.Dispose();
+    }
+
     private void OnEnable()
     {
         Drawer.Clear();
@@ -100,6 +104,11 @@ public class GraphDrawerBase : MonoBehaviour
         _lastValuesIndex = -1;
         _timeStart = Time.time;
         _lastValue = 0;
+    }
+
+    private void OnDisable()
+    {
+        
     }
 
     void Update()
@@ -129,8 +138,4 @@ public class GraphDrawerBase : MonoBehaviour
 
     }
 
-    public void Dispose()
-    {
-        _drawer.Dispose();
-    }
 }

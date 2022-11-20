@@ -3,6 +3,7 @@ using UnityEngine;
 public class FunctionMover1D : MonoBehaviour
 {
     [SerializeField] private GraphFunctionBase _function;
+    [SerializeField] private float _power = 1;
 
     private Vector2 _stablePosition;
 
@@ -10,7 +11,7 @@ public class FunctionMover1D : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Offset = _function.Value;
+        Offset = _function.Value * _power;
 
         transform.localPosition = _stablePosition + Vector2.right * Offset;
     }

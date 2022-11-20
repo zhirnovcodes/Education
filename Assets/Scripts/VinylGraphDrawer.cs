@@ -7,39 +7,66 @@ public class VinylGraphDrawer : MonoBehaviour
 {
     [SerializeField] private GraphFunctionBase _function;
     [SerializeField] private float _timeOfFilling = 8;
+    [SerializeField, Range(0, 3)] private float _scale = 1;
+    [SerializeField, Range(0, 0.5f)] private float _startEndUOffset = 0.1f;
+    [SerializeField, Range(0, 1)] private float _startV = 0.5f;
     
     private VinylDrawer _drawer;
     private float _timeStart;
     private float _valueBefore;
+    private Vector2 _uvCurrent;
 
+    public Vector3 CurrentPointPosition
+    {
+        get
+        {
+            var localPos = new Vector3(_uvCurrent.x, 0, _uvCurrent.y);
+            var globalPos = transform.localToWorldMatrix * localPos;
+            return globalPos;
+        }
+    }
+    
     private void OnEnable()
     {
         _drawer = GetComponent<VinylDrawer>();
         _timeStart = Time.time;
-        _valueBefore = _function.Value;
+        _valueBefore = GetValueAsV();
         _drawer.Clear();
+        _uvCurrent = Vector2.zero;
     }
 
-    private float TimeToUV(float time)
+    private float TimeToU(float time)
     {
-        return Mathf.InverseLerp(_timeStart, _timeStart + _timeOfFilling, time);
+        return Mathf.InverseLerp(_timeStart, _timeStart + _timeOfFilling, time) + _startEndUOffset;
+    }
+
+    private float GetValueAsV()
+    {
+        return _function.Value / 2f * _scale + _startV;
     }
 
     void Update()
     {
-        var val = _function.Value;
         var t = Time.time;
+        var val = GetValueAsV();
 
         if (t >= _timeStart + _timeOfFilling)
         {
             return;
         }
 
-        float t1 = TimeToUV(t - Time.deltaTime);
-        float t2 = TimeToUV(t);
+        float t1 = TimeToU(t - Time.deltaTime);
+        float t2 = TimeToU(t);
 
-        _drawer.Point1 = new Vector2(t1, _valueBefore / 2f + 0.5f);
-        _drawer.Point2 = new Vector2(t2, val / 2f + 0.5f);
+        if (t2 >= 1 - _startEndUOffset)
+        {
+            return;
+        }
+
+        _uvCurrent = new Vector2(t2, val);
+
+        _drawer.Point1 = new Vector2(t1, _valueBefore);
+        _drawer.Point2 = new Vector2(t2, val);
 
         _drawer.Paint();
 

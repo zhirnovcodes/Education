@@ -19,5 +19,9 @@ public class VinylDrawerInspector : Editor
         {
             drawer.Clear();
         }
+        if (GUILayout.Button("Save"))
+        {
+            FilesExtensions.ShowInExplorer(drawer.Save());
+        }
     }
 }

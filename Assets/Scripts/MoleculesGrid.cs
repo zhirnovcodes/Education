@@ -16,6 +16,7 @@ public class MoleculesGrid : MonoBehaviour
     [SerializeField] private int _count;
     [SerializeField, Range(0, 1f)] private float _density = 0.5f;
     [SerializeField, Range(0, 1f)] private float _randomizePosition = 0f;
+    [SerializeField, Range(0, 1f)] private float _randomizeDepth = 0f;
     [SerializeField, Range(0, 1f)] private float _randomizeScale = 0f;
     [SerializeField] private float _moleculeDiameter = 1;
     [SerializeField] private bool _shouldDrawGizmos = true;
@@ -35,12 +36,13 @@ public class MoleculesGrid : MonoBehaviour
             {
                 var xOffset = Mathf.Lerp(0.5f, Random.Range(sizeXToUv, 1 - sizeXToUv), _randomizePosition);
                 var uv = new Vector2((x + xOffset) / count.x, (y + 0.5f) / count.y);
-                var pos = new Vector3(_planeSize.x * uv.x, _planeSize.y * uv.y, 0);
+                var z = Random.Range(-1f, 1) * _randomizeDepth;
+                var pos = new Vector3(_planeSize.x * uv.x, _planeSize.y * uv.y, z);
 
                 pos += v1;
 
                 var size = Random.Range(0.1f, 1);
-                var scale = Vector3.Lerp(Vector3.one, new Vector3(size, size, 0), _randomizeScale);
+                var scale = Vector3.Lerp(Vector3.one, new Vector3(size, size, 1), _randomizeScale);
 
                 yield return new MoleculePosition() { Position = pos, Uv = uv, Scale = scale };
             }

@@ -16,6 +16,9 @@ public class Molecules1DSpawner : MoleculesSpawner<Molecule1D>
         var power = Mathf.Lerp(1, minPower, factor);
         component.Delay = delay;
         component.Power = power;
-        component.Buffer = _buffer;
+        if (_buffer != null)
+        { 
+            component.Buffer = _buffer; 
+        }
     }
 }

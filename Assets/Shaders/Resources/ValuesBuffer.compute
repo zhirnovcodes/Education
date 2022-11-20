@@ -1,83 +1,58 @@
 #pragma kernel Init
-#pragma kernel AddValue
+#pragma kernel SetValue
+#pragma kernel ShiftValues
 
-RWTexture2D<float4> Result;
 RWTexture2D<float4> Values;
-
-float4 BckgCol;
-float4 LinesCol;
-float2 ResultSize;
-float MaxOffset;
-
 
 int ValuesSize;
 float ValueNew;
 float StartTime;
 float DeltaTime;
 int IndexNew;
-int DrawType = 0;
+int CountShifted;
 
 #define NULL_VAL float4(-9999999, 0, 0, 0)
-
-//bool IsEmpty(float x){
-//    return Values[float2(x, 0)].r <= NULL_VAL.r;
-//}
 
 [numthreads(8,1,1)]
 void Init (uint3 id : SV_DispatchThreadID)
 {
     Values[id.xy] = NULL_VAL;
-}
 
-/*
-float ValueToUV(float x){
-    float c = ResultSize.y;
-    float val = (clamp(Values[float2(x, 0)].r, -MaxOffset, MaxOffset) / MaxOffset + 1) / 2 * c;
-    return val;
-}
-*/
-
-[numthreads(8,1,1)]
-void AddValue (uint3 id : SV_DispatchThreadID)
-{
-    if ((int)id.x == ValuesSize - 1){
+    if ((int)id.x == ValuesSize - 2){
         Values[id.xy] = float4(StartTime, 0, 0, 0);
         return;
 	}
 
-    if ((int)id.x == IndexNew){
-        Values[id.xy] = float4(ValueNew, 0, 0, 0);
+    if ((int)id.x == ValuesSize - 1){
+        Values[id.xy] = float4(DeltaTime, 0, 0, 0);
         return;
-	}
-
-    if (IndexNew >= ValuesSize){
-        if ((int)id.x == ValuesSize - 1){
-            Values[id.xy] = float4(ValueNew, 0, 0, 0);
-            return;
-	    }
-
-        Values[id.xy] = Values[id.xy + float2(1, 0)];
-        return;
-    }
-
-    if (id.x > IndexNew){
-        Values[id.xy] = NULL_VAL;
 	}
 }
 
 [numthreads(1,1,1)]
 void SetValue(uint3 id : SV_DispatchThreadID)
 {
-
+    Values[float2(IndexNew, 0)] = ValueNew;
 }
 
 [numthreads(8,1,1)]
 void ShiftValues (uint3 id : SV_DispatchThreadID)
 {
-    if ((int)id.x == ValuesSize - 1){
-        Values[id.xy] = float4(StartTime, 0, 0, 0);
+    if ((int)id.x == ValuesSize - 2){
+        float deltaTime = Values[float2(ValuesSize - 1, 0)];
+        float timeStart = Values[float2(ValuesSize - 2, 0)];
+        Values[id.xy] = float4(timeStart + deltaTime * CountShifted, 0, 0, 0);
         return;
 	}
 
-    Values[id.xy] = Values[id.xy + float2(1, 0)];
+    if ((int)id.x == ValuesSize - 1){
+        return;
+	}
+
+    if ((int)id.x >= ValuesSize - 2 - CountShifted){
+        Values[id.xy] = NULL_VAL;
+        return;
+	}
+
+    Values[id.xy] = Values[id.xy + float2(CountShifted, 0)];
 }

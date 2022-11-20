@@ -2,15 +2,27 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TrigonometryView : MonoBehaviour
+public abstract class TrigonometryViewBase : MonoBehaviour
+{
+
+    public abstract event Action ValueChanged;
+
+    public abstract Trigonometry Function
+    {
+        get;
+        set;
+    }
+}
+
+public class TrigonometryView : TrigonometryViewBase
 {
     [SerializeField] private Dropdown _type;
     [SerializeField] private Slider _period;
     [SerializeField] private Slider _amplitude;
 
-    public event Action ValueChanged;
+    public override event Action ValueChanged;
 
-    public Trigonometry Function
+    public override Trigonometry Function
     {
         get
         {

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,9 +53,6 @@
     <UnityVersion>2021.2.8f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Assets\Scripts\Workspace.cs" />
     <Compile Include="Assets\Scripts\RotateAround.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\SquareFunction.cs" />
@@ -73,6 +70,7 @@
     <Compile Include="Assets\Scripts\TextureDrawing\PositionOffsetDrawer.cs" />
     <Compile Include="Assets\Scripts\ObjectsSpawner.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\ScalarOperationFunction.cs" />
+    <Compile Include="Assets\Scripts\TextureDrawing\ValuesBuffer.cs" />
     <Compile Include="Assets\Scripts\KeepBetweenObjects.cs" />
     <Compile Include="Assets\Scripts\View\CompressorView.cs" />
     <Compile Include="Assets\Scripts\ForceMover2D.cs" />
@@ -118,9 +116,11 @@
     <Compile Include="Assets\Scripts\LowPressureForceProvider1D.cs" />
     <Compile Include="Assets\Scripts\FluctuatingString1D.cs" />
     <Compile Include="Assets\Scripts\ArrowMoveController.cs" />
+    <Compile Include="Assets\Scripts\View\TrigonometrySliderView.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\PeakFunction.cs" />
     <Compile Include="Assets\Scripts\StringView.cs" />
     <Compile Include="Assets\Scripts\MathIZ.cs" />
+    <Compile Include="Assets\Scripts\TextEditColor.cs" />
     <Compile Include="Assets\Scripts\AnalogueViewController.cs" />
     <Compile Include="Assets\Scripts\StringPlayer.cs" />
     <Compile Include="Assets\Scripts\VinylController.cs" />
@@ -143,6 +143,7 @@
     <Compile Include="Assets\Scripts\FluctuatingStringKeyboardController.cs" />
     <Compile Include="Assets\Scripts\IForceProvider.cs" />
     <Compile Include="Assets\Scripts\FluctuatingFollower1D.cs" />
+    <Compile Include="Assets\Scripts\View\SliderTextEditView.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\MinMaxFunction.cs" />
     <Compile Include="Assets\Scripts\ReverbWorkspace.cs" />
     <Compile Include="Assets\Scripts\Molecule2D.cs" />
@@ -152,11 +153,14 @@
     <Compile Include="Assets\Scripts\FluctuatingObjectMover1D.cs" />
     <Compile Include="Assets\Scripts\MoleculesGrid.cs" />
     <Compile Include="Assets\Scripts\GraphDrawerMaterial.cs" />
+    <Compile Include="Assets\Scripts\CameraPostProcessing.cs" />
     <Compile Include="Assets\Scripts\Digital\DigitalCableRandom.cs" />
-    <Compile Include="Assets\Scripts\OffsetDrawerKeyboardController.cs" />
+    <Compile Include="Assets\Scripts\GraphKeyboardController.cs" />
     <Compile Include="Assets\Scripts\SceneSpawnerEditor.cs" />
     <Compile Include="Assets\Scripts\Dummy.cs" />
     <Compile Include="Assets\Scripts\IndexedQueue.cs" />
+    <Compile Include="Assets\Scripts\MonoTimeController.cs" />
+    <Compile Include="Assets\Scripts\TextureDrawing\Functions\PerlinFunction.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -177,7 +181,8 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\Shaders\DustShader.shader" />
-    <None Include="Assets\Shaders\NoiseSimplex.cginc" />
+    <None Include="Assets\Shaders\Libs\NoiseSimplex.cginc" />
+    <None Include="Assets\Shaders\Fog.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\Shaders\ValuesBufferExtentions.cginc" />

@@ -2,7 +2,8 @@ Shader "Zhirnov/VinylAlphaCreator"
 {
     Properties
     {
-        _Color ("Color", Color) = (0.1,0.1,0,0)
+        _Color ("Color", Color) = (0,0,0,1)
+        //_ColorTo ("Color To", Color) = (0,0,0,0)
     }
 
     SubShader
@@ -22,29 +23,39 @@ Shader "Zhirnov/VinylAlphaCreator"
             #define NORMAL_UP float4(0.5,0.5,1,1)
 
             float4      _Color;
+            //float4      _ColorTo;
 
             float4 frag(v2f_customrendertexture IN) : COLOR
             {
+                float2 lCen = float2(0.5, 0.5);
+                float d = length(IN.localTexcoord.xy - lCen);
+
                 if (IN.primitiveID == 0)
-                {
-                    float3 c = float3(1, 0.5, 0);
-                    float3 p = IN.localTexcoord;
-                    if (length(p - c) > 0.5)
+                { 
+                    //if (IN.localTexcoord.x > 0.51 || d > 0.5)
+                    if (d >= 0.5)
                     {
                         discard;
-                    }
+					}
                 }
                 if (IN.primitiveID == 2)
                 {
-                    float3 c = float3(0, 0.5, 0);
-                    float3 p = IN.localTexcoord;
-                    if (length(p - c) > 0.5)
+                    //if (IN.localTexcoord.x < 0.49 || d > 0.5)
+                    if (d >= 0.5)
                     {
                         discard;
-                    }
+					}
+				}
+                if (IN.primitiveID == 1)
+                {
+                    d = abs(IN.localTexcoord.y - 0.5);
 				}
 
-                return float4(_Color.xyz, 0);
+                //d = 1 - saturate(d * 2);
+                //float col = lerp(_ColorTo, _Color, d).x;
+
+                float4 col = float4(_Color.xyz, 0);//d / 2);//d
+                return col;
             }
             ENDCG
         }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TrigonometryViewController : MonoBehaviour
 {
-    [SerializeField] private TrigonometryView _view;
+    [SerializeField] private TrigonometryViewBase _view;
     [SerializeField] private TrigonometryFunction _function;
 
     private void OnEnable()

@@ -7,10 +7,19 @@ Shader "Unlit/Molecule"
         _PerlinText ("Perlin Texture", 2D) = "white" {}
         _Color ("Color", Color) = (1, 1, 1, 1)
         _ColorTo ("Color To", Color) = (1, 1, 1, 1)
-        _Speed ("Noise Speed", Vector) = (1, 1, 0, 0)
-        _PerlinWidth ("Perlin Width", Float) = 100
 
-        _WaveDecay ("Wave Decay Range", Range(0.01, 10)) = 5
+        _Speed ("Noise Speed", Vector) = (1, 1, 0, 0)
+        _NoiseAmplitude ("Noise Amplitude", Vector) = (1, 1, 1, 0)
+        _PerlinWidth ("Perlin Width", Float) = 100
+        _Scale ("Scale", Float) = 1
+
+        _FunctionPower ("Function Power", Range(0, 1)) = 1
+        _WaveColorValue ("Wave Color Value", Range(0, 1)) = 0
+        _WaveColor ("Wave Color", Color) = (1, 1, 1, 1)
+        _WaveScale ("Wave Scale", Range(0, 1)) = 0
+        _IsRadiant ("Is Radian", Float) = 0
+
+        _WaveDecay ("Wave Decay Range", Range(0.01, 100)) = 5
         _WaveSpeed ("Wave Spread Speed", Range(0.1, 10)) = 1
         _SourcePos ("Source Position", Vector) = (0, 0, 0, 0)
     }
@@ -29,7 +38,6 @@ Shader "Unlit/Molecule"
             #pragma multi_compile HAS_VALUES
 
             #include "UnityCG.cginc"
-            #include "NoiseSimplex.cginc"
 
             #define PI 3.1415
             #define PI2 (PI * 2)
@@ -45,6 +53,7 @@ Shader "Unlit/Molecule"
                 float2 uv : TEXCOORD0;
                 float4 vertex : SV_POSITION;
                 float4 offset : TEXCOORD1;
+                float4 color : COLOR;
                 float4 wPos : TEXCOORD2;
             };
 
@@ -52,12 +61,19 @@ Shader "Unlit/Molecule"
             sampler2D _BlurText;
             sampler2D _PerlinText;
             float4 _MainTex_ST;
+            float4 _WaveColor;
             float4 _Color;
             float4 _ColorTo;
             float4 _Speed;
+            float3 _NoiseAmplitude;
+            float _FunctionPower;
             float _WaveSpeed;
+            float _WaveScale;
+            float _WaveColorValue;
+            float _IsRadiant;
             float _WaveDecay;
             float _PerlinWidth;
+            float _Scale;
             float4 _SourcePos;
             
             sampler2D _Values;
@@ -94,7 +110,7 @@ Shader "Unlit/Molecule"
 
                 float t0 = i0 * _DeltaTime;
                 float t1 = i1 * _DeltaTime;
-                float t2 = saturate( t1 == t0 ? 0 : invLerp(t0, t1, t) ); 
+                float t2 = t1 == t0 ? 0 : saturate( invLerp(t0, t1, t) ); 
 
                 return lerp(v0, v1, t2);
 			}
@@ -105,43 +121,65 @@ Shader "Unlit/Molecule"
                 //return snoise(pos);     
 			}
 
+            float4 getBufferValue(float3 sourcePosition, float3 worldPosition, float3 radiand) // _SourcePos, o.wPos, _IsRadiant
+            {
+            #ifdef HAS_VALUES
+                float2 offDir = sourcePosition.xy - worldPosition;
+                float rad = saturate(radiand);
+                float distance = lerp(abs(offDir.x), length(offDir), rad);
+                float4 funcOffset = lerp(float4(1, 0, 0, 0), float4(normalize(offDir).xy, 0, 0), rad);
+
+                float timeOffset = distance / _WaveSpeed;
+                timeOffset = clamp( timeOffset / 5, 0, 8);
+                float funcValue = getValue(_Time.y - timeOffset);
+                funcOffset *= funcValue;
+
+                funcOffset.a = funcValue;
+                return funcOffset;
+            #else
+                return float4(0, 0, 0, 0);
+            #endif
+			}
+
             v2f vert (appdata v)
             {
                 v2f o;
-
-
+                
                 float3 wPos = unity_ObjectToWorld._m03_m13_m23;
                 float2 wPos2 = wPos.xy;
-                float z = sin(wPos.x) * cos(wPos.y);
 
+
+                float z = wPos.z;//(noiseC - 0.5) * 2;
                 o.wPos = float4(wPos, z);
 
                 float noiseOffset = 0.01;
                 float noiseC = getPerlin(wPos2);
                 float noiseX = getPerlin(wPos2 + float2(noiseOffset,0)) - noiseC;
                 float noiseY = getPerlin(wPos2 + float2(0,noiseOffset)) - noiseC;
-                float noiseZ = getPerlin(wPos2 + float2(noiseOffset,noiseOffset)) - noiseC;
+                float noiseZ = getPerlin(wPos2 + float2(-noiseOffset,-noiseOffset)) - noiseC;
 
                 float3 noise3D = normalize( float3(noiseX, noiseY, noiseZ) );
 
                 float3 time = PI2 * _Time.x * noise3D;
-                float4 perlinOffset = _Speed * float4( sin( time.x ), cos( time.y ), sin( time.z ) + z, 1 );
+                float3 dist = time * _Speed;
+                float4 perlinOffset = float4( sin( dist.x ), cos( dist.y ), sin( dist.z ) + z, 1 );
+                perlinOffset *= float4(_NoiseAmplitude, 1);
                 o.offset = perlinOffset;
 
-
-                // todo from source
-                float4 funcOffset = float4(0, 0, 0, 0);
-                #ifdef HAS_VALUES
-                    funcOffset = float4(1, 0, 0, 0);
-                    float timeOffset = abs((_SourcePos - wPos).x / _WaveSpeed);
-                    timeOffset = clamp( timeOffset / 5, 0, 8);
-                    funcOffset *= getValue(_Time.y - timeOffset) * (1 - saturate(invLerp(0, _WaveDecay, abs((_SourcePos - wPos).x))));
-                #endif
+                float4 funcOffset = lerp(float4(0,0,0,0), getBufferValue( _SourcePos, o.wPos, _IsRadiant ), _FunctionPower);
+                
+                float funcValue = funcOffset.a;
+                funcOffset.a = 0;
+                o.color = lerp(float4(1,1,1,1), float4(lerp(_Color.xyz, _WaveColor.xyz, funcValue), 1), _WaveColorValue);
 
                 v.vertex += perlinOffset + funcOffset;
-                o.vertex = UnityObjectToClipPos(v.vertex);
 
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+                float scale = _Scale + lerp(0, _WaveScale, saturate(funcValue));
+                float4 scaleOffset = scale * float4(normalize(o.uv - float2(0.5, 0.5)), 0, 0);
+                v.vertex += scaleOffset;
+
+                o.vertex = UnityObjectToClipPos(v.vertex);
                 return o;
             }
 
@@ -150,7 +188,7 @@ Shader "Unlit/Molecule"
                 float depth = i.offset.z;
                 float tr = 1 - abs(saturate(depth));
                 
-                fixed4 texColor = tex2D(_MainTex, i.uv);
+                fixed4 texColor = tex2D(_MainTex, i.uv) * i.color;
                 float blur = saturate(depth >= 0 ? 0 : abs(depth));
                 float radius = length( i.uv - float2(0.5, 0.5));
                 float blurStart = 0.5;

@@ -5,11 +5,51 @@ using UnityEngine;
 public class VinylDrawer : MonoBehaviour
 {
     [SerializeField] private CustomRenderTexture _texture;
+    [SerializeField] private Texture2D _defaultTexture;
     [SerializeField] private int _radiusPixels = 5;
     [SerializeField] private Vector2 _point1;
     [SerializeField] private Vector2 _point2;
+    [SerializeField] private bool _shouldSendToMaterial;
 
     private CustomRenderTextureUpdateZone[] _zones = new CustomRenderTextureUpdateZone[3];
+
+    private void Awake()
+    {
+        if (_shouldSendToMaterial && _texture != null)
+        {
+            var renderer = GetComponent<MeshRenderer>();
+            if (renderer == null)
+            {
+                return;
+            }
+
+            _texture = CloneCustomTexture();
+            Clear();
+
+            var pb = new MaterialPropertyBlock();
+            pb.SetTexture("_MainTex", _texture);
+            renderer.SetPropertyBlock(pb);
+        }
+    }
+
+    private CustomRenderTexture CloneCustomTexture()
+    {
+        var res = new CustomRenderTexture(_texture.width, _texture.height, _texture.format);
+        res.initializationSource = _texture.initializationSource;
+        res.initializationTexture = _texture.initializationTexture;
+        res.initializationMode = _texture.initializationMode;
+        res.initializationColor = _texture.initializationColor;
+
+        res.updateMode = _texture.updateMode;
+        res.updatePeriod = _texture.updatePeriod;
+
+        res.material = _texture.material;
+        res.shaderPass = _texture.shaderPass;
+        res.antiAliasing = _texture.antiAliasing;
+        res.anisoLevel = _texture.anisoLevel;
+
+        return res;
+    }
 
     public Vector2 Point1
     {
@@ -34,30 +74,9 @@ public class VinylDrawer : MonoBehaviour
             return;
         }
 
-
-        /*
-        var pos = (_point2 + _point1) / 2f;
-        var min = new Vector2( Mathf.Min(_point1.x, _point2.x), Mathf.Min(_point1.y, _point2.y));
-        var max = new Vector2( Mathf.Max(_point1.x, _point2.x), Mathf.Max(_point1.y, _point2.y));
-
-
-        min -= rGlobUV;
-        max += rGlobUV;
-        var size = max - min;
-
-        _zones[0].updateZoneCenter = pos;
-        _zones[0].updateZoneSize = size;
-
-        _texture.material.SetVector("_RadiusV", rGlobUV);
-        _texture.material.SetVector("_Point1", _point1);
-        _texture.material.SetVector("_Point2", _point2);
-        //_texture.material.SetFloat("_Point2Value", rLocUV);
-        */
-
-
         var pos = (_point2 + _point1) / 2f;
         var d = _point2 - _point1;
-        var dN = (_point2 - _point1).normalized;
+        var dN = d.normalized;
         var rGlobUV = new Vector2((float)_radiusPixels / _texture.width, (float)_radiusPixels / _texture.height);
         var p = Vector2.Perpendicular(d).normalized;
         var r1 = new Vector2(p.x * rGlobUV.x, p.y * rGlobUV.y);
@@ -75,14 +94,13 @@ public class VinylDrawer : MonoBehaviour
 
         var r0 = new Vector2(dN.x * rGlobUV.x, dN.y * rGlobUV.y);
 
-        _zones[0].updateZoneCenter = _point1 - dN * r0.magnitude / 2;
-        _zones[0].updateZoneSize = new Vector2(r0.magnitude, r1.magnitude); ;
-        _zones[0].rotation = ang;
+        _zones[0].updateZoneCenter = _point1;
+        _zones[0].updateZoneSize = rGlobUV;
+        _zones[0].rotation = 0;
 
-
-        _zones[2].updateZoneCenter = _point2 + dN * r0.magnitude / 2;
-        _zones[2].updateZoneSize = new Vector2(r0.magnitude, r1.magnitude); ;
-        _zones[2].rotation = ang;
+        _zones[2].updateZoneCenter = _point2;
+        _zones[2].updateZoneSize = rGlobUV;
+        _zones[2].rotation = 0;
 
         _texture.SetUpdateZones(_zones);
         _texture.Update();
@@ -94,6 +112,15 @@ public class VinylDrawer : MonoBehaviour
         {
             return;
         }
+        if (_defaultTexture != null)
+        {
+            _texture.initializationTexture = _defaultTexture;
+        }
         _texture.Initialize();
+    }
+
+    public string Save()
+    {
+        return FilesExtensions.SaveRTToFile(_texture, "Vinyl");
     }
 }

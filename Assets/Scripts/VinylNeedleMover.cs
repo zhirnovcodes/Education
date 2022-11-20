@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class VinylNeedleMover : MonoBehaviour
 {
+    [SerializeField] private VinylGraphDrawer _drawer;
     [SerializeField] private GraphFunctionBase _function;
     [SerializeField] private float _timeOfFilling = 8;
     [SerializeField] private float _scale = 1;
@@ -30,6 +31,7 @@ public class VinylNeedleMover : MonoBehaviour
 
     void Update()
     {
+        /*
         var t = Time.time;
 
         if (t >= _timeStart + _timeOfFilling)
@@ -44,6 +46,8 @@ public class VinylNeedleMover : MonoBehaviour
         var posVer = per * val * _scale;
 
         transform.position = posHor + posVer;
+        */
+        transform.position = _drawer.CurrentPointPosition;
     }
 
     private void OnDrawGizmos()
