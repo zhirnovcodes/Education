@@ -14,12 +14,12 @@ CustomRenderTexture:
   m_DownscaleFallback: 0
   m_IsAlphaChannelOptional: 0
   serializedVersion: 5
-  m_Width: 1024
+  m_Width: 2048
   m_Height: 512
   m_AntiAliasing: 8
   m_MipCount: -1
   m_DepthStencilFormat: 94
-  m_ColorFormat: 52
+  m_ColorFormat: 25
   m_MipMap: 0
   m_GenerateMips: 1
   m_SRGB: 0
@@ -40,25 +40,25 @@ CustomRenderTexture:
   m_Material: {fileID: 2100000, guid: 8ad037b3add722a4f902427748fa036b, type: 2}
   m_InitSource: 0
   m_InitMaterial: {fileID: 0}
-  m_InitColor: {r: 0, g: 0, b: 0, a: 1}
-  m_InitTexture: {fileID: 0}
+  m_InitColor: {r: 1, g: 1, b: 1, a: 1}
+  m_InitTexture: {fileID: 2800000, guid: 59d06924d3f1ed04781ea00ba242a4b2, type: 3}
   m_UpdateMode: 2
   m_InitializationMode: 0
   m_UpdateZoneSpace: 0
   m_CurrentUpdateZoneSpace: 0
   m_UpdateZones:
-  - updateZoneCenter: {x: 0.9996629, y: 0.18799894, z: 0}
-    updateZoneSize: {x: 0.009765625, y: 0.01953125, z: 0}
+  - updateZoneCenter: {x: 0.99939173, y: 0.7392877, z: 0}
+    updateZoneSize: {x: 0.0048828125, y: 0.01953125, z: 0}
     rotation: 0
     passIndex: 0
     needSwap: 0
-  - updateZoneCenter: {x: 0.9997842, y: 0.18602185, z: 0}
-    updateZoneSize: {x: 0.003961607, y: 0.009820399, z: 0}
-    rotation: -86.48927
+  - updateZoneCenter: {x: 0.99948615, y: 0.7393577, z: 0}
+    updateZoneSize: {x: 0.00023510783, y: 0.015954038, z: 0}
+    rotation: 36.567764
     passIndex: 0
     needSwap: 0
-  - updateZoneCenter: {x: 0.99990547, y: 0.18404476, z: 0}
-    updateZoneSize: {x: 0.009765625, y: 0.01953125, z: 0}
+  - updateZoneCenter: {x: 0.99958056, y: 0.73942775, z: 0}
+    updateZoneSize: {x: 0.0048828125, y: 0.01953125, z: 0}
     rotation: 0
     passIndex: 0
     needSwap: 0

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FunctionBuffer : MonoBehaviour
+public class FunctionBuffer : FunctionBase
 {
     [SerializeField] private GraphFunctionBase _function;
     [SerializeField] private float _maxTime = 4;
@@ -14,31 +14,25 @@ public class FunctionBuffer : MonoBehaviour
 
     private PseudoTimer _timer;
 
-    public void InitializeWithTexture(RenderTexture values)
+    public float MaxTime
     {
-        var tex = new Texture2D(values.width, 1, TextureFormat.R16, false);
-        var bckp = RenderTexture.active;
-        RenderTexture.active = values;
-        tex.ReadPixels(new Rect(0, 0, values.width, 1), 0, 0);
-        tex.Apply();
-        RenderTexture.active = bckp;
-
-        _queue = new IndexedQueue<float>(values.width);
-
-        for (int i = 0; i < values.width; i++)
+        get => _maxTime;
+        set
         {
-            var pix = tex.GetPixel(i, 0).r;
-            if (pix <= -99999)
-            {
-                break;
-            }
-            _queue.Add(pix);
+            _maxTime = value;
         }
-
-        DestroyImmediate(tex);
     }
 
-    public float GetValue(float time)
+    public GraphFunctionBase Function
+    {
+        get => _function;
+        set
+        {
+            _function = value;
+        }
+    }
+
+    public override float GetValue(float time)
     {
         if (_queue == null)
         {
@@ -67,8 +61,33 @@ public class FunctionBuffer : MonoBehaviour
         return foundValue;
     }
 
+    public void InitializeWithTexture(RenderTexture values)
+    {
+        var tex = new Texture2D(values.width, 1, TextureFormat.R16, false);
+        var bckp = RenderTexture.active;
+        RenderTexture.active = values;
+        tex.ReadPixels(new Rect(0, 0, values.width, 1), 0, 0);
+        tex.Apply();
+        RenderTexture.active = bckp;
+
+        _queue = new IndexedQueue<float>(values.width);
+
+        for (int i = 0; i < values.width; i++)
+        {
+            var pix = tex.GetPixel(i, 0).r;
+            if (pix <= -99999)
+            {
+                break;
+            }
+            _queue.Add(pix);
+        }
+
+        DestroyImmediate(tex);
+    }
+
     private void OnEnable()
     {
+        _timeStart = Time.time;
         if (_queue == null)
         {
             var count = Mathf.CeilToInt(_maxTime / _deltaTime);
@@ -87,7 +106,6 @@ public class FunctionBuffer : MonoBehaviour
             _queue.Clear(); 
         }
         _timer.Start(_deltaTime);
-        _timeStart = Time.time;
         _value = 0;
     }
 

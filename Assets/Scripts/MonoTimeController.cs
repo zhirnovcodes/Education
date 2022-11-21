@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class MonoTimeController : MonoBehaviour
 {
-    [SerializeField] private MonoBehaviour _behaviour;
+    [SerializeField] private MonoBehaviour[] _behaviours;
+    [SerializeField] private GameObject[] _objects;
     [SerializeField] private float _timeStart;
-    [SerializeField] private float _timeEnd;
+    [SerializeField] private float _workingTime;
 
     private float _enabledTime;
 
@@ -23,6 +24,28 @@ public class MonoTimeController : MonoBehaviour
     void Update()
     {
         var t = Time.time - _enabledTime;
-        _behaviour.enabled = t >= _timeStart && t <= _timeEnd;
+        var isEnabled = t >= _timeStart && t <= _timeStart + _workingTime; 
+        if (_behaviours != null)
+        {
+            foreach (var b in _behaviours)
+            {
+                if (b == null)
+                {
+                    continue;
+                }
+                b.enabled = isEnabled;
+            }
+        }
+        if (_objects != null)
+        {
+            foreach (var o in _objects)
+            {
+                if (o == null)
+                {
+                    continue;
+                }
+                o.SetActive(isEnabled);
+            }
+        }
     }
 }

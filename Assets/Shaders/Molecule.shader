@@ -27,7 +27,7 @@ Shader "Unlit/Molecule"
     {        
         Tags {"Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent"}
         ZWrite Off
-        Blend SrcAlpha OneMinusSrcAlpha
+        //Blend SrcAlpha OneMinusSrcAlpha
         LOD 200
 
         Pass

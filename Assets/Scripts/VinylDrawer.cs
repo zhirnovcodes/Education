@@ -9,15 +9,16 @@ public class VinylDrawer : MonoBehaviour
     [SerializeField] private int _radiusPixels = 5;
     [SerializeField] private Vector2 _point1;
     [SerializeField] private Vector2 _point2;
-    [SerializeField] private bool _shouldSendToMaterial;
+    [SerializeField] private bool _shouldCopyTexture;
+    [SerializeField] private MeshRenderer _renderer;
 
     private CustomRenderTextureUpdateZone[] _zones = new CustomRenderTextureUpdateZone[3];
 
     private void Awake()
     {
-        if (_shouldSendToMaterial && _texture != null)
+        if (_shouldCopyTexture && _texture != null)
         {
-            var renderer = GetComponent<MeshRenderer>();
+            var renderer = _renderer == null ? GetComponent<MeshRenderer>() : _renderer;
             if (renderer == null)
             {
                 return;
@@ -27,14 +28,14 @@ public class VinylDrawer : MonoBehaviour
             Clear();
 
             var pb = new MaterialPropertyBlock();
-            pb.SetTexture("_MainTex", _texture);
+            pb.SetTexture("_AlphaMap", _texture);
             renderer.SetPropertyBlock(pb);
         }
     }
 
     private CustomRenderTexture CloneCustomTexture()
     {
-        var res = new CustomRenderTexture(_texture.width, _texture.height, _texture.format);
+        var res = new CustomRenderTexture(_texture.width, _texture.height, RenderTextureFormat.R16);
         res.initializationSource = _texture.initializationSource;
         res.initializationTexture = _texture.initializationTexture;
         res.initializationMode = _texture.initializationMode;
@@ -76,7 +77,6 @@ public class VinylDrawer : MonoBehaviour
 
         var pos = (_point2 + _point1) / 2f;
         var d = _point2 - _point1;
-        var dN = d.normalized;
         var rGlobUV = new Vector2((float)_radiusPixels / _texture.width, (float)_radiusPixels / _texture.height);
         var p = Vector2.Perpendicular(d).normalized;
         var r1 = new Vector2(p.x * rGlobUV.x, p.y * rGlobUV.y);
@@ -91,8 +91,6 @@ public class VinylDrawer : MonoBehaviour
         _zones[1].updateZoneCenter = pos;
         _zones[1].updateZoneSize = size;
         _zones[1].rotation = ang;
-
-        var r0 = new Vector2(dN.x * rGlobUV.x, dN.y * rGlobUV.y);
 
         _zones[0].updateZoneCenter = _point1;
         _zones[0].updateZoneSize = rGlobUV;

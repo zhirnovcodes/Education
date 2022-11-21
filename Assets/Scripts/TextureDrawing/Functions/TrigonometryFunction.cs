@@ -16,7 +16,7 @@ public struct Trigonometry
     public float Amplitude;
 }
 
-public class TrigonometryFunction : GraphFunctionBase
+public class TrigonometryFunction : FunctionBase
 {
     [SerializeField] private Trigonometry _function = new Trigonometry()
     {
@@ -41,10 +41,9 @@ public class TrigonometryFunction : GraphFunctionBase
         _timeStart = Time.time;
     }
 
-    public override float Value => Func(Time.time - _timeStart);
+    public override float Value => GetValue(Time.time - _timeStart);
 
-
-    private float Func(float t)
+    public override float GetValue(float t)
     {
         switch (_function.Type)
         {

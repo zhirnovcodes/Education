@@ -59,6 +59,7 @@
     <Compile Include="Assets\Scripts\Editor\CameraControllerEditor.cs" />
     <Compile Include="Assets\Scripts\Editor\ReverbZoneEditor.cs" />
     <Compile Include="Assets\Scripts\Editor\Molecule1DSpawnerInspector.cs" />
+    <Compile Include="Assets\Scripts\Editor\VinylGraphDrawerInspector.cs" />
     <Compile Include="Assets\Scripts\Editor\Molecule2DSpawnerInspector.cs" />
     <Compile Include="Assets\Scripts\Editor\VinylDrawerInspector.cs" />
   </ItemGroup>

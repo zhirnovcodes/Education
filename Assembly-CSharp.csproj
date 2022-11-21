@@ -57,6 +57,7 @@
     <Compile Include="Assets\Scripts\RotateAround.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\SquareFunction.cs" />
     <Compile Include="Assets\Scripts\Function1DMoveController.cs" />
+    <Compile Include="Assets\Scripts\TextureDrawing\Functions\PerlinFunction.cs" />
     <Compile Include="Assets\Scripts\ElectricitySettings.cs" />
     <Compile Include="Assets\Scripts\View\TrigonometryViewController.cs" />
     <Compile Include="Assets\Scripts\View\EnvelopeViewController.cs" />
@@ -115,6 +116,7 @@
     <Compile Include="Assets\Scripts\String1D.cs" />
     <Compile Include="Assets\Scripts\LowPressureForceProvider1D.cs" />
     <Compile Include="Assets\Scripts\FluctuatingString1D.cs" />
+    <Compile Include="Assets\Scripts\MonoTimeController.cs" />
     <Compile Include="Assets\Scripts\ArrowMoveController.cs" />
     <Compile Include="Assets\Scripts\View\TrigonometrySliderView.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\PeakFunction.cs" />
@@ -159,8 +161,7 @@
     <Compile Include="Assets\Scripts\SceneSpawnerEditor.cs" />
     <Compile Include="Assets\Scripts\Dummy.cs" />
     <Compile Include="Assets\Scripts\IndexedQueue.cs" />
-    <Compile Include="Assets\Scripts\MonoTimeController.cs" />
-    <Compile Include="Assets\Scripts\TextureDrawing\Functions\PerlinFunction.cs" />
+    <Compile Include="Assets\Scripts\VinylPlane.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -196,6 +197,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\Shaders\NewSurfaceShader.shader" />
+    <None Include="Assets\Shaders\Vinyl.shader" />
     <None Include="Assets\Shaders\Resources\GraphDrawer.compute" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />

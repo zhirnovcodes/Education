@@ -10,7 +10,7 @@ public enum FunctionOperation
 }
 
 
-public class FunctionOperationFunction : GraphFunctionBase
+public class FunctionOperationFunction : FunctionBase
 {
     [SerializeField] private GraphFunctionBase _f1;
     [SerializeField] private GraphFunctionBase _f2;
@@ -20,18 +20,40 @@ public class FunctionOperationFunction : GraphFunctionBase
     {
         get
         {
-            switch (_operation)
-            {
-                case FunctionOperation.Minus:
-                    return _f1.Value - _f2.Value;
-                case FunctionOperation.Plus:
-                    return _f1.Value + _f2.Value;
-                case FunctionOperation.Multiply:
-                    return _f1.Value * _f2.Value;
-                case FunctionOperation.Divide:
-                    return _f1.Value / _f2.Value;
-            }
-            return 0;
+            return Opreation(_f1.Value, _f2.Value);
         }
+    }
+
+    public override float GetValue(float t)
+    {
+        if (_f1 is FunctionBase f1)
+        {
+            if (_f2 is FunctionBase f2)
+            {
+                return Opreation(f1.GetValue(t), f2.GetValue(t));
+            }
+            Debug.LogError("FunctionBase error: " + _f2.GetType().Name);
+        }
+        else
+        {
+            Debug.LogError("FunctionBase error: " + _f1.GetType().Name);
+        }
+        return 0;
+    }
+
+    private float Opreation(float v1, float v2)
+    {
+        switch (_operation)
+        {
+            case FunctionOperation.Minus:
+                return v1 - v2;
+            case FunctionOperation.Plus:
+                return v1 + v2;
+            case FunctionOperation.Multiply:
+                return v1 * v2;
+            case FunctionOperation.Divide:
+                return v1 / v2;
+        }
+        return 0;
     }
 }
