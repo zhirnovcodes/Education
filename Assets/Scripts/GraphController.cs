@@ -26,7 +26,10 @@ public class GraphController : MonoBehaviour
             _instance = this;
             DontDestroyOnLoad(this);
         }
-
+        if (!_instance.Equals(this))
+        {
+            Destroy(this);    
+        }
     }
 
     private void OnEnable()

@@ -101,6 +101,14 @@ public class CameraController : MonoBehaviour
             return;
         }
 
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            _camera.transform.position = _stablePosition;
+            _camera.orthographicSize = _stableSize;
+            _direction = Vector3.zero;
+            return;
+        }
+
         var pos = _camera.transform.position;
         var size = _camera.orthographicSize;
 
@@ -119,12 +127,19 @@ public class CameraController : MonoBehaviour
         _camera.transform.position += new Vector3(dir.x, dir.y, 0);
         _camera.orthographicSize += dir.z;
 
+
+
+        if (_floatSpeed > 0)
+        {
+            _camera.orthographicSize += Mathf.Sin(Time.time * Mathf.PI * _floatSpeed) * _floatDistance * Time.deltaTime;
+        }
+
         if (IsOutOfBorders())
         {
             _direction = Vector3.zero;
             var newPos = _camera.transform.position;
             var center = new Vector3(_borders.center.x, _borders.center.y, newPos.z);
-            _camera.transform.position = Vector3.Lerp(newPos, center, 0.2f);
+            _camera.transform.position += (center - _camera.transform.position).normalized;
         }
 
         return;

@@ -20,6 +20,10 @@ public class Molecule1D : FunctionBase
 
     public override float GetValue(float t)
     {
+        if (_buffer == null)
+        {
+            return 0;
+        }
         return _buffer.GetValue(t - _delay) * _power;
     }
 }

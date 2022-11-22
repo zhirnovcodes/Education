@@ -4,8 +4,9 @@ public class FunctionMover1D : MonoBehaviour
 {
     [SerializeField] private GraphFunctionBase _function;
     [SerializeField] private float _power = 1;
+    [SerializeField] private Vector3 _speed = Vector2.right;
 
-    private Vector2 _stablePosition;
+    private Vector3 _stablePosition;
 
     public float Offset { get; private set; }
 
@@ -13,7 +14,7 @@ public class FunctionMover1D : MonoBehaviour
     {
         Offset = _function.Value * _power;
 
-        transform.localPosition = _stablePosition + Vector2.right * Offset;
+        transform.localPosition = _stablePosition + _speed * Offset;
     }
 
     private void OnEnable()

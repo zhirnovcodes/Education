@@ -20,6 +20,9 @@ public class ValuesToMoleculeBridge : MonoBehaviour
     [SerializeField] private bool _shouldFollowSource = false;
     [SerializeField] private bool _hasValues = true;
 
+    public float WaveColorValue { get => _waveColorValue; set => _waveColorValue = value; }
+    public float WaveScale { get => _waveScale; set => _waveScale = value; }
+
     private void OnEnable()
     {
         if (_hasValues)
@@ -30,8 +33,17 @@ public class ValuesToMoleculeBridge : MonoBehaviour
         {
             _materialWithValue.DisableKeyword("HAS_VALUES");
         }
-        
-        _materialWithValue.SetVector("_SourcePos", _source.transform.position);
+
+        if (_source != null)
+        {
+            _materialWithValue.SetVector("_SourcePos", _source.transform.position);
+        }
+
+        if (_drawer == null)
+        {
+            return;
+        }
+
         _materialWithValue.SetTexture("_Values", _drawer.Values);
         _materialWithValue.SetInteger("_ValuesWidth", _drawer.Values.width);
         _materialWithValue.SetFloat("_DeltaTime", _drawer.DeltaTime);
@@ -46,11 +58,8 @@ public class ValuesToMoleculeBridge : MonoBehaviour
 
     private void LateUpdate()
     {
-
         _materialWithValue.SetFloat("_WaveSpeed", _speed);
         _materialWithValue.SetFloat("_WaveDecay", _range);
-        _materialWithValue.SetFloat("_StartTime", _drawer.TimeStart);
-        _materialWithValue.SetFloat("_MaxIndex", _drawer.MaxIndex);
         _materialWithValue.SetFloat("_WaveColorValue", _waveColorValue);
         _materialWithValue.SetFloat("_FunctionPower", _functionPower);
         _materialWithValue.SetFloat("_WaveScale", _waveScale);
@@ -60,10 +69,15 @@ public class ValuesToMoleculeBridge : MonoBehaviour
         _materialWithValue.SetVector("_Color", _color);
         _materialWithValue.SetVector("_NoiseAmplitude", _noiseAmp);
 
+        if (_drawer != null)
+        {
+            _materialWithValue.SetFloat("_StartTime", _drawer.TimeStart);
+            _materialWithValue.SetFloat("_MaxIndex", _drawer.MaxIndex);
+        }
+
         if (_shouldFollowSource)
         {
             _materialWithValue.SetVector("_SourcePos", _source.transform.position);
         }
-
     }
 }

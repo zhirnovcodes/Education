@@ -14,6 +14,7 @@ public struct Trigonometry
     public TrigFunctionType Type;
     public float Period;
     public float Amplitude;
+    public float XShift;
 }
 
 public class TrigonometryFunction : FunctionBase
@@ -45,6 +46,7 @@ public class TrigonometryFunction : FunctionBase
 
     public override float GetValue(float t)
     {
+        t += _function.XShift;
         switch (_function.Type)
         {
             case TrigFunctionType.Sin:

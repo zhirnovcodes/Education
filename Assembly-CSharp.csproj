@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -52,6 +52,9 @@
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2021.2.8f1</UnityVersion>
   </PropertyGroup>
+  <ItemGroup>
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Workspace.cs" />
     <Compile Include="Assets\Scripts\RotateAround.cs" />
@@ -116,6 +119,7 @@
     <Compile Include="Assets\Scripts\String1D.cs" />
     <Compile Include="Assets\Scripts\LowPressureForceProvider1D.cs" />
     <Compile Include="Assets\Scripts\FluctuatingString1D.cs" />
+    <Compile Include="Assets\Scripts\View\WaveRepresentationViewController.cs" />
     <Compile Include="Assets\Scripts\MonoTimeController.cs" />
     <Compile Include="Assets\Scripts\ArrowMoveController.cs" />
     <Compile Include="Assets\Scripts\View\TrigonometrySliderView.cs" />
@@ -125,6 +129,7 @@
     <Compile Include="Assets\Scripts\TextEditColor.cs" />
     <Compile Include="Assets\Scripts\AnalogueViewController.cs" />
     <Compile Include="Assets\Scripts\StringPlayer.cs" />
+    <Compile Include="Assets\Scripts\VinylPlane.cs" />
     <Compile Include="Assets\Scripts\VinylController.cs" />
     <Compile Include="Assets\Scripts\Molecules1DSpawner.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\LerpFunction.cs" />
@@ -154,6 +159,7 @@
     <Compile Include="Assets\Scripts\MoleculesCountViewController.cs" />
     <Compile Include="Assets\Scripts\FluctuatingObjectMover1D.cs" />
     <Compile Include="Assets\Scripts\MoleculesGrid.cs" />
+    <Compile Include="Assets\Scripts\MonoKeyboardController.cs" />
     <Compile Include="Assets\Scripts\GraphDrawerMaterial.cs" />
     <Compile Include="Assets\Scripts\CameraPostProcessing.cs" />
     <Compile Include="Assets\Scripts\Digital\DigitalCableRandom.cs" />
@@ -161,7 +167,6 @@
     <Compile Include="Assets\Scripts\SceneSpawnerEditor.cs" />
     <Compile Include="Assets\Scripts\Dummy.cs" />
     <Compile Include="Assets\Scripts\IndexedQueue.cs" />
-    <Compile Include="Assets\Scripts\VinylPlane.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

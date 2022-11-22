@@ -8,6 +8,7 @@ public class GraphDrawerMaterial : MonoBehaviour
     [SerializeField] private GraphDrawerBase _drawer;
     [SerializeField] private EqDrawerBase _eqDrawer;
     [SerializeField] private PeakAvgDrawer _peakAvgDrawer;
+    [SerializeField] private GridDrawer _gridDrawer;
 
     void Start()
     {
@@ -27,7 +28,11 @@ public class GraphDrawerMaterial : MonoBehaviour
         {
             _eqDrawer = GetComponent<EqDrawerBase>();
         }
+        if (_gridDrawer == null)
+        {
+            _gridDrawer = GetComponent<GridDrawer>();
+        }
 
-        _renderer.material.mainTexture = _drawer == null ? (_peakAvgDrawer?.Texture ?? _eqDrawer.Texture) : _drawer.Texture;
+        _renderer.material.mainTexture = _drawer == null ? (_peakAvgDrawer?.Texture ?? (_eqDrawer?.Texture ?? _gridDrawer.Texture)) : _drawer.Texture;
     }
 }

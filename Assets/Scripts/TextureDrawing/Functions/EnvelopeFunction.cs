@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
 public struct Envelope
 {
+    public static Envelope Default = new Envelope() { Sustain = 1 };
+
     public float Attack;
     public float Decay;
     [Range(0,1)] public float Sustain;
@@ -13,7 +13,7 @@ public struct Envelope
 
 public class EnvelopeFunction : GraphFunctionBase, IResetable
 {
-    [SerializeField] private Envelope _envelope;
+    [SerializeField] private Envelope _envelope = Envelope.Default;
 
     public Envelope Envelope { get => _envelope; set { _envelope = value; } }
 

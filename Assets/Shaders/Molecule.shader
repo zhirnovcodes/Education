@@ -3,17 +3,18 @@ Shader "Unlit/Molecule"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-        _BlurText ("Blur Texture", 2D) = "white" {}
-        _PerlinText ("Perlin Texture", 2D) = "white" {}
+        
+        _NoisePower ("Noise Power", Range(0, 1)) = 1
         _Color ("Color", Color) = (1, 1, 1, 1)
         _ColorTo ("Color To", Color) = (1, 1, 1, 1)
-
+        _PerlinText ("Perlin Texture", 2D) = "black" {}
         _Speed ("Noise Speed", Vector) = (1, 1, 0, 0)
         _NoiseAmplitude ("Noise Amplitude", Vector) = (1, 1, 1, 0)
         _PerlinWidth ("Perlin Width", Float) = 100
         _Scale ("Scale", Float) = 1
-
+        
         _FunctionPower ("Function Power", Range(0, 1)) = 1
+        _Values ("Values Texture", 2D) = "black" {}
         _WaveColorValue ("Wave Color Value", Range(0, 1)) = 0
         _WaveColor ("Wave Color", Color) = (1, 1, 1, 1)
         _WaveScale ("Wave Scale", Range(0, 1)) = 0
@@ -25,9 +26,9 @@ Shader "Unlit/Molecule"
     }
     SubShader
     {        
-        Tags {"Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent"}
+        Tags {"Queue"="Transparent" "RenderType"="Transparent"}
         ZWrite Off
-        //Blend SrcAlpha OneMinusSrcAlpha
+        Blend SrcAlpha OneMinusSrcAlpha
         LOD 200
 
         Pass
@@ -58,13 +59,13 @@ Shader "Unlit/Molecule"
             };
 
             sampler2D _MainTex;
-            sampler2D _BlurText;
             sampler2D _PerlinText;
             float4 _MainTex_ST;
             float4 _WaveColor;
             float4 _Color;
             float4 _ColorTo;
             float4 _Speed;
+            float4 _NoisePower;
             float3 _NoiseAmplitude;
             float _FunctionPower;
             float _WaveSpeed;
@@ -163,12 +164,13 @@ Shader "Unlit/Molecule"
                 float3 time = PI2 * _Time.x * noise3D;
                 float3 dist = time * _Speed;
                 float4 perlinOffset = float4( sin( dist.x ), cos( dist.y ), sin( dist.z ) + z, 1 );
-                perlinOffset *= float4(_NoiseAmplitude, 1);
+                perlinOffset *= float4(_NoiseAmplitude, 1) * _NoisePower;
                 o.offset = perlinOffset;
 
-                float4 funcOffset = lerp(float4(0,0,0,0), getBufferValue( _SourcePos, o.wPos, _IsRadiant ), _FunctionPower);
+                float4 funcOffset = getBufferValue( _SourcePos, o.wPos, _IsRadiant );
                 
                 float funcValue = funcOffset.a;
+                funcOffset *= _FunctionPower;
                 funcOffset.a = 0;
                 o.color = lerp(float4(1,1,1,1), float4(lerp(_Color.xyz, _WaveColor.xyz, funcValue), 1), _WaveColorValue);
 
@@ -185,7 +187,7 @@ Shader "Unlit/Molecule"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                float depth = i.offset.z;
+                float depth = i.offset.z + i.wPos.z;
                 float tr = 1 - abs(saturate(depth));
                 
                 fixed4 texColor = tex2D(_MainTex, i.uv) * i.color;

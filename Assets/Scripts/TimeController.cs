@@ -19,19 +19,26 @@ public class TimeController : MonoBehaviour
         {
             Destroy(this);
         }
+        Time.timeScale = _scale;
+    }
+
+    private void OnValidate()
+    {
+        Time.timeScale = _scale;
     }
 
     void Update()
     {
-        Time.timeScale = _scale;
 
         if (Input.GetKeyDown( KeyCode.P))
         {
             Time.timeScale = Time.timeScale == 0 ? 1 : 0;
+            return;
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
             Time.timeScale = Time.timeScale == 2 ? 1 : 2;
+            return;
         }
     }
 }
