@@ -8,6 +8,11 @@ public class Molecules1DSpawner : MoleculesSpawner<Molecule1D>
 
     protected override void SetupComponent(Molecule1D component, MoleculePosition pos)
     {
+        if (component == null)
+        {
+            return;
+        }
+
         var maxDelay = Mathf.Lerp(3, 0.2f, _grid.Density);
         var minPower = Mathf.Lerp(0.1f, 1, _grid.Density);
 

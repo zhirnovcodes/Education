@@ -54,7 +54,7 @@ Shader "Unlit/Molecule"
                 float2 uv : TEXCOORD0;
                 float4 vertex : SV_POSITION;
                 float4 offset : TEXCOORD1;
-                float4 color : COLOR;
+                float4 color : TEXCOORD3;
                 float4 wPos : TEXCOORD2;
             };
 
@@ -65,7 +65,7 @@ Shader "Unlit/Molecule"
             float4 _Color;
             float4 _ColorTo;
             float4 _Speed;
-            float4 _NoisePower;
+            float _NoisePower;
             float3 _NoiseAmplitude;
             float _FunctionPower;
             float _WaveSpeed;
@@ -117,7 +117,7 @@ Shader "Unlit/Molecule"
 			}
 
             float getPerlin(float2 pos){
-                float4 uv = float4((abs(pos) / _PerlinWidth), 0,1);
+                float4 uv = float4((pos / _PerlinWidth), 0,1);
                 return tex2Dlod(_PerlinText, uv);
                 //return snoise(pos);     
 			}
@@ -125,18 +125,19 @@ Shader "Unlit/Molecule"
             float4 getBufferValue(float3 sourcePosition, float3 worldPosition, float3 radiand) // _SourcePos, o.wPos, _IsRadiant
             {
             #ifdef HAS_VALUES
-                float2 offDir = sourcePosition.xy - worldPosition;
+                float2 offDir = sourcePosition.xy - worldPosition.xy;
                 float rad = saturate(radiand);
                 float distance = lerp(abs(offDir.x), length(offDir), rad);
-                float4 funcOffset = lerp(float4(1, 0, 0, 0), float4(normalize(offDir).xy, 0, 0), rad);
+                float4 funcDirection = lerp(float4(1, 0, 0, 0), float4(normalize(offDir).xy, 0, 0), rad);
+                float funcDistancePower = 1 - saturate(invLerp(0, _WaveDecay, distance));
 
                 float timeOffset = distance / _WaveSpeed;
                 timeOffset = clamp( timeOffset / 5, 0, 8);
-                float funcValue = getValue(_Time.y - timeOffset);
-                funcOffset *= funcValue;
+                float funcValue = getValue(_Time.y - timeOffset) * funcDistancePower;
+                funcDirection *= funcValue;
 
-                funcOffset.a = funcValue;
-                return funcOffset;
+                funcDirection.a = funcValue;
+                return funcDirection;
             #else
                 return float4(0, 0, 0, 0);
             #endif
@@ -153,7 +154,7 @@ Shader "Unlit/Molecule"
                 float z = wPos.z;//(noiseC - 0.5) * 2;
                 o.wPos = float4(wPos, z);
 
-                float noiseOffset = 0.01;
+                float noiseOffset = 1;
                 float noiseC = getPerlin(wPos2);
                 float noiseX = getPerlin(wPos2 + float2(noiseOffset,0)) - noiseC;
                 float noiseY = getPerlin(wPos2 + float2(0,noiseOffset)) - noiseC;
@@ -161,25 +162,32 @@ Shader "Unlit/Molecule"
 
                 float3 noise3D = normalize( float3(noiseX, noiseY, noiseZ) );
 
-                float3 time = PI2 * _Time.x * noise3D;
-                float3 dist = time * _Speed;
-                float4 perlinOffset = float4( sin( dist.x ), cos( dist.y ), sin( dist.z ) + z, 1 );
-                perlinOffset *= float4(_NoiseAmplitude, 1) * _NoisePower;
-                o.offset = perlinOffset;
+                if (_NoisePower > 0)
+                {
+                    float3 time = PI2 * _Time.x * noise3D;
+                    float3 dist = time * _Speed;
+                    float3 perlinOffset = float3( sin( dist.x ), cos( dist.y ), sin( dist.z ) );
+                    perlinOffset *= _NoiseAmplitude * _NoisePower;
+                    o.offset.xyz = perlinOffset;
 
-                float4 funcOffset = getBufferValue( _SourcePos, o.wPos, _IsRadiant );
-                
+                    v.vertex.xyz += perlinOffset;
+				}
+                else
+                {
+                    o.offset.xyz = float3(0,0,0);
+				}
+
+                float4 funcOffset = getBufferValue( _SourcePos, o.wPos.xyz, _IsRadiant ) * _FunctionPower;
                 float funcValue = funcOffset.a;
-                funcOffset *= _FunctionPower;
                 funcOffset.a = 0;
                 o.color = lerp(float4(1,1,1,1), float4(lerp(_Color.xyz, _WaveColor.xyz, funcValue), 1), _WaveColorValue);
 
-                v.vertex += perlinOffset + funcOffset;
+                v.vertex.xyz += funcOffset;
 
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 float scale = _Scale + lerp(0, _WaveScale, saturate(funcValue));
                 float4 scaleOffset = scale * float4(normalize(o.uv - float2(0.5, 0.5)), 0, 0);
-                v.vertex += scaleOffset;
+                v.vertex.xyz += scaleOffset;
 
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 return o;

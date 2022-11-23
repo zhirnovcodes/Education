@@ -38,9 +38,11 @@ public abstract class MoleculesSpawner<T> : Spawner where T : MonoBehaviour
         foreach (var pos in _grid.Positions())
         {
             var spawned = _spawner.Spawn(false);
+            var spawnedScale = spawned.transform.localScale;
+            var newScale = new Vector3(pos.Scale.x * spawnedScale.x, pos.Scale.y * spawnedScale.y, 1);
             spawned.transform.parent = _parent;
             spawned.transform.position = pos.Position;
-            spawned.transform.localScale = pos.Scale;
+            spawned.transform.localScale = newScale;
 
             var molecule = spawned.GetComponent<T>();
             SetupComponent(molecule, pos);

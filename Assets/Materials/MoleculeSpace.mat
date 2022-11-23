@@ -63,19 +63,25 @@ Material:
         m_Texture: {fileID: 2800000, guid: a316bf59c4610c145b803239c21cd83c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Values:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _BumpScale: 1
     - _Cutoff: 0.5
+    - _D: 0
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _FunctionPower: 0
+    - _FunctionPower: 1
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _IsRadiant: 0
     - _Metallic: 0
     - _Mode: 0
+    - _NoisePower: 0.767
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _PerlinWidth: 100
@@ -84,17 +90,17 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
-    - _WaveColorValue: 0
-    - _WaveDecay: 0.01
-    - _WaveScale: 0
-    - _WaveSpeed: 0.1
+    - _WaveColorValue: 1
+    - _WaveDecay: 20
+    - _WaveScale: 0.688
+    - _WaveSpeed: 5
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 0.7529412}
-    - _ColorTo: {r: 1, g: 1, b: 1, a: 0.70980394}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorTo: {r: 0.90467787, g: 0, b: 1, a: 0.7}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _NoiseAmplitude: {r: 10, g: 10, b: 10, a: 0}
-    - _SourcePos: {r: 0, g: 0, b: 0, a: 0}
-    - _Speed: {r: 10, g: 10, b: 10, a: 0}
-    - _WaveColor: {r: 1, g: 1, b: 1, a: 1}
+    - _NoiseAmplitude: {r: 1, g: 0.5, b: 0.25, a: 0}
+    - _SourcePos: {r: -8.67, g: 3.52, b: 0, a: 0}
+    - _Speed: {r: 10, g: 0.5, b: 1, a: 0}
+    - _WaveColor: {r: 1, g: 0, b: 0.03027153, a: 1}
   m_BuildTextureStacks: []

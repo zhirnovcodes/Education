@@ -122,6 +122,7 @@
     <Compile Include="Assets\Scripts\View\WaveRepresentationViewController.cs" />
     <Compile Include="Assets\Scripts\MonoTimeController.cs" />
     <Compile Include="Assets\Scripts\ArrowMoveController.cs" />
+    <Compile Include="Assets\Scripts\TextureDrawing\ClampFunction.cs" />
     <Compile Include="Assets\Scripts\View\TrigonometrySliderView.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\PeakFunction.cs" />
     <Compile Include="Assets\Scripts\StringView.cs" />

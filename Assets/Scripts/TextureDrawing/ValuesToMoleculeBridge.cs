@@ -7,7 +7,9 @@ public class ValuesToMoleculeBridge : MonoBehaviour
     [SerializeField] private GraphDrawerBase _drawer;
     [SerializeField] private Transform _source;
     [SerializeField] private Material _materialWithValue;
+    [SerializeField, Range(0, 1)] private float _noisePower = 1;
     [SerializeField] private Color _color = new Color(1,1,1,0.7f);
+    [SerializeField] private Color _colorTo = new Color(1,1,1,0.7f);
     [SerializeField] private float _speed = 1;
     [SerializeField, Range(-2, 10)] private float _scale = 1;
     [SerializeField] private Vector3 _noiseSpeed = new Vector3(0.5f, 0.5f, 1);
@@ -65,8 +67,10 @@ public class ValuesToMoleculeBridge : MonoBehaviour
         _materialWithValue.SetFloat("_WaveScale", _waveScale);
         _materialWithValue.SetFloat("_IsRadiant", _radian);
         _materialWithValue.SetFloat("_Scale", _scale);
+        _materialWithValue.SetFloat("_NoisePower", _noisePower);
         _materialWithValue.SetVector("_Speed", _noiseSpeed);
         _materialWithValue.SetVector("_Color", _color);
+        _materialWithValue.SetVector("_ColorTo", _colorTo);
         _materialWithValue.SetVector("_NoiseAmplitude", _noiseAmp);
 
         if (_drawer != null)
