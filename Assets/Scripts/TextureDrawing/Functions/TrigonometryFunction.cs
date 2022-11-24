@@ -5,7 +5,8 @@ using UnityEngine;
 public enum TrigFunctionType
 {
     Sin = 0,
-    Square = 1
+    Square = 1,
+    Saw = 2
 }
 
 [System.Serializable]
@@ -46,15 +47,26 @@ public class TrigonometryFunction : FunctionBase
 
     public override float GetValue(float t)
     {
-        t += _function.XShift;
-        switch (_function.Type)
+        return _function.GetValue(t);
+    }
+}
+
+
+public static class TrigonometryExtentions
+{
+    public static float GetValue(this Trigonometry func, float time)
+    {
+        var t = time + func.XShift;
+        switch (func.Type)
         {
             case TrigFunctionType.Sin:
-                t *= 2f * Mathf.PI / _function.Period;
-                return Mathf.Sin(t) * _function.Amplitude;
+                t *= 2f * Mathf.PI / func.Period;
+                return Mathf.Sin(t) * func.Amplitude;
             case TrigFunctionType.Square:
-                t = t / _function.Period;
-                return (t - Mathf.Floor(t) <= 0.5 ? 1 : -1) * _function.Amplitude;
+                t = t / func.Period;
+                return (t - Mathf.Floor(t) <= 0.5 ? 1 : -1) * func.Amplitude;
+            case TrigFunctionType.Saw:
+                return (t % func.Period * 2 - 1) * func.Amplitude;
             default:
                 throw new System.NotImplementedException();
         }

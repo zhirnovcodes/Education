@@ -6,6 +6,7 @@ public class ObjectsSpawner
 {
     private readonly GameObject _baseObject;
     private readonly Queue<GameObject> _despawned;
+    private readonly string _prefabName = "";
 
     public ObjectsSpawner(GameObject baseObject, int capacity = 10)
     {
@@ -13,9 +14,25 @@ public class ObjectsSpawner
         _despawned = new Queue<GameObject>(capacity);
     }
 
+    public ObjectsSpawner(string prefabName, int capacity = 10)
+    {
+        _prefabName = prefabName;
+        _despawned = new Queue<GameObject>(capacity);
+    }
+
+    private GameObject InstantiatePrefab()
+    {
+        if (_baseObject == null)
+        {
+            Debug.Log(Resources.Load(_prefabName));
+            return GameObject.Instantiate(Resources.Load(_prefabName) as GameObject);
+        }
+        return GameObject.Instantiate(_baseObject);
+    }
+
     public GameObject Spawn(bool shouldSetActive = true)
     {
-        var spawned = _despawned.Count <= 0 ? GameObject.Instantiate(_baseObject) : _despawned.Dequeue();
+        var spawned = _despawned.Count <= 0 ? InstantiatePrefab() : _despawned.Dequeue();
 
         if (shouldSetActive)
         {

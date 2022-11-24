@@ -4,6 +4,8 @@ Shader "Unlit/Molecule"
     {
         _MainTex ("Texture", 2D) = "white" {}
         
+        _SourcePushRange ("Source Push Range", Range(0, 100)) = 0
+        
         _NoisePower ("Noise Power", Range(0, 1)) = 1
         _Color ("Color", Color) = (1, 1, 1, 1)
         _ColorTo ("Color To", Color) = (1, 1, 1, 1)
@@ -19,6 +21,7 @@ Shader "Unlit/Molecule"
         _WaveColor ("Wave Color", Color) = (1, 1, 1, 1)
         _WaveScale ("Wave Scale", Range(0, 1)) = 0
         _IsRadiant ("Is Radian", Float) = 0
+        _IsMirrored ("Is Mirrored", Range(0, 1)) = 0
 
         _WaveDecay ("Wave Decay Range", Range(0.01, 100)) = 5
         _WaveSpeed ("Wave Spread Speed", Range(0.1, 10)) = 1
@@ -66,8 +69,10 @@ Shader "Unlit/Molecule"
             float4 _ColorTo;
             float4 _Speed;
             float _NoisePower;
+            float _IsMirrored;
             float3 _NoiseAmplitude;
             float _FunctionPower;
+            float _SourcePushRange;
             float _WaveSpeed;
             float _WaveScale;
             float _WaveColorValue;
@@ -128,7 +133,8 @@ Shader "Unlit/Molecule"
                 float2 offDir = sourcePosition.xy - worldPosition.xy;
                 float rad = saturate(radiand);
                 float distance = lerp(abs(offDir.x), length(offDir), rad);
-                float4 funcDirection = lerp(float4(1, 0, 0, 0), float4(normalize(offDir).xy, 0, 0), rad);
+                float linearDir = float4(_IsMirrored == 0 ? 1 : -sign(offDir.x), 0, 0, 0);
+                float4 funcDirection = lerp(float4(linearDir, 0, 0, 0), float4(normalize(offDir).xy, 0, 0), rad);
                 float funcDistancePower = 1 - saturate(invLerp(0, _WaveDecay, distance));
 
                 float timeOffset = distance / _WaveSpeed;
@@ -151,19 +157,33 @@ Shader "Unlit/Molecule"
                 float2 wPos2 = wPos.xy;
 
 
-                float z = wPos.z;//(noiseC - 0.5) * 2;
+                float z = wPos.z;
+
+                if (_SourcePushRange > 0)
+                {                    
+                    float2 offDir = _SourcePos.xy - wPos.xy;
+                    float distanceToSource = lerp(abs(offDir.x), length(offDir), _IsRadiant);
+
+                    float pushT = 1 - saturate(distanceToSource / _SourcePushRange);
+                    z -= pushT;
+                    wPos.z = z;
+                    
+                    v.vertex.z -= pushT;
+				}
+
                 o.wPos = float4(wPos, z);
-
-                float noiseOffset = 1;
-                float noiseC = getPerlin(wPos2);
-                float noiseX = getPerlin(wPos2 + float2(noiseOffset,0)) - noiseC;
-                float noiseY = getPerlin(wPos2 + float2(0,noiseOffset)) - noiseC;
-                float noiseZ = getPerlin(wPos2 + float2(-noiseOffset,-noiseOffset)) - noiseC;
-
-                float3 noise3D = normalize( float3(noiseX, noiseY, noiseZ) );
 
                 if (_NoisePower > 0)
                 {
+
+                    float noiseOffset = 1;
+                    float noiseC = getPerlin(wPos2);
+                    float noiseX = getPerlin(wPos2 + float2(noiseOffset,0)) - noiseC;
+                    float noiseY = getPerlin(wPos2 + float2(0,noiseOffset)) - noiseC;
+                    float noiseZ = noiseC * 2 - 1;
+
+                    float3 noise3D = normalize( float3(noiseX, noiseY, noiseZ) );
+
                     float3 time = PI2 * _Time.x * noise3D;
                     float3 dist = time * _Speed;
                     float3 perlinOffset = float3( sin( dist.x ), cos( dist.y ), sin( dist.z ) );

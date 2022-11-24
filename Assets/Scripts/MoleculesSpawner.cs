@@ -13,6 +13,7 @@ public abstract class MoleculesSpawner<T> : Spawner where T : MonoBehaviour
 
     [SerializeField] protected MoleculesGrid _grid;
     [SerializeField] private GameObject _prefab;
+    [SerializeField] private string _prefabName;
     [SerializeField] private Transform _parent;
 
     private ObjectsSpawner _spawner;
@@ -26,9 +27,12 @@ public abstract class MoleculesSpawner<T> : Spawner where T : MonoBehaviour
         {
             if (_prefab == null)
             {
-                return;
+                _spawner = new ObjectsSpawner(_prefabName);
             }
-            _spawner = new ObjectsSpawner(_prefab);
+            else
+            {
+                _spawner = new ObjectsSpawner(_prefab);
+            }
         }
 
         var maxDelay = Mathf.Lerp(3, 0.2f, _grid.Density);
@@ -69,5 +73,10 @@ public abstract class MoleculesSpawner<T> : Spawner where T : MonoBehaviour
             _spawner.Despawn(_spawned[index].gameObject);
             _spawned.RemoveAt(index);
         }
+    }
+
+    private void OnValidate()
+    {
+        _spawner = null;
     }
 }

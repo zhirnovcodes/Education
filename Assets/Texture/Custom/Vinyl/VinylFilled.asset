@@ -6,7 +6,7 @@ CustomRenderTexture:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: VinylEmpty
+  m_Name: VinylFilled
   m_ImageContentsHash:
     serializedVersion: 2
     Hash: 00000000000000000000000000000000
@@ -14,12 +14,12 @@ CustomRenderTexture:
   m_DownscaleFallback: 0
   m_IsAlphaChannelOptional: 0
   serializedVersion: 5
-  m_Width: 96
-  m_Height: 512
-  m_AntiAliasing: 1
+  m_Width: 2048
+  m_Height: 256
+  m_AntiAliasing: 8
   m_MipCount: -1
   m_DepthStencilFormat: 94
-  m_ColorFormat: 21
+  m_ColorFormat: 25
   m_MipMap: 0
   m_GenerateMips: 1
   m_SRGB: 0
@@ -28,18 +28,18 @@ CustomRenderTexture:
   m_EnableCompatibleFormat: 1
   m_TextureSettings:
     serializedVersion: 2
-    m_FilterMode: 1
+    m_FilterMode: 0
     m_Aniso: 0
     m_MipBias: 0
-    m_WrapU: 0
-    m_WrapV: 0
-    m_WrapW: 0
+    m_WrapU: 2
+    m_WrapV: 2
+    m_WrapW: 2
   m_Dimension: 2
   m_VolumeDepth: 1
   m_ShadowSamplingMode: 2
-  m_Material: {fileID: 2100000, guid: 8ad037b3add722a4f902427748fa036b, type: 2}
+  m_Material: {fileID: 2100000, guid: a8b0727c6cdfb994fbaf5314382b9601, type: 2}
   m_InitSource: 0
-  m_InitMaterial: {fileID: 0}
+  m_InitMaterial: {fileID: 2100000, guid: e78f5049bf4ef2f49822cfdb40bfdab9, type: 2}
   m_InitColor: {r: 1, g: 1, b: 1, a: 1}
   m_InitTexture: {fileID: 0}
   m_UpdateMode: 2
@@ -47,18 +47,18 @@ CustomRenderTexture:
   m_UpdateZoneSpace: 0
   m_CurrentUpdateZoneSpace: 0
   m_UpdateZones:
-  - updateZoneCenter: {x: 0.2, y: 0.5, z: 0}
-    updateZoneSize: {x: 0.33333334, y: 0.0625, z: 0}
+  - updateZoneCenter: {x: 0.41599628, y: 0.44194758, z: 0}
+    updateZoneSize: {x: 0.0087890625, y: 0.0703125, z: 0}
     rotation: 0
     passIndex: 0
     needSwap: 0
-  - updateZoneCenter: {x: 0.5, y: 0.5, z: 0}
-    updateZoneSize: {x: 0.6, y: 0.0625, z: 0}
-    rotation: 0
+  - updateZoneCenter: {x: 0.41623348, y: 0.44466692, z: 0}
+    updateZoneSize: {x: 0.0054593333, y: 0.010676617, z: 0}
+    rotation: 85.01527
     passIndex: 0
     needSwap: 0
-  - updateZoneCenter: {x: 0.8, y: 0.5, z: 0}
-    updateZoneSize: {x: 0.33333334, y: 0.0625, z: 0}
+  - updateZoneCenter: {x: 0.41647065, y: 0.44738626, z: 0}
+    updateZoneSize: {x: 0.0087890625, y: 0.0703125, z: 0}
     rotation: 0
     passIndex: 0
     needSwap: 0

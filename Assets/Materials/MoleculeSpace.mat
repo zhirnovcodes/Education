@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: MoleculeSpace
   m_Shader: {fileID: 4800000, guid: 019d2e6e657ed8748a99bf9961aecb11, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: HAS_VALUES
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -78,6 +78,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _IsMirrored: 0
     - _IsRadiant: 0
     - _Metallic: 0
     - _Mode: 0
@@ -87,6 +88,7 @@ Material:
     - _PerlinWidth: 100
     - _Scale: 1
     - _SmoothnessTextureChannel: 0
+    - _SourcePushRange: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
@@ -100,7 +102,7 @@ Material:
     - _ColorTo: {r: 0.90467787, g: 0, b: 1, a: 0.7}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _NoiseAmplitude: {r: 1, g: 0.5, b: 0.25, a: 0}
-    - _SourcePos: {r: -8.67, g: 3.52, b: 0, a: 0}
+    - _SourcePos: {r: -8.67, g: 6.49, b: 0, a: 0}
     - _Speed: {r: 10, g: 0.5, b: 1, a: 0}
     - _WaveColor: {r: 1, g: 0, b: 0.03027153, a: 1}
   m_BuildTextureStacks: []

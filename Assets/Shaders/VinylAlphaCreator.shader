@@ -28,25 +28,25 @@ Shader "Zhirnov/VinylAlphaCreator"
                 if (IN.primitiveID == 0)
                 { 
                     //if (IN.localTexcoord.x > 0.51 || d > 0.5)
-                    if (d >= 0.5)
+                    if (d > 0.5)
                     {
                         discard;
 					}
                 }
-                if (IN.primitiveID == 2)
+                else if (IN.primitiveID == 2)
                 {
                     //if (IN.localTexcoord.x < 0.49 || d > 0.5)
-                    if (d >= 0.5)
+                    if (d > 0.5)
                     {
-                        discard;
+                        discard; 
 					}
 				}
-                if (IN.primitiveID == 1)
+                else if (IN.primitiveID == 1)
                 {
                     d = abs(IN.localTexcoord.y - 0.5);
 				}
 
-                float4 col = float4(d,0,0, 0);//d / 2);//d
+                float4 col = float4(saturate(d),0,0, 0)*2;//d / 2);//d
                 return col;
             }
             ENDCG

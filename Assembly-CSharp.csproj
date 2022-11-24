@@ -62,6 +62,7 @@
     <Compile Include="Assets\Scripts\Function1DMoveController.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\PerlinFunction.cs" />
     <Compile Include="Assets\Scripts\ElectricitySettings.cs" />
+    <Compile Include="Assets\Scripts\TextureDrawing\Functions\AmplitudeModulationFunction.cs" />
     <Compile Include="Assets\Scripts\View\TrigonometryViewController.cs" />
     <Compile Include="Assets\Scripts\View\EnvelopeViewController.cs" />
     <Compile Include="Assets\Scripts\View\EnvelopeView.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\ScalarOperationFunction.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\ValuesBuffer.cs" />
     <Compile Include="Assets\Scripts\KeepBetweenObjects.cs" />
+    <Compile Include="Assets\Scripts\View\ModulatorViewController.cs" />
     <Compile Include="Assets\Scripts\View\CompressorView.cs" />
     <Compile Include="Assets\Scripts\ForceMover2D.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\GainReductionDrawer.cs" />
@@ -94,6 +96,8 @@
     <Compile Include="Assets\Scripts\Digital\DigitalGraphDrawer.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\PeakAvgDrawer.cs" />
     <Compile Include="Assets\Scripts\NumbersGridController.cs" />
+    <Compile Include="Assets\Scripts\View\LerpViewController.cs" />
+    <Compile Include="Assets\Scripts\TextureDrawing\Functions\FreqModulationFunction.cs" />
     <Compile Include="Assets\Scripts\Molecules2DSpawner.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\GainReductionFunction.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\ValuesToMoleculeBridge.cs" />

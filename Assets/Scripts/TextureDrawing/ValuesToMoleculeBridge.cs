@@ -7,6 +7,7 @@ public class ValuesToMoleculeBridge : MonoBehaviour
     [SerializeField] private GraphDrawerBase _drawer;
     [SerializeField] private Transform _source;
     [SerializeField] private Material _materialWithValue;
+    [SerializeField, Range(0, 100)] private float _sourcePushRange = 0;
     [SerializeField, Range(0, 1)] private float _noisePower = 1;
     [SerializeField] private Color _color = new Color(1,1,1,0.7f);
     [SerializeField] private Color _colorTo = new Color(1,1,1,0.7f);
@@ -19,6 +20,7 @@ public class ValuesToMoleculeBridge : MonoBehaviour
     [SerializeField, Range(0, 1)] private float _waveColorValue = 0;
     [SerializeField, Range(0, 1)] private float _waveScale = 0;
     [SerializeField, Range(0, 1)] private float _radian = 0;
+    [SerializeField] private bool _isMirrored = false;
     [SerializeField] private bool _shouldFollowSource = false;
     [SerializeField] private bool _hasValues = true;
 
@@ -67,7 +69,9 @@ public class ValuesToMoleculeBridge : MonoBehaviour
         _materialWithValue.SetFloat("_WaveScale", _waveScale);
         _materialWithValue.SetFloat("_IsRadiant", _radian);
         _materialWithValue.SetFloat("_Scale", _scale);
+        _materialWithValue.SetFloat("_SourcePushRange", _sourcePushRange);
         _materialWithValue.SetFloat("_NoisePower", _noisePower);
+        _materialWithValue.SetFloat("_IsMirrored", _isMirrored ? 1 : 0);
         _materialWithValue.SetVector("_Speed", _noiseSpeed);
         _materialWithValue.SetVector("_Color", _color);
         _materialWithValue.SetVector("_ColorTo", _colorTo);
@@ -83,5 +87,11 @@ public class ValuesToMoleculeBridge : MonoBehaviour
         {
             _materialWithValue.SetVector("_SourcePos", _source.transform.position);
         }
+    }
+
+    private void OnValidate()
+    {
+        OnEnable();
+        LateUpdate();
     }
 }

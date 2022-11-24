@@ -18,6 +18,12 @@ public class GraphDrawerBase : MonoBehaviour
 
     private GraphDrawer _drawer;
 
+    public Color LinesColor
+    {
+        get => _linesColor;
+        set => _linesColor = value;
+    }
+
     private GraphDrawer Drawer
     {
         get

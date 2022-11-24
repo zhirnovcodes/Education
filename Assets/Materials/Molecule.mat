@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Molecule
   m_Shader: {fileID: 4800000, guid: 019d2e6e657ed8748a99bf9961aecb11, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: HAS_VALUES
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -80,36 +80,38 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _IsRadiant: 0
+    - _IsMirrored: 0
+    - _IsRadiant: 1
     - _Metallic: 0
     - _Mode: 0
-    - _NoisePower: 1
+    - _NoisePower: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _PerlinWidth: 53.09
     - _RotationSpeed: 0
-    - _Scale: 1
+    - _Scale: 1.7
     - _SmoothnessTextureChannel: 0
+    - _SourcePushRange: 41.8
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _StartTime: 13.03125
+    - _StartTime: 0
     - _UVSec: 0
     - _WaveColor: 0
-    - _WaveColorValue: 1
-    - _WaveDecay: 60
-    - _WaveScale: 0.688
-    - _WaveSpeed: 10
+    - _WaveColorValue: 0.425
+    - _WaveDecay: 100
+    - _WaveScale: 0.487
+    - _WaveSpeed: 7
     - _ZWrite: 1
     m_Colors:
     - _Amplitude: {r: 1, g: 1, b: 1, a: 0}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorTo: {r: 0.56037736, g: 0.81193984, b: 1, a: 0.7}
+    - _Color: {r: 0.33333337, g: 0.64491785, b: 1, a: 0.69803923}
+    - _ColorTo: {r: 1, g: 0.19245279, b: 0.62997574, a: 0.29803923}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _NoWaveColor: {r: 0, g: 0, b: 0, a: 1}
-    - _NoiseAmplitude: {r: 0.25, g: 0.25, b: 0.5, a: 0}
+    - _NoiseAmplitude: {r: 1, g: 1, b: 1, a: 0}
     - _RoatationSpeed: {r: 1, g: 0, b: 0, a: 0}
     - _RotationSpeed: {r: 10, g: 0, b: 0, a: 0}
-    - _SourcePos: {r: -8.67, g: -2.4899998, b: 0, a: 0}
-    - _Speed: {r: 10, g: 10, b: 3, a: 0}
+    - _SourcePos: {r: -22.599998, g: 0, b: 0, a: 0}
+    - _Speed: {r: 2, g: 2, b: 1, a: 0}
     - _WaveColor: {r: 1, g: 0.0037735105, b: 0.31837964, a: 1}
   m_BuildTextureStacks: []
