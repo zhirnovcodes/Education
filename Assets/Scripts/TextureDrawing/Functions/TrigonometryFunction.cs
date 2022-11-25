@@ -26,6 +26,7 @@ public class TrigonometryFunction : FunctionBase
         Amplitude = 1,
         Period = 1
     };
+    [SerializeField] private float _frequency;
 
     public Trigonometry Function
     {
@@ -49,6 +50,7 @@ public class TrigonometryFunction : FunctionBase
     {
         return _function.GetValue(t);
     }
+
 }
 
 

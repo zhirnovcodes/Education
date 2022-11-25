@@ -9,7 +9,6 @@ public class MonoKeyboardController : MonoBehaviour
 
     [SerializeField] private bool _hasDefaultState = true;
     [SerializeField] private bool _dafaultState = false;
-
     private void Awake()
     {
         if (_hasDefaultState)

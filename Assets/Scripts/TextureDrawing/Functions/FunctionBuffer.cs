@@ -6,6 +6,7 @@ public class FunctionBuffer : FunctionBase
     [SerializeField] private float _maxTime = 4;
     [SerializeField] private float _deltaTime = 0.05f;
     [SerializeField] private bool _shouldClearOnEnable = true;
+    [SerializeField] private float _offset = 0f;
 
     private IndexedQueue<float> _queue;
 
@@ -13,6 +14,8 @@ public class FunctionBuffer : FunctionBase
     private float _timeStart;
 
     private PseudoTimer _timer;
+
+    public override float Value => this.enabled ? GetValue(Time.time - _offset) : 0;
 
     public float MaxTime
     {

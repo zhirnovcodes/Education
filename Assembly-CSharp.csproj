@@ -173,6 +173,8 @@
     <Compile Include="Assets\Scripts\IndexedQueue.cs" />
     <Compile Include="Assets\Scripts\View\StringReadonlyViewController.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\MultipleOperationsFunction.cs" />
+    <Compile Include="Assets\Scripts\Wing.cs" />
+    <Compile Include="Assets\Scripts\TextureDrawing\Functions\AbsFunction.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

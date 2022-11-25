@@ -18,10 +18,11 @@ public class VinylGraphDrawer : MonoBehaviour
 
     private VinylDrawer _drawer;
     private float _timeStart;
+    private float _timeEnd;
     private float _valueBefore;
     private Vector2 _uvCurrent;
 
-    public float RecordedT => Time.time - _timeStart;
+    public float RecordedT => this.enabled ? Mathf.Min(Time.time - _timeStart, _timeOfFilling) : _timeEnd;
 
 
     public Vector3 GetPosition(float time)
@@ -61,6 +62,11 @@ public class VinylGraphDrawer : MonoBehaviour
             Drawer.Clear();
         }
         _uvCurrent = Vector2.zero;
+    }
+
+    private void OnDisable()
+    {
+        _timeEnd = Time.time - _timeStart;
     }
 
     private float TimeToU(float time)

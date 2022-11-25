@@ -6,15 +6,48 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Lecture10/Scene_10_0_Amp_mod.unity
-    guid: 2387ad8fe4dac0b4384792512dc7aea6
+    path: Assets/Scenes/FujiLecture/Scene_F_0_Logo.unity
+    guid: e91ea7b4e84942241bc648b0d7b84706
   - enabled: 1
-    path: Assets/Scenes/Lecture10/Scene_10_1_Freq_mod.unity
-    guid: 5c4c20ebb530dc4499a0e014ae3fdf1a
+    path: Assets/Scenes/FujiLecture/Scene_F_1_String.unity
+    guid: 026ad6073aa14214e9ac28b4a167534c
   - enabled: 1
-    path: Assets/Scenes/Lecture10/Scene_10_2_Lerp.unity
-    guid: 5a7098fb851c49142a35bc4049c530d6
+    path: Assets/Scenes/FujiLecture/Scene_F_2_ManyMol.unity
+    guid: 2ae8c5f21664b2c4d83dc852111ae13e
   - enabled: 1
-    path: Assets/Scenes/Lecture10/Scene_10_3_Lerp_other.unity
-    guid: e0ea1535b66aa5849b111676a0047e78
+    path: Assets/Scenes/FujiLecture/Scene_F_3_OneStringTwoMol.unity
+    guid: cc35a52a5778a6144bfe3c9e29ef4542
+  - enabled: 1
+    path: Assets/Scenes/FujiLecture/Scene_F_4_Environments.unity
+    guid: 684538a92274aaa4fae67083bff083bc
+  - enabled: 1
+    path: Assets/Scenes/FujiLecture/Scene_F_5_Eardrum.unity
+    guid: cabec3600bde4d547a8e7a50fc7db858
+  - enabled: 1
+    path: Assets/Scenes/FujiLecture/Scene_F_6_TwoStringsManyMol.unity
+    guid: 6c62458c0521d70418e9deb5a7edf865
+  - enabled: 1
+    path: Assets/Scenes/FujiLecture/Scene_F_7_TwoStringsOneMol.unity
+    guid: c961ad3da805d9c41af0198ce1b42201
+  - enabled: 1
+    path: Assets/Scenes/FujiLecture/Scene_F_8_CMajor.unity
+    guid: baccbf599e8dfe9498920e32a56f3726
+  - enabled: 1
+    path: Assets/Scenes/FujiLecture/Scene_F_9_Noise.unity
+    guid: 199fbe03f0f7ba84a8ecdad56826b81c
+  - enabled: 1
+    path: Assets/Scenes/FujiLecture/Scene_F_10_Saw.unity
+    guid: 3f8a7b1db162c70468c10dc1f7ef7c64
+  - enabled: 1
+    path: Assets/Scenes/FujiLecture/Scene_F_11_Square.unity
+    guid: 2da7d9d03e09ed948bd30e38cdf7f385
+  - enabled: 1
+    path: Assets/Scenes/FujiLecture/Scene_F_12_SquareOneString.unity
+    guid: 60d7a163a444c2e42bf6b9c51ead8e1b
+  - enabled: 1
+    path: Assets/Scenes/FujiLecture/Scene_F_13_Vinyl.unity
+    guid: b45dd6227b5908144a16b55be0b4c445
+  - enabled: 1
+    path: Assets/Scenes/FujiLecture/Scene_F_14_Electricity.unity
+    guid: 456869a86e68676448814a2685a3ea81
   m_configObjects: {}
