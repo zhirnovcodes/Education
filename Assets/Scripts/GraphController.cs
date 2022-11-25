@@ -21,15 +21,7 @@ public class GraphController : MonoBehaviour
 
     private void Awake()
     {
-        if (_instance == null)
-        {
-            _instance = this;
-            DontDestroyOnLoad(this);
-        }
-        if (!_instance.Equals(this))
-        {
-            Destroy(this);    
-        }
+        _instance = this;
     }
 
     private void OnEnable()

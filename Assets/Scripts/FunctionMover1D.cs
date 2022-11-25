@@ -10,7 +10,7 @@ public class FunctionMover1D : MonoBehaviour
 
     public float Offset { get; private set; }
 
-    private void FixedUpdate()
+    private void Update()
     {
         Offset = _function.Value * _power;
 
