@@ -99,6 +99,7 @@
     <Compile Include="Assets\Scripts\View\LerpViewController.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\FreqModulationFunction.cs" />
     <Compile Include="Assets\Scripts\Molecules2DSpawner.cs" />
+    <Compile Include="Assets\Scripts\FunctionColorChanger.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\GainReductionFunction.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\ValuesToMoleculeBridge.cs" />
     <Compile Include="Assets\Scripts\VinylGraphDrawer.cs" />
@@ -152,6 +153,7 @@
     <Compile Include="Assets\Scripts\KeyboardController.cs" />
     <Compile Include="Assets\Scripts\StringViewController.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\TrigonometryFunction.cs" />
+    <Compile Include="Assets\Scripts\FunctionScaler.cs" />
     <Compile Include="Assets\Scripts\FluctuatingStringKeyboardController.cs" />
     <Compile Include="Assets\Scripts\IForceProvider.cs" />
     <Compile Include="Assets\Scripts\FluctuatingFollower1D.cs" />

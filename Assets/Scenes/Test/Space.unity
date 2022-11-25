@@ -299,6 +299,7 @@ GameObject:
   m_Component:
   - component: {fileID: 29879971}
   - component: {fileID: 29879972}
+  - component: {fileID: 29879973}
   m_Layer: 0
   m_Name: butterfly_LeftWing
   m_TagString: Untagged
@@ -373,6 +374,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &29879973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 29879970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3495fc3cf26ed64396c9942069f4d18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _function: {fileID: 1334470050}
+  _renderer: {fileID: 29879972}
+  _colorZero: {r: 1, g: 1, b: 1, a: 1}
+  _color1: {r: 0, g: 0, b: 0, a: 1}
+  _colorMinus1: {r: 0, g: 0, b: 0, a: 1}
+  _scale: 1
 --- !u!1 &48931388
 GameObject:
   m_ObjectHideFlags: 0
@@ -1296,6 +1315,7 @@ GameObject:
   m_Component:
   - component: {fileID: 154914765}
   - component: {fileID: 154914766}
+  - component: {fileID: 154914767}
   m_Layer: 0
   m_Name: butterfly_RightWing
   m_TagString: Untagged
@@ -1370,6 +1390,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &154914767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154914764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3495fc3cf26ed64396c9942069f4d18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _function: {fileID: 1334470050}
+  _renderer: {fileID: 154914766}
+  _colorZero: {r: 1, g: 1, b: 1, a: 1}
+  _color1: {r: 0, g: 0, b: 0, a: 1}
+  _colorMinus1: {r: 0, g: 0, b: 0, a: 1}
+  _scale: 1
 --- !u!1 &159353188
 GameObject:
   m_ObjectHideFlags: 0
@@ -10390,8 +10428,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1176379023}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -22.6, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalPosition: {x: -2.6, y: 0, z: 0}
+  m_LocalScale: {x: 6, y: 6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1513099900}
@@ -11404,6 +11442,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1334470049}
+  - component: {fileID: 1334470051}
+  - component: {fileID: 1334470050}
   m_Layer: 0
   m_Name: Wings
   m_TagString: Untagged
@@ -11419,8 +11459,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1334470048}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.12511349, y: 0, z: 0}
-  m_LocalScale: {x: 0.9546, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 29879971}
@@ -11428,6 +11468,35 @@ Transform:
   m_Father: {fileID: 1176379024}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1334470050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1334470048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5770bf76ab1fcd841a6622dd17b79c70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _function: {fileID: 1620874197}
+  _maxValue: 1
+--- !u!114 &1334470051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1334470048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86f5c6a0ed58b3f4d9772a6609c253c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _direction: {x: -1, y: 0, z: 0}
+  _function: {fileID: 1334470050}
+  _scale: 1
 --- !u!1001 &1337073014
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15158,7 +15227,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.83396226, g: 0.8986141, b: 1, a: 1}
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

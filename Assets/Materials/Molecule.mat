@@ -84,34 +84,34 @@ Material:
     - _IsRadiant: 1
     - _Metallic: 0
     - _Mode: 0
-    - _NoisePower: 0
+    - _NoisePower: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _PerlinWidth: 53.09
     - _RotationSpeed: 0
-    - _Scale: 1.7
+    - _Scale: 0.1
     - _SmoothnessTextureChannel: 0
-    - _SourcePushRange: 41.8
+    - _SourcePushRange: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _StartTime: 0
     - _UVSec: 0
     - _WaveColor: 0
-    - _WaveColorValue: 0.425
-    - _WaveDecay: 100
-    - _WaveScale: 0.487
-    - _WaveSpeed: 7
+    - _WaveColorValue: 0
+    - _WaveDecay: 50
+    - _WaveScale: 0
+    - _WaveSpeed: 1
     - _ZWrite: 1
     m_Colors:
     - _Amplitude: {r: 1, g: 1, b: 1, a: 0}
-    - _Color: {r: 0.33333337, g: 0.64491785, b: 1, a: 0.69803923}
-    - _ColorTo: {r: 1, g: 0.19245279, b: 0.62997574, a: 0.29803923}
+    - _Color: {r: 1, g: 1, b: 1, a: 0.7}
+    - _ColorTo: {r: 1, g: 1, b: 1, a: 0.7}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _NoWaveColor: {r: 0, g: 0, b: 0, a: 1}
     - _NoiseAmplitude: {r: 1, g: 1, b: 1, a: 0}
     - _RoatationSpeed: {r: 1, g: 0, b: 0, a: 0}
     - _RotationSpeed: {r: 10, g: 0, b: 0, a: 0}
-    - _SourcePos: {r: -22.599998, g: 0, b: 0, a: 0}
-    - _Speed: {r: 2, g: 2, b: 1, a: 0}
+    - _SourcePos: {r: 11.3, g: 7.5, b: -0.12182364, a: 0}
+    - _Speed: {r: 0.5, g: 0.5, b: 1, a: 0}
     - _WaveColor: {r: 1, g: 0.0037735105, b: 0.31837964, a: 1}
   m_BuildTextureStacks: []
