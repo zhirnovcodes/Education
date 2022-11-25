@@ -12,12 +12,12 @@ public class StringReadonlyViewController : MonoBehaviour
     private void Update()
     {
         var captionF = _addCaption ? "Frequency = " : String.Empty;
-        var measureF = _addCaption ? " (Hz)" : String.Empty;
+        var measureF = _addCaption ? " Hz" : String.Empty;
 
         var captionA = _addCaption ? "Amplitude = " : String.Empty;
-        var measureA = _addCaption ? " (dB)" : String.Empty;
+        var measureA = _addCaption ? " dB" : String.Empty;
 
         _textFrequency.text = captionF + Math.Round((1f / _function.Function.Period) * _freqMultiplier, 2).ToString() + measureF;
-        _textAmplitude.text = captionA + _function.Function.Amplitude.ToString() + measureA;
+        _textAmplitude.text = captionA + Math.Round(_function.Function.Amplitude, 2).ToString() + measureA;
     }
 }

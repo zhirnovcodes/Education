@@ -20,7 +20,7 @@ public class FunctionOperationFunction : FunctionBase
     {
         get
         {
-            return Opreation(_f1.Value, _f2.Value);
+            return Operation(_operation, _f1.Value, _f2.Value);
         }
     }
 
@@ -30,7 +30,7 @@ public class FunctionOperationFunction : FunctionBase
         {
             if (_f2 is FunctionBase f2)
             {
-                return Opreation(f1.GetValue(t), f2.GetValue(t));
+                return Operation(_operation, f1.GetValue(t), f2.GetValue(t));
             }
             Debug.LogError("FunctionBase error: " + _f2.GetType().Name);
         }
@@ -41,9 +41,9 @@ public class FunctionOperationFunction : FunctionBase
         return 0;
     }
 
-    private float Opreation(float v1, float v2)
+    public static float Operation(FunctionOperation operation, float v1, float v2)
     {
-        switch (_operation)
+        switch (operation)
         {
             case FunctionOperation.Minus:
                 return v1 - v2;

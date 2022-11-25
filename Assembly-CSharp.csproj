@@ -172,6 +172,7 @@
     <Compile Include="Assets\Scripts\Dummy.cs" />
     <Compile Include="Assets\Scripts\IndexedQueue.cs" />
     <Compile Include="Assets\Scripts\View\StringReadonlyViewController.cs" />
+    <Compile Include="Assets\Scripts\TextureDrawing\Functions\MultipleOperationsFunction.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
