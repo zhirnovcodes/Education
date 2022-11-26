@@ -59,7 +59,10 @@ public class CameraController : MonoBehaviour
 
         if (Input.mouseScrollDelta.y != 0)
         {
-            zDirection = Mathf.Clamp( Input.mouseScrollDelta.y, -1, 1);
+            if (!Input.GetKey(KeyCode.V))
+            {
+                zDirection = Mathf.Clamp(Input.mouseScrollDelta.y, -1, 1);
+            }
         }
 
         var newDir = new Vector3(xyDirection.x, xyDirection.y, zDirection);

@@ -109,7 +109,6 @@ public class GraphDrawerBase : MonoBehaviour
 
         _lastValuesIndex = -1;
         _timeStart = SceneController.TimeSinceLevelStart;
-        Debug.Log("G " + _timeStart);
         _lastValue = 0;
     }
 

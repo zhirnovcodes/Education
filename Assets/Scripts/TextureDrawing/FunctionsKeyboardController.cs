@@ -5,6 +5,7 @@ public class FunctionsKeyboardController : MonoBehaviour
 {
     [SerializeField] private GraphFunctionBase[] _functions;
     [SerializeField] private bool _autoAssign = true;
+    [SerializeField] private KeyCode _code = KeyCode.Space; 
 
     private void Awake()
     {
@@ -18,7 +19,7 @@ public class FunctionsKeyboardController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(_code))
         {
             foreach (var f in _functions)
             {

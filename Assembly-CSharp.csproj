@@ -110,6 +110,7 @@
     <Compile Include="Assets\Scripts\Ear.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\BufferDelayFunction.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\PositionOffsetFunction.cs" />
+    <Compile Include="Assets\Scripts\Audio\AudioViewController.cs" />
     <Compile Include="Assets\Scripts\View\CompressorViewController.cs" />
     <Compile Include="Assets\Scripts\PositionsKeyboardController.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\FunctionsKeyboardController.cs" />
@@ -136,6 +137,7 @@
     <Compile Include="Assets\Scripts\StringView.cs" />
     <Compile Include="Assets\Scripts\MathIZ.cs" />
     <Compile Include="Assets\Scripts\TextEditColor.cs" />
+    <Compile Include="Assets\Scripts\Audio\VolumeKeyboardController.cs" />
     <Compile Include="Assets\Scripts\AnalogueViewController.cs" />
     <Compile Include="Assets\Scripts\StringPlayer.cs" />
     <Compile Include="Assets\Scripts\VinylPlane.cs" />
