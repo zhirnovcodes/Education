@@ -22,6 +22,6 @@ public class WaveRepresentationViewController : MonoBehaviour
     private void OnValueChaged(float value)
     {
         _bridge.WaveColorValue = value;
-        _bridge.WaveScale = 0;
+        _bridge.WaveScale = value;
     }
 }

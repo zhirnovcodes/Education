@@ -108,7 +108,8 @@ public class GraphDrawerBase : MonoBehaviour
         Drawer.Clear();
 
         _lastValuesIndex = -1;
-        _timeStart = Time.time;
+        _timeStart = SceneController.TimeSinceLevelStart;
+        Debug.Log("G " + _timeStart);
         _lastValue = 0;
     }
 
@@ -121,7 +122,7 @@ public class GraphDrawerBase : MonoBehaviour
     {
         var val = _function?.Value ?? 0;
 
-        var timeNow = Time.time - _timeStart;
+        var timeNow = SceneController.TimeSinceLevelStart - _timeStart;
 
         var indexNow = Mathf.RoundToInt(timeNow / DeltaTime);
 

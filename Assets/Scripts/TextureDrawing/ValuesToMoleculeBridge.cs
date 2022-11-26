@@ -56,7 +56,7 @@ public class ValuesToMoleculeBridge : MonoBehaviour
 
     private void OnDisable()
     {
-        _materialWithValue.DisableKeyword("HAS_VALUES");
+       // _materialWithValue.DisableKeyword("HAS_VALUES");
 
     }
 
@@ -79,6 +79,7 @@ public class ValuesToMoleculeBridge : MonoBehaviour
 
         if (_drawer != null)
         {
+            Debug.Log(_drawer.TimeStart);
             _materialWithValue.SetFloat("_StartTime", _drawer.TimeStart);
             _materialWithValue.SetFloat("_MaxIndex", _drawer.MaxIndex);
         }

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,6 +53,9 @@
     <UnityVersion>2021.2.8f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Assets\Scripts\Workspace.cs" />
     <Compile Include="Assets\Scripts\RotateAround.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\SquareFunction.cs" />
@@ -68,6 +71,7 @@
     <Compile Include="Assets\Scripts\ShowModelSettings.cs" />
     <Compile Include="Assets\Scripts\TimeController.cs" />
     <Compile Include="Assets\Scripts\ReverbZone.cs" />
+    <Compile Include="Assets\Scripts\TextureDrawing\Functions\AbsFunction.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\FunctionOperationFunction.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\PositionOffsetDrawer.cs" />
     <Compile Include="Assets\Scripts\ObjectsSpawner.cs" />
@@ -116,7 +120,9 @@
     <Compile Include="Assets\Scripts\VinylNeedleMover.cs" />
     <Compile Include="Assets\Scripts\FunctionMover1D.cs" />
     <Compile Include="Assets\Scripts\Amplifier.cs" />
+    <Compile Include="Assets\Scripts\Wing.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\RandomFunction.cs" />
+    <Compile Include="Assets\Scripts\View\StringReadonlyViewController.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\ThresholdFunction.cs" />
     <Compile Include="Assets\Scripts\String1D.cs" />
     <Compile Include="Assets\Scripts\LowPressureForceProvider1D.cs" />
@@ -160,6 +166,7 @@
     <Compile Include="Assets\Scripts\Molecule2D.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\FunctionsBuffer.cs" />
     <Compile Include="Assets\Scripts\NumbersGrid.cs" />
+    <Compile Include="Assets\Scripts\TextureDrawing\Functions\MultipleOperationsFunction.cs" />
     <Compile Include="Assets\Scripts\MoleculesCountViewController.cs" />
     <Compile Include="Assets\Scripts\FluctuatingObjectMover1D.cs" />
     <Compile Include="Assets\Scripts\MoleculesGrid.cs" />
@@ -171,10 +178,6 @@
     <Compile Include="Assets\Scripts\SceneSpawnerEditor.cs" />
     <Compile Include="Assets\Scripts\Dummy.cs" />
     <Compile Include="Assets\Scripts\IndexedQueue.cs" />
-    <Compile Include="Assets\Scripts\View\StringReadonlyViewController.cs" />
-    <Compile Include="Assets\Scripts\TextureDrawing\Functions\MultipleOperationsFunction.cs" />
-    <Compile Include="Assets\Scripts\Wing.cs" />
-    <Compile Include="Assets\Scripts\TextureDrawing\Functions\AbsFunction.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

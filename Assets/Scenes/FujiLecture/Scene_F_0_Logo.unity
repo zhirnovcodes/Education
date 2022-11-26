@@ -5130,9 +5130,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c624df4f23708c4aba407c7cce3304d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _function: {fileID: 122843230}
-  _power: 1
-  _speed: {x: 1, y: 0, z: 0}
+  _function: {fileID: 0}
+  _power: 1.6928828e+14
+  _speed: {x: 4.64e-43, y: 1.0992687e+14, z: 4.64e-43}
 --- !u!33 &122843232
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -24910,9 +24910,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c624df4f23708c4aba407c7cce3304d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _function: {fileID: 578573246}
-  _power: 1
-  _speed: {x: 1, y: 0, z: 0}
+  _function: {fileID: 0}
+  _power: 1.582692e+16
+  _speed: {x: 4.64e-43, y: 3.7542756e+16, z: 4.64e-43}
 --- !u!33 &578573248
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -72435,9 +72435,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c624df4f23708c4aba407c7cce3304d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _function: {fileID: 1801770619}
-  _power: 1
-  _speed: {x: 1, y: 0, z: 0}
+  _function: {fileID: 0}
+  _power: 0
+  _speed: {x: 0, y: 0, z: 0}
 --- !u!33 &1801770621
 MeshFilter:
   m_ObjectHideFlags: 0

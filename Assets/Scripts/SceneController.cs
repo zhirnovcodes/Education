@@ -7,10 +7,14 @@ public class SceneController : MonoBehaviour
 
     private int _index = 0;
 
+    private float _levelStartTime;
+
     void Start()
     {
         if (_instance == null)
         {
+
+            _levelStartTime = Time.time;
             _instance = this;
             DontDestroyOnLoad(this);
             return;
@@ -21,6 +25,8 @@ public class SceneController : MonoBehaviour
             Destroy(this);
         }
     }
+
+    public static float TimeSinceLevelStart => _instance == null ? 0 : Time.time - _instance._levelStartTime;
 
     // Update is called once per frame
     void Update()
@@ -37,8 +43,10 @@ public class SceneController : MonoBehaviour
         }
 
         if (indBefore != _index) 
-        { 
-            SceneManager.LoadScene(_index, LoadSceneMode.Single); 
+        {
+            SceneManager.LoadScene(_index, LoadSceneMode.Single);
+
+            _levelStartTime = Time.time;
         }
     }
 }

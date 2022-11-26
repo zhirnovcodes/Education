@@ -18,7 +18,7 @@ public class TrigonometrySliderView : TrigonometryViewBase
         set
         {
             _amp.Value = value.Amplitude;
-            _freq.Value = 1 / Mathf.Max(0.0001f, value.Period);
+            _freq.Value = 1 / (Mathf.Max(0.0001f, value.Period));
         }
     }
 
@@ -37,7 +37,7 @@ public class TrigonometrySliderView : TrigonometryViewBase
 
     private void OnFreqChanged(float freq)
     {
-        var per = 1 / Mathf.Max(0.0001f, freq);
+        var per = 1 / (Mathf.Max(0.0001f, freq));
         _period.Value = per;
         ValueChanged?.Invoke();
     }
