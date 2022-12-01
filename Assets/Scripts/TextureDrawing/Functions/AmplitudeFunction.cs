@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class AmplitudeFunction : GraphFunctionBase
 {
-    [SerializeField] private FluctuatingString1D _string;
+    [SerializeField] private TrigonometryFunction _func;
 
-    public override float Value => _string.Fluctuation.Amplitude;
+    public override float Value => _func.Function.Amplitude;
 
 }

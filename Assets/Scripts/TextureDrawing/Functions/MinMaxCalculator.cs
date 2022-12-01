@@ -1,15 +1,16 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(FunctionsBuffer))]
+[RequireComponent(typeof(FunctionBuffer))]
 public class MinMaxCalculator : MonoBehaviour
 {
-    [SerializeField] private FunctionsBuffer _buffer;
+    [SerializeField] private FunctionBuffer _buffer;
     [SerializeField] private float _timeDelay = 0.2f;
 
     public float Max { get; private set; }
     public float Min { get; private set; }
 
+    /*
     private Coroutine _routine;
 
     void OnEnable()
@@ -80,4 +81,5 @@ public class MinMaxCalculator : MonoBehaviour
 
         Min = min == float.MaxValue ? 0 : min;
     }
+    */
 }

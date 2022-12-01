@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,20 +53,14 @@
     <UnityVersion>2021.2.8f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Assets\Scripts\Workspace.cs" />
     <Compile Include="Assets\Scripts\RotateAround.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\SquareFunction.cs" />
-    <Compile Include="Assets\Scripts\Function1DMoveController.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\PerlinFunction.cs" />
     <Compile Include="Assets\Scripts\ElectricitySettings.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\AmplitudeModulationFunction.cs" />
     <Compile Include="Assets\Scripts\View\TrigonometryViewController.cs" />
     <Compile Include="Assets\Scripts\View\EnvelopeViewController.cs" />
     <Compile Include="Assets\Scripts\View\EnvelopeView.cs" />
-    <Compile Include="Assets\Scripts\SceneSpawner.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\GridDrawer.cs" />
     <Compile Include="Assets\Scripts\ShowModelSettings.cs" />
     <Compile Include="Assets\Scripts\TimeController.cs" />
@@ -77,24 +71,19 @@
     <Compile Include="Assets\Scripts\ObjectsSpawner.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\ScalarOperationFunction.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\ValuesBuffer.cs" />
-    <Compile Include="Assets\Scripts\KeepBetweenObjects.cs" />
     <Compile Include="Assets\Scripts\View\ModulatorViewController.cs" />
     <Compile Include="Assets\Scripts\View\CompressorView.cs" />
-    <Compile Include="Assets\Scripts\ForceMover2D.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\GainReductionDrawer.cs" />
     <Compile Include="Assets\Scripts\MoleculesSpawner.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\GraphFunctionBase.cs" />
-    <Compile Include="Assets\Scripts\StringCountViewController.cs" />
     <Compile Include="Assets\Scripts\View\TrigonometryView.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\FunctionBuffer.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\GraphDrawerBase.cs" />
     <Compile Include="Assets\Scripts\Air.cs" />
     <Compile Include="Assets\Scripts\SceneController.cs" />
     <Compile Include="Assets\Scripts\PseudoTimer.cs" />
-    <Compile Include="Assets\Scripts\Digital\Memory.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\DigitalToAnalogueGraphDrawer.cs" />
-    <Compile Include="Assets\Scripts\Digital\DigitalGraphDrawer.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\PeakAvgDrawer.cs" />
     <Compile Include="Assets\Scripts\NumbersGridController.cs" />
     <Compile Include="Assets\Scripts\View\LerpViewController.cs" />
@@ -106,8 +95,6 @@
     <Compile Include="Assets\Scripts\VinylGraphDrawer.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\EnvelopeFunction.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\GraphDrawer.cs" />
-    <Compile Include="Assets\Scripts\FluctuatingMolecule1D.cs" />
-    <Compile Include="Assets\Scripts\Ear.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\BufferDelayFunction.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\PositionOffsetFunction.cs" />
     <Compile Include="Assets\Scripts\Audio\AudioViewController.cs" />
@@ -116,7 +103,6 @@
     <Compile Include="Assets\Scripts\TextureDrawing\FunctionsKeyboardController.cs" />
     <Compile Include="Assets\Scripts\View\VisibleViewController.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\MinMaxCalculator.cs" />
-    <Compile Include="Assets\Scripts\SpawnSpecialStrings.cs" />
     <Compile Include="Assets\Scripts\Digital\DigitalCable.cs" />
     <Compile Include="Assets\Scripts\VinylNeedleMover.cs" />
     <Compile Include="Assets\Scripts\FunctionMover1D.cs" />
@@ -125,9 +111,6 @@
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\RandomFunction.cs" />
     <Compile Include="Assets\Scripts\View\StringReadonlyViewController.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\ThresholdFunction.cs" />
-    <Compile Include="Assets\Scripts\String1D.cs" />
-    <Compile Include="Assets\Scripts\LowPressureForceProvider1D.cs" />
-    <Compile Include="Assets\Scripts\FluctuatingString1D.cs" />
     <Compile Include="Assets\Scripts\View\WaveRepresentationViewController.cs" />
     <Compile Include="Assets\Scripts\MonoTimeController.cs" />
     <Compile Include="Assets\Scripts\ArrowMoveController.cs" />
@@ -138,48 +121,35 @@
     <Compile Include="Assets\Scripts\MathIZ.cs" />
     <Compile Include="Assets\Scripts\TextEditColor.cs" />
     <Compile Include="Assets\Scripts\Audio\VolumeKeyboardController.cs" />
-    <Compile Include="Assets\Scripts\AnalogueViewController.cs" />
-    <Compile Include="Assets\Scripts\StringPlayer.cs" />
+    <Compile Include="Assets\Scripts\View\AnalogueViewController.cs" />
     <Compile Include="Assets\Scripts\VinylPlane.cs" />
-    <Compile Include="Assets\Scripts\VinylController.cs" />
     <Compile Include="Assets\Scripts\Molecules1DSpawner.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\LerpFunction.cs" />
-    <Compile Include="Assets\Scripts\Membrane1D.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\AmplitudeFunction.cs" />
     <Compile Include="Assets\Scripts\VinylDrawer.cs" />
     <Compile Include="Assets\Scripts\Molecule1D.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Equalizer\EqDrawerBase.cs" />
     <Compile Include="Assets\Scripts\OffsetToElectricity.cs" />
     <Compile Include="Assets\Scripts\View\MoleculesSpawnerViewController.cs" />
-    <Compile Include="Assets\Scripts\AirViewController.cs" />
+    <Compile Include="Assets\Scripts\View\AirViewController.cs" />
     <Compile Include="Assets\Scripts\FilesExtensions.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\NormalizedFunction.cs" />
     <Compile Include="Assets\Scripts\GraphController.cs" />
-    <Compile Include="Assets\Scripts\KeyboardController.cs" />
-    <Compile Include="Assets\Scripts\StringViewController.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\TrigonometryFunction.cs" />
     <Compile Include="Assets\Scripts\FunctionScaler.cs" />
-    <Compile Include="Assets\Scripts\FluctuatingStringKeyboardController.cs" />
-    <Compile Include="Assets\Scripts\IForceProvider.cs" />
-    <Compile Include="Assets\Scripts\FluctuatingFollower1D.cs" />
     <Compile Include="Assets\Scripts\View\SliderTextEditView.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\MinMaxFunction.cs" />
-    <Compile Include="Assets\Scripts\ReverbWorkspace.cs" />
     <Compile Include="Assets\Scripts\Molecule2D.cs" />
-    <Compile Include="Assets\Scripts\TextureDrawing\Functions\FunctionsBuffer.cs" />
     <Compile Include="Assets\Scripts\NumbersGrid.cs" />
     <Compile Include="Assets\Scripts\TextureDrawing\Functions\MultipleOperationsFunction.cs" />
-    <Compile Include="Assets\Scripts\MoleculesCountViewController.cs" />
-    <Compile Include="Assets\Scripts\FluctuatingObjectMover1D.cs" />
     <Compile Include="Assets\Scripts\MoleculesGrid.cs" />
     <Compile Include="Assets\Scripts\MonoKeyboardController.cs" />
     <Compile Include="Assets\Scripts\GraphDrawerMaterial.cs" />
     <Compile Include="Assets\Scripts\CameraPostProcessing.cs" />
     <Compile Include="Assets\Scripts\Digital\DigitalCableRandom.cs" />
     <Compile Include="Assets\Scripts\GraphKeyboardController.cs" />
-    <Compile Include="Assets\Scripts\SceneSpawnerEditor.cs" />
-    <Compile Include="Assets\Scripts\Dummy.cs" />
     <Compile Include="Assets\Scripts\IndexedQueue.cs" />
+    <Compile Include="Assets\Scripts\Fluctuation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
